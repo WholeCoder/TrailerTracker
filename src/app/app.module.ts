@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 
 import { AppComponent } from './app.component';
-
+//git push origin [name_of_your_new_branch]
 @NgModule({
   declarations: [
     AppComponent
