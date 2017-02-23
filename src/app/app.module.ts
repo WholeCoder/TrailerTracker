@@ -4,10 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 <<<<<<< HEAD
-//test
-=======
+//test//teset2
 
->>>>>>> 6b97323363ba713a5fc6e459d24e3f0be5a72cd9
 import { AppComponent } from './app.component';
 
 @NgModule({
