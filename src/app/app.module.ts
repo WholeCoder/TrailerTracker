@@ -4,12 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AlertModule } from 'ng2-bootstrap';
 
-//test//teset2
-
-//test3
-
-// test4
-
 import { AppComponent } from './app.component';
 
 @NgModule({
