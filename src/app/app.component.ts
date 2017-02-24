@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
 
 @Component({
   selector: 'app-root',
