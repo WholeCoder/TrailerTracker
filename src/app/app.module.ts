@@ -6,6 +6,7 @@ import { AlertModule } from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap';
 import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
 import { RouterModule, Routes } from '@angular/router';
+import {PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -13,24 +14,7 @@ import { TrailerTableComponent } from './trailer-table/trailer-table.component';
 import { DefaultComponentComponent } from './default-component/default-component.component';
 //git push origin [name_of_your_new_branch]
 
-
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    MyNewCoonentComponent,
-    NavBarComponent,
-    TrailerTableComponent,
-    DefaultComponentComponent
-  ],
-  imports: [
-    TabsModule,
-    AlertModule,
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(
-      [
+const appRoutes:Routes =       [
         {
             path: 'trailertable',
             component: TrailerTableComponent,
@@ -48,13 +32,27 @@ import { DefaultComponentComponent } from './default-component/default-component
         },
         {path: '**', component: DefaultComponentComponent,
         outlet: 'main-content'}
-        ]
+      ];
 
 
-    )
+@NgModule({
+  declarations: [
+    AppComponent,
+    MyNewCoonentComponent,
+    NavBarComponent,
+    TrailerTableComponent,
+    DefaultComponentComponent
+  ],
+  imports: [
+    TabsModule,
+    AlertModule,
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
     // MyNewCoonentComponent
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
