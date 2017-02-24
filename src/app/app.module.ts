@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TrailerTableComponent } from './trailer-table/trailer-table.component';
+import { DefaultComponentComponent } from './default-component/default-component.component';
 //git push origin [name_of_your_new_branch]
 
 
@@ -17,7 +19,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
   declarations: [
     AppComponent,
     MyNewCoonentComponent,
-    NavBarComponent
+    NavBarComponent,
+    TrailerTableComponent,
+    DefaultComponentComponent
   ],
   imports: [
     TabsModule,
@@ -27,16 +31,23 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HttpModule,
     RouterModule.forRoot(
       [
-            {
-                path: '',
-                component: NavBarComponent,
-                outlet: 'nav-bar'
-            },
-            {
-                path: '',
-                component: MyNewCoonentComponent,
-                outlet: 'main-content'
-            }
+        {
+            path: 'trailertable',
+            component: TrailerTableComponent,
+            outlet: 'main-content'
+        },
+        {
+            path: '',
+            component: NavBarComponent,
+            outlet: 'nav-bar'
+        },
+        {
+            path: '',
+            component: MyNewCoonentComponent,
+            outlet: 'main-content'
+        },
+        {path: '**', component: DefaultComponentComponent,
+        outlet: 'main-content'}
         ]
 
 
