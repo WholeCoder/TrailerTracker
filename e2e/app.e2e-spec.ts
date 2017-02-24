@@ -1,6 +1,6 @@
 import { TrailerTrackerPage } from './app.po';
 
-describe('trailer-tracker App', () => {
+describe('trailer-tracker App', function() {
   let page: TrailerTrackerPage;
 
   beforeEach(() => {
