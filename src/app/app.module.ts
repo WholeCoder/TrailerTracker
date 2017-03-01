@@ -12,26 +12,23 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TrailerTableComponent } from './trailer-table/trailer-table.component';
 import { DefaultComponentComponent } from './default-component/default-component.component';
+import { HomeComponent } from './home/home.component';
 //git push origin [name_of_your_new_branch]
 
 const appRoutes:Routes =       [
-        {
-            path: 'trailertable',
-            component: TrailerTableComponent,
-            outlet: 'main-content'
-        },
-        {
-            path: '',
-            component: NavBarComponent,
-            outlet: 'nav-bar'
-        },
-        {
-            path: '',
-            component: MyNewCoonentComponent,
-            outlet: 'main-content'
-        },
-        {path: '**', component: DefaultComponentComponent,
-        outlet: 'main-content'}
+        {path:'', redirectTo: 'home', pathMatch: 'full'},
+
+        {path:'home', component:HomeComponent, children: [
+          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: MyNewCoonentComponent, outlet: 'main-content'}
+        ]},
+
+        {path:'trailertable', component:HomeComponent, children: [
+          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: TrailerTableComponent, outlet: 'main-content'}
+        ]},
+
+        {path: '**', component: DefaultComponentComponent, outlet: 'main-content'}
       ];
 
 
@@ -41,7 +38,8 @@ const appRoutes:Routes =       [
     MyNewCoonentComponent,
     NavBarComponent,
     TrailerTableComponent,
-    DefaultComponentComponent
+    DefaultComponentComponent,
+    HomeComponent
   ],
   imports: [
     TabsModule,
