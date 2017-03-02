@@ -10,10 +10,13 @@ import { PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@an
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { TrailerTableComponent } from './trailer-table/trailer-table.component';
 import { DefaultComponentComponent } from './default-component/default-component.component';
 import { HomeComponent } from './home/home.component';
-import { TrailerService } from './trailer.service'
+import { TrailerService } from './trailer.service';
+// import { TrailerListItemComponent } from './trailer-list-item/trailer-list-item.component'
+import { TableDemoComponent } from './table/table-demo';
+
+import {TableData} from './table/table-data';
 //git push origin [name_of_your_new_branch]
 
 const appRoutes:Routes =       [
@@ -26,7 +29,7 @@ const appRoutes:Routes =       [
 
         {path:'trailertable', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
-          {path: '', component: TrailerTableComponent, outlet: 'main-content'}
+          {path: '', component: TableDemoComponent, outlet: 'main-content'}
         ]},
 
         {path: '**', component: DefaultComponentComponent, outlet: 'main-content'}
@@ -38,9 +41,11 @@ const appRoutes:Routes =       [
     AppComponent,
     MyNewCoonentComponent,
     NavBarComponent,
-    TrailerTableComponent,
     DefaultComponentComponent,
-    HomeComponent
+    HomeComponent,
+    // TrailerListItemComponent,
+    // TableData,
+    TableDemoComponent
   ],
   imports: [
     TabsModule,
