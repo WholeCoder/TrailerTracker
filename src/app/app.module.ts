@@ -7,6 +7,7 @@ import { TabsModule } from 'ng2-bootstrap';
 import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { PaginationModule } from 'ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -15,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { TrailerService } from './trailer.service';
 // import { TrailerListItemComponent } from './trailer-list-item/trailer-list-item.component'
 import { TableDemoComponent } from './table/table-demo';
+import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
+import {NgTableComponent} from '../../node_modules/ng2-table/components/table/ng-table.component';
+import {NgTableSortingDirective} from '../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
 
 import {TableData} from './table/table-data';
 //git push origin [name_of_your_new_branch]
@@ -45,7 +49,10 @@ const appRoutes:Routes =       [
     HomeComponent,
     // TrailerListItemComponent,
     // TableData,
-    TableDemoComponent
+    TableDemoComponent,
+    NgTableFilteringDirective,
+    NgTableComponent,
+    NgTableSortingDirective
   ],
   imports: [
     TabsModule,
@@ -53,7 +60,8 @@ const appRoutes:Routes =       [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    PaginationModule.forRoot()
     // MyNewCoonentComponent
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, TrailerService],

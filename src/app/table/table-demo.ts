@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 // import {CORE_DIRECTIVES, FORM_DIRECTIVES, NgClass, NgIf} from '@angular/common';
 // import {PAGINATION_DIRECTIVES} from '../../../node_modules/ng2-bootstrap/ng2-bootstrap';
-import {NG_TABLE_DIRECTIVES} from '../../../node_modules/ng2-table';
+import {NgTableFilteringDirective} from '../../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
+import {NgTableComponent} from '../../../node_modules/ng2-table/components/table/ng-table.component';
+import {NgTableSortingDirective} from '../../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
+// import {NG_TABLE_DIRECTIVES} from '../../../node_modules/ng2-table';
 import {TableData} from './table-data';
 
 // webpack html imports
