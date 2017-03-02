@@ -6,13 +6,14 @@ import { AlertModule } from 'ng2-bootstrap';
 import { TabsModule } from 'ng2-bootstrap';
 import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
 import { RouterModule, Routes } from '@angular/router';
-import {PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TrailerTableComponent } from './trailer-table/trailer-table.component';
 import { DefaultComponentComponent } from './default-component/default-component.component';
 import { HomeComponent } from './home/home.component';
+import { TrailerService } from './trailer.service'
 //git push origin [name_of_your_new_branch]
 
 const appRoutes:Routes =       [
@@ -50,7 +51,7 @@ const appRoutes:Routes =       [
     RouterModule.forRoot(appRoutes)
     // MyNewCoonentComponent
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, TrailerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
