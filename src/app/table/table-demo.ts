@@ -6,6 +6,7 @@ import {NgTableComponent} from '../../../node_modules/ng2-table/components/table
 import {NgTableSortingDirective} from '../../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
 // import {NG_TABLE_DIRECTIVES} from '../../../node_modules/ng2-table';
 import {TableData} from './table-data';
+import { TrailerService } from '../trailer.service';
 
 // webpack html imports
 
@@ -17,12 +18,18 @@ import {TableData} from './table-data';
 export class TableDemoComponent implements OnInit {
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'name'},
-    {title: 'Position', name: 'position', sort: false},
-    {title: 'Office', name: 'office', sort: 'asc'},
-    {title: 'Extn.', name: 'ext', sort: ''},
-    {title: 'Start date', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary'}
+    {title: 'Unit Number', name: 'unitnumber'},
+    {title: 'customer', name: 'customer', sort: false},
+    {title: 'account', name: 'account', sort: 'asc'},
+    {title: 'vehicletype.', name: 'vehicletype', sort: ''},
+    {title: 'location', name: 'location'},
+    {title: 'datersnotified', name: 'datersnotified'},
+    {title: 'estimatedtimeofcompletion', name: 'estimatedtimeofcompletion'},
+    {title: 'status1', name: 'status1'},
+    {title: 'status2', name: 'status2'},
+    {title: 'note', name: 'note'},
+    {title: 'dateauthorized', name: 'dateauthorized'},
+    {title: 'authorizedinitials', name: 'authorizedinitials'},
   ];
   public page:number = 1;
   public itemsPerPage:number = 10;
@@ -33,12 +40,13 @@ export class TableDemoComponent implements OnInit {
   public config:any = {
     paging: true,
     sorting: {columns: this.columns},
-    filtering: {filterString: '', columnName: 'position'}
+    filtering: {filterString: '', columnName: 'unitnumber'}
   };
 
   private data:Array<any> = TableData;
 
-  public constructor() {
+  public constructor(private trailerService: TrailerService) {
+    this.data = trailerService.getTrailers();
     this.length = this.data.length;
   }
 
