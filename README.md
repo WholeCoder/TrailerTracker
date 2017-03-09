@@ -1,31 +1,65 @@
-# TrailerTracker
+<img width="150" src="https://i.cloudup.com/zfY6lL7eFa-3000x3000.png" />
+<img width="50" src="https://angular.io/resources/images/logos/angular2/angular.svg" />
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+## Angular2 Express Starter ( Advanced )
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- Angular 2 ( 2.x )
+- ExpressJS ( 4.x - with compression )
+- Webpack ( angular-cli )
 
-## Code scaffolding
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+## Concepts
 
-## Build
+- Redux ( NgRx/Store - with server calls)
+- Smart & dumb components
+- AOT: Ahead-of-Time compilation
+- Advanced routing ( lazy loading, router outlets...)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Support
 
-## Running unit tests
+If you’d like to support me developing this project you’re able to do so by donating on PayPal or if you have any special needs/ feature requests don’t hesitate to send me an email.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/ngsemantic)
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Install / Development
 
-## Deploying to GitHub Pages
+```bash
+git clone https://github.com/vladotesanovic/angular2-express-starter
+cd angular2-express-starter
 
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
+# Install dependencies
+npm install
 
-## Further help
+# start server
+npm run start
 
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# Client url: http://localhost:4200
+# Application ( epxress ) API: http://localhost:4300
+```
+
+Install Redux DevTools chrome extenstion:
+
+https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
+
+## Build / Production
+
+```bash
+
+npm run build
+
+## Deploy dist folder to app server
+
+Structure of dist folder:
+
+/dist/server <-- expressjs
+/dist/client <-- angular2
+
+```
+
+## Note
+
+All html and css are from: http://www.w3schools.com/howto/
+
+

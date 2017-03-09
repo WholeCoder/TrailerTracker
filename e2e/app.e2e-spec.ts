@@ -1,10 +1,10 @@
-import { TrailerTrackerPage } from './app.po';
+import { TmpPage } from './app.po';
 
-describe('trailer-tracker App', function() {
-  let page: TrailerTrackerPage;
+describe('tmp App', function() {
+  let page: TmpPage;
 
   beforeEach(() => {
-    page = new TrailerTrackerPage();
+    page = new TmpPage();
   });
 
   it('should display message saying app works', () => {

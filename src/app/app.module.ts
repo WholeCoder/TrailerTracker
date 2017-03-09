@@ -2,26 +2,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AlertModule } from 'ng2-bootstrap';
-import { TabsModule } from 'ng2-bootstrap';
-import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
-import { RouterModule, Routes } from '@angular/router';
-import { PathLocationStrategy, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import { PaginationModule } from 'ng2-bootstrap';
 
-import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { DefaultComponentComponent } from './default-component/default-component.component';
-import { HomeComponent } from './home/home.component';
-import { TrailerService } from './trailer.service';
-// import { TrailerListItemComponent } from './trailer-list-item/trailer-list-item.component'
-import { TableDemoComponent } from './table/table-demo';
-import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
 import {NgTableComponent} from '../../node_modules/ng2-table/components/table/ng-table.component';
 import {NgTableSortingDirective} from '../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
+import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
 
 import {TableData} from './table/table-data';
-//git push origin [name_of_your_new_branch]
+
+import { AppComponent } from './app.component';
+import { routing } from './app.router';
+import { RouterModule, Routes } from '@angular/router';
+import { effects, store, instrumentation } from './store';
+import { SharedModule } from './shared/shared.module';
+import { WeatherService } from './weather/weather.service';
+import { TableDemoComponent } from './table/table.component';
+import { HomeComponent } from './home/home.component';
+import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { TrailerListItemComponent } from './trailer-list-item/trailer-list-item.component';
+import { TrailerService } from './trailer.service';
+import { DefaultComponent } from './default/default.component';
+
+import { PaginationModule } from 'ng2-bootstrap';
 
 const appRoutes:Routes =       [
         {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -36,35 +38,40 @@ const appRoutes:Routes =       [
           {path: '', component: TableDemoComponent, outlet: 'main-content'}
         ]},
 
-        {path: '**', component: DefaultComponentComponent, outlet: 'main-content'}
+        {path: '**', component: DefaultComponent, outlet: 'main-content'}
       ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TableDemoComponent,
+    HomeComponent,
     MyNewCoonentComponent,
     NavBarComponent,
-    DefaultComponentComponent,
-    HomeComponent,
-    // TrailerListItemComponent,
-    // TableData,
-    TableDemoComponent,
+    TrailerListItemComponent,
+    DefaultComponent,
     NgTableFilteringDirective,
     NgTableComponent,
     NgTableSortingDirective
   ],
   imports: [
-    TabsModule,
-    AlertModule,
     BrowserModule,
+    SharedModule,
     FormsModule,
     HttpModule,
+    store,
+    effects,
+    routing,
     RouterModule.forRoot(appRoutes),
-    PaginationModule.forRoot()
-    // MyNewCoonentComponent
+    instrumentation,
+    PaginationModule
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}, TrailerService],
-  bootstrap: [AppComponent]
+  providers: [
+    WeatherService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {}

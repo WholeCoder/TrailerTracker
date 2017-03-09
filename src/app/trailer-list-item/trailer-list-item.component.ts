@@ -1,13 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'trailer-list-item',
+  selector: 'app-trailer-list-item',
   templateUrl: './trailer-list-item.component.html',
   styleUrls: ['./trailer-list-item.component.css']
 })
 export class TrailerListItemComponent implements OnInit {
-
-  @Input() currentTrailer;
 
   constructor() { }
 
