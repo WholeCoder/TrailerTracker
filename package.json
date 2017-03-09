@@ -2,7 +2,6 @@
   "name": "delme",
   "version": "0.0.0",
   "license": "MIT",
-  "angular-cli": {},
   "scripts": {
     "ng": "ng",
     "start": "concurrently \"node server.js\" \"ng serve\"",
@@ -12,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "1.0.0-rc.0",
     "@angular/common": "^2.3.1",
     "@angular/compiler": "^2.3.1",
     "@angular/core": "^2.3.1",
