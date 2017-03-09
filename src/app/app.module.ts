@@ -62,7 +62,7 @@ const appRoutes:Routes =       [
     HttpModule,
     store,
     effects,
-    routing,
+    // routing,
     RouterModule.forRoot(appRoutes),
     instrumentation,
     PaginationModule.forRoot()
