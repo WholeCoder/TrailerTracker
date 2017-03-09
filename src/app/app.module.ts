@@ -65,9 +65,10 @@ const appRoutes:Routes =       [
     routing,
     RouterModule.forRoot(appRoutes),
     instrumentation,
-    PaginationModule
+    PaginationModule.forRoot()
   ],
   providers: [
+    TrailerService,
     WeatherService
   ],
   bootstrap: [
