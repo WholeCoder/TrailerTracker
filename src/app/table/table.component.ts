@@ -7,8 +7,15 @@ import {NgTableSortingDirective} from '../../../node_modules/ng2-table/component
 // import {NG_TABLE_DIRECTIVES} from '../../../node_modules/ng2-table';
 import {TableData} from './table-data';
 import { TrailerService } from '../trailer.service';
+import { Http, Response } from '@angular/http';
+import { Trailer } from '../trailer';
 
-// webpack html imports
+import {Observable} from 'rxjs/Rx';
+
+// Import RxJs required methods
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 @Component({
   selector: 'table-demo',
@@ -43,11 +50,19 @@ export class TableDemoComponent implements OnInit {
     filtering: {filterString: '', columnName: 'unitnumber'}
   };
 
-  private data:Array<any> = TableData;
+  private data: Object[] = [];
+  private dataObsv: Observable<any>;
 
-  public constructor(private trailerService: TrailerService) {
-    this.data = trailerService.getTrailers();
-    this.length = this.data.length;
+  public constructor(private trailerService: TrailerService, private http: Http) {
+    // ...using get request
+    var that = this;
+   this.http.get('/api/trailers')
+                  // ...and calling .json() on the response to return data
+                   .map((res:Response) => res.json())
+                   .subscribe(x => { this.data = x;
+                                     this.length = x.length;
+                                     this.onChangeTable(this.config);
+                                   });
   }
 
   public ngOnInit():void {
