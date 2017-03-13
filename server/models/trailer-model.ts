@@ -36,20 +36,20 @@ export interface TrailerInstance extends Sequelize.Instance<TrailerAttributes> {
 
 }
 
-export default function defineTrailer(sequelize: Sequelize.Sequelize, DataTypes) {
+export default function defineTrailer(sequelize: Sequelize.Sequelize) {
   var Trailer = sequelize.define('Trailer', {
-    unitnumber:Sequelize.STRING,
-    customer: Sequelize.STRING,
-    account:Sequelize.STRING,
-    vehicletype:Sequelize.STRING,
-    location: Sequelize.STRING,
-    datersnotified: Sequelize.STRING,
-    estimatedtimeofcompletion:Sequelize.STRING,
-    status1: Sequelize.STRING,
-    status2: Sequelize.STRING,
-    note: Sequelize.STRING,
-    dateauthorized: Sequelize.STRING,
-    authorizedinitials: Sequelize.STRING
+    unitnumber:Sequelize.DataTypes.STRING,
+    customer:Sequelize.DataTypes.STRING,
+    account:Sequelize.DataTypes.STRING,
+    vehicletype:Sequelize.DataTypes.STRING,
+    location: Sequelize.DataTypes.STRING,
+    datersnotified: Sequelize.DataTypes.STRING,
+    estimatedtimeofcompletion:Sequelize.DataTypes.STRING,
+    status1: Sequelize.DataTypes.STRING,
+    status2:Sequelize.DataTypes.STRING,
+    note:Sequelize.DataTypes.STRING,
+    dateauthorized:Sequelize.DataTypes.STRING,
+    authorizedinitials:Sequelize.DataTypes.STRING
 
   });
 
