@@ -10,5 +10,10 @@
     "lib": [
       "es2016"
     ]
-  }
+  },
+  "include": [
+    "./typings/modules/sequelize/index.d.ts",
+    "./typings/index.d.ts",
+    "./src/index.tsx"
+  ]
 }

@@ -1,5 +1,5 @@
 var bcrypt = require('bcryptjs');
-    var config = require('./config').config;
+    var config = require('./config_db').config;
     var Sequelize = require('sequelize');
     var sequelize = new Sequelize(config.database_url);
 
