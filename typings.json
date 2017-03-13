@@ -1,6 +1,6 @@
 {
   "name": "angular2-express-starter",
   "dependencies": {
-    "sequelize": "registry:npm/sequelize#4.0.0-1+20161101121248"
+    "sequelize": "registry:npm/sequelize#3.0.0+20161101121248"
   }
 }
