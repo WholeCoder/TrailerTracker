@@ -1,4 +1,7 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { Instance, Sequelize, DataTypes } from '@types/sequelize';
+// import * as Ajv from 'sequelize';
+// import * as Sequelize from '@types/sequelize';
+// let Sequelize = Ajv.
 
 export interface TrailerAttributes {
   unitnumber:string;
@@ -15,7 +18,7 @@ export interface TrailerAttributes {
   authorizedinitials: string;
 }
 
-export interface TrailerInstance extends Sequelize.Instance<TrailerInstance,TrailerAttributes>, TrailerAttributes {
+export interface TrailerInstance extends Instance<TrailerAttributes>, TrailerAttributes {
 
 }
 
@@ -52,22 +55,22 @@ console.error("********************works****************");
     console.log("props == "+str);
   }
   console.log('*****************************');
-  printProps(DataTypes);
+  printProps(sequelize);
   console.log('****************(new)');
 
   var Trailer =sequelize.define('Trailer', {
-    unitnumber:DataTypes.STRING(),
-    customer:DataTypes.STRING(),
-    account:DataTypes.STRING(),
-    vehicletype:DataTypes.STRING(),
-    location: DataTypes.STRING(),
-    datersnotified: DataTypes.STRING(),
-    estimatedtimeofcompletion:DataTypes.STRING(),
-    status1: DataTypes.STRING(),
-    status2:DataTypes.STRING(),
-    note:DataTypes.STRING(),
-    dateauthorized:DataTypes.STRING(),
-    authorizedinitials:DataTypes.STRING()
+    unitnumber:"string",
+    customer:"string",
+    account:"string",
+    vehicletype:"string",
+    location: "string",
+    datersnotified: "string",
+    estimatedtimeofcompletion:"string",
+    status1: "string",
+    status2:"string",
+    note:"string",
+    dateauthorized:"string",
+    authorizedinitials:"string"
 
   });
 
