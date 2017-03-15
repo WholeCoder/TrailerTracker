@@ -1,5 +1,5 @@
 import { Router, Response, Request } from 'express';
-import { Instance, Sequelize, DataTypes } from 'sequelize';
+import { Instance, DataTypes } from 'sequelize';
 // let Trailer = require('../models/trailer-model');
 import defineTrailer from '../models/trailer-model';
 const trailerRouter: Router = Router();
