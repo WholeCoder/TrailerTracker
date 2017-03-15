@@ -55,7 +55,7 @@ console.error("********************works****************");
     console.log("props == "+str);
   }
   console.log('*****************************');
-  printProps(sequelize);
+  // printProps(sequelize);
   console.log('****************(new)');
 
   var Trailer =sequelize.define('Trailer', {
