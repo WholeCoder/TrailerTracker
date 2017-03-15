@@ -13,6 +13,7 @@ export interface TrailerAttributes {
   estimatedtimeofcompletion:string;
   status1: string;
   status2: string;
+  status3: string;
   note: string;
   dateauthorized: string;
   authorizedinitials: string;
@@ -68,6 +69,7 @@ console.error("********************works****************");
     estimatedtimeofcompletion:"string",
     status1: "string",
     status2:"string",
+    status3:"string",
     note:"string",
     dateauthorized:"string",
     authorizedinitials:"string"

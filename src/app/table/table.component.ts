@@ -34,6 +34,7 @@ export class TableDemoComponent implements OnInit {
     {title: 'estimatedtimeofcompletion', name: 'estimatedtimeofcompletion'},
     {title: 'status1', name: 'status1'},
     {title: 'status2', name: 'status2'},
+    {title: 'status3', name: 'status3'},
     {title: 'note', name: 'note'},
     {title: 'dateauthorized', name: 'dateauthorized'},
     {title: 'authorizedinitials', name: 'authorizedinitials'},

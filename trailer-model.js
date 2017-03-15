@@ -14,6 +14,7 @@ var bcrypt = require('bcryptjs');
        "estimatedtimeofcompletion": Sequelize.STRING,
        "status1": Sequelize.STRING,
        "status2": Sequelize.STRING,
+       "status3": Sequelize.STRING,
        "note": Sequelize.STRING,
        "dateauthorized": Sequelize.STRING,
        "authorizedinitials": Sequelize.STRING

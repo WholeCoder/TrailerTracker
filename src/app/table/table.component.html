@@ -3,7 +3,7 @@
 <br />
 <br />
 <br />
-
+<a [routerLink]="[ '/newtrailer' ]">Create New Trailer</a>
 <input *ngIf="config.filtering" placeholder="Filter"
        [ngTableFiltering]="config.filtering"
        (tableChanged)="onChangeTable(config)"/>
