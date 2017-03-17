@@ -10,7 +10,19 @@ export class TrailerFormComponent implements OnInit {
   public trailerForm: FormGroup;
   constructor(@Inject(FormBuilder) fb: FormBuilder) {
     this.trailerForm = fb.group({
-      unitnumber: ["", Validators.required]
+      unitnumber: [""],
+      customer: [""],
+      account: [""],
+      vehichletype: [""],
+      location: [""],
+      datersnotified: [""],
+      estimatedtimeofcompletion: [""],
+      status1: [""],
+      status2: [""],
+      status3: [""],
+      note: [""],
+      dateauthorized: [""],
+      authorizedinitials: [""]
     });
 
   }
@@ -20,6 +32,6 @@ export class TrailerFormComponent implements OnInit {
 
   saveTrailer(event)
   {
-    alert('saved trailer!');
+    alert('saved trailer! - ' + JSON.stringify(this.trailerForm.value));
   }
 }
