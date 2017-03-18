@@ -7,10 +7,13 @@ const userRouter: Router = Router();
 
 userRouter.post("/", (request: Request, response: Response) => {
 
-  let User = CreateUser(sequelize);
-  User.getAuthenticated(request.body.username, request.body.password,function(err, user){
-    response.json({"logged":"in"});
+let User = CreateUser(sequelize);
+
+  // response.json({"worked":"this"});
+  User.getAuthenticated(request.body.username, request.body.password,function(x, user, error){
+    let resp = error ? {"err":error} : user;
+    response.json(resp);
   });
-});
+ });
 
 export { userRouter };
