@@ -23,10 +23,16 @@ console.log("\n---------------(end)\n");
 // let sequelize:Sequelize = new Sequelize(new config().database_url);
 let Trailer = defineTrailer(sequelize);
 
-Trailer.findAll().then(function(trlrs) {
   trailerRouter.get('/', (request: Request, response: Response) => {
-    response.json(trlrs);
-  });
-})
+    Trailer.findAll().then(function(trlrs) {
+      response.json(trlrs);
+      console.log("----------------trailerRouter works!!---------");
+    });
+  })
+
+  trailerRouter.post('/', (request: Request, response: Response) => {
+    console.log('post ============= '+request.body.unitnumber);
+    Trailer.create(request.body);
+  })
 
 export { trailerRouter }

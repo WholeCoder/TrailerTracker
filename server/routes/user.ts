@@ -1,34 +1,19 @@
 import { Router, Response, Request } from "express";
+import * as sequelize from './SequelizeInstance';
+import * as CreateUser from '../models/user-model';
 
 const userRouter: Router = Router();
 
-const user = {
-  "id": 1,
-  "name": "Leanne Graham",
-  "username": "Bret",
-  "email": "Sincere@april.biz",
-  "address": {
-    "street": "Kulas Light",
-    "suite": "Apt. 556",
-    "city": "Gwenborough",
-    "zipcode": "92998-3874",
-    "geo": {
-      "lat": "-37.3159",
-      "lng": "81.1496"
-    }
-  },
-  "phone": "1-770-736-8031 x56442",
-  "website": "hildegard.org",
-  "company": {
-    "name": "Romaguera-Crona",
-    "catchPhrase": "Multi-layered client-server neural-net",
-    "bs": "harness real-time e-markets"
-  }
-};
 
-userRouter.get("/", (request: Request, response: Response) => {
+userRouter.post("/", (request: Request, response: Response) => {
 
-  response.json(user);
-});
+let User = CreateUser(sequelize);
+
+  // response.json({"worked":"this"});
+  User.getAuthenticated(request.body.username, request.body.password,function(x, user, error){
+    let resp = error ? {"err":error} : user;
+    response.json(resp);
+  });
+ });
 
 export { userRouter };

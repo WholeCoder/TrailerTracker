@@ -8,6 +8,7 @@ export class Trailer {
   "estimatedtimeofcompletion": Date;
   "status1": string;
   "status2": string;
+  "status3": string;
   "note": string;
   "__v": string;
   "dateauthorized": Date;
