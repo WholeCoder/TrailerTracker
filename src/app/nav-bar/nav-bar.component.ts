@@ -24,16 +24,19 @@ export class NavBarComponent implements OnInit {
   }
 
   loginUser(event) {
-    alert('click happened.');
+    // alert('click happened.');
     this.http.post('/api/user', this.loginForm.value)
                    // ...and calling .json() on the response to return data
                     .map((res:Response) => res.json())
                     .subscribe(x => {
-                                        if (x == "null")
+
+                                        if (x == null || x.err != null)
                                         {
-                                            alert('logged in! - ' + JSON.stringify(x));
+                                          console.log('x == '+x);
+                                            alert('can not log in! - ' + JSON.stringify(x));
                                         } else
                                         {
+                                          console.log('x == '+JSON.stringify(x));
                                             this.router.navigateByUrl('/trailertable');
                                         }
 
