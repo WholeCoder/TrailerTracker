@@ -1,0 +1,69 @@
+<div class="container">
+  <div style="height: 50px;">
+
+  </div>
+   <div class="row">
+      <div class="offset-sm-6 col-sm-5">
+         <div class="panel panel-primary">
+            <div class="panel-heading">Create a New Trailer</div>
+            <div class="panel-body">
+               <form [formGroup]="trailerForm" (ngSubmit)="saveTrailer($event)">
+                  <div class="form-group">
+                     <label for="unitnumber">Unit Number:</label>
+                     <input formControlName="unitnumber" type="text" class="form-control" id="unitnumber">
+                  </div>
+                  <div class="form-group">
+                     <label for="customer">Customer:</label>
+                     <input formControlName="customer" type="text" class="form-control" id="customer">
+                  </div>
+                  <div class="form-group">
+                     <label for="account">Account:</label>
+                     <input formControlName="account" type="text" class="form-control" id="account">
+                  </div>
+                  <div class="form-group">
+                     <label for="vehichletype">Vehicle Type:</label>
+                     <input formControlName="vehichletype" type="text" class="form-control" id="vehichletype">
+                  </div>
+                  <div class="form-group">
+                     <label for="location">Locations:</label>
+                     <input formControlName="location" type="text" class="form-control" id="location">
+                  </div>
+                  <div class="form-group">
+                     <label for="datersnotified">Date RS Notified:</label>
+                     <input formControlName="datersnotified" type="text" class="form-control" id="datersnotified">
+                  </div>
+                  <div class="form-group">
+                     <label for="estimatedtimeofcompletion">Est. Time of Completion:</label>
+                     <input formControlName="estimatedtimeofcompletion" type="text" class="form-control" id="estimatedtimeofcompletion">
+                  </div>
+                  <div class="form-group">
+                     <label for="status1">Status 1:</label>
+                     <input formControlName="status1" type="text" class="form-control" id="status1">
+                  </div>
+                  <div class="form-group">
+                     <label for="status2">Status 2:</label>
+                     <input formControlName="status2" type="text" class="form-control" id="status2">
+                  </div>
+                  <div class="form-group">
+                     <label for="email">Status 3:</label>
+                     <input formControlName="status3" type="text" class="form-control" id="status3">
+                  </div>
+                  <div class="form-group">
+                     <label for="note">Note:</label>
+                     <textarea formControlName="note" class="form-control" id="note"> </textarea>
+                  </div>
+                  <div class="form-group">
+                     <label for="dateauthorized">Date Authorized:</label>
+                     <input formControlName="dateauthorized" type="text" class="form-control" id="dateauthorized">
+                  </div>
+                  <div class="form-group">
+                     <label for="authorizedinitials">Authorized Initials:</label>
+                     <input formControlName="authorizedinitials" type="text" class="form-control" id="authorizedinitials">
+                  </div>
+                  <button type="submit" class="btn btn-default">Save</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
