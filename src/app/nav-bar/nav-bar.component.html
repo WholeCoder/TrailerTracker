@@ -10,12 +10,12 @@
       <a class="navbar-brand" href="#">Trailer Tracker</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right">
+      <form class="navbar-form navbar-right" [formGroup]="loginForm" >
         <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control">
+          <input type="text" formControlName="username" placeholder="Email" class="form-control">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
+          <input type="password" formControlName="password" placeholder="Password" class="form-control">
         </div>
         <button (click)="clicked()" type="submit" class="btn btn-success">Sign in</button>
       </form>

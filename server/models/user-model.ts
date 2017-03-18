@@ -3,7 +3,8 @@ var Sequelize = require('sequelize'),
 
 		SALT_WORK_FACTOR = 10;
 
-exports.CreateUser = function(sequelize) {
+
+var CreateUser = function(sequelize) {
 	var User = sequelize.define('User', {
 	  username: Sequelize.STRING,
 	  password: Sequelize.STRING
@@ -74,7 +75,7 @@ exports.CreateUser = function(sequelize) {
 
 		            	return cb(null, null, reasons.PASSWORD_INCORRECT);;
 		            }
-  	        		console.log("ENDED - " + 'user.comparePassword - should never get here');
+  	        		// console.log("ENDED - " + 'user.comparePassword - should never get here');
 
 		        }); // end comparePassword
 		    }, function(reason) {
@@ -121,3 +122,4 @@ exports.CreateUser = function(sequelize) {
   }));
 });
 */
+export = CreateUser;
