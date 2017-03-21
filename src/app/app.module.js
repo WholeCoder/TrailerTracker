@@ -29,7 +29,6 @@ var trailer_form_component_1 = require("./trailer-form/trailer-form.component");
 var forms_2 = require("@angular/forms");
 var sign_up_component_1 = require("./sign-up/sign-up.component");
 var nav_bar_user_logged_in_component_1 = require("./nav-bar-user-logged-in/nav-bar-user-logged-in.component");
-var sign_up_form_component_1 = require("./sign-up-form/sign-up-form.component");
 var appRoutes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: home_component_1.HomeComponent, children: [
@@ -50,7 +49,7 @@ var appRoutes = [
         ] },
     { path: 'signupuser', component: home_component_1.HomeComponent, children: [
             { path: '', component: nav_bar_component_1.NavBarComponent, outlet: 'nav-bar-content' },
-            { path: '', component: sign_up_form_component_1.SignUpFormComponent, outlet: 'main-content' }
+            { path: '', component: sign_up_component_1.SignUpComponent, outlet: 'main-content' }
         ] },
     { path: '**', component: default_component_1.DefaultComponent, outlet: 'main-content' }
 ];
@@ -74,8 +73,7 @@ AppModule = __decorate([
             ng_table_sorting_directive_1.NgTableSortingDirective,
             trailer_form_component_1.TrailerFormComponent,
             sign_up_component_1.SignUpComponent,
-            nav_bar_user_logged_in_component_1.NavBarUserLoggedInComponent,
-            sign_up_form_component_1.SignUpFormComponent
+            nav_bar_user_logged_in_component_1.NavBarUserLoggedInComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,
