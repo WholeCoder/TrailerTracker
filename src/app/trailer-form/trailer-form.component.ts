@@ -14,7 +14,7 @@ export class TrailerFormComponent implements OnInit {
       unitnumber: [""],
       customer: [""],
       account: [""],
-      vehichletype: [""],
+      vehicletype: [""],
       location: [""],
       datersnotified: [""],
       estimatedtimeofcompletion: [""],
