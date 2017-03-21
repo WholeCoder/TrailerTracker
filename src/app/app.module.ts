@@ -26,7 +26,8 @@ import { DefaultComponent } from './default/default.component';
 import { PaginationModule } from 'ng2-bootstrap';
 import { TrailerFormComponent } from './trailer-form/trailer-form.component';
 
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { SignUpComponent } from './sign-up/sign-up.component'
 
 const appRoutes:Routes =       [
         {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -34,6 +35,11 @@ const appRoutes:Routes =       [
         {path:'home', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: MyNewCoonentComponent, outlet: 'main-content'}
+        ]},
+
+        {path:'signup', component:HomeComponent, children: [
+          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: SignUpComponent, outlet: 'main-content'}
         ]},
 
         {path:'trailertable', component:HomeComponent, children: [
@@ -62,7 +68,8 @@ const appRoutes:Routes =       [
     NgTableFilteringDirective,
     NgTableComponent,
     NgTableSortingDirective,
-    TrailerFormComponent
+    TrailerFormComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
