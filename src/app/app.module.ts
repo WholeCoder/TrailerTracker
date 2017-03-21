@@ -27,7 +27,8 @@ import { PaginationModule } from 'ng2-bootstrap';
 import { TrailerFormComponent } from './trailer-form/trailer-form.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpComponent } from './sign-up/sign-up.component'
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { NavBarUserLoggedInComponent } from './nav-bar-user-logged-in/nav-bar-user-logged-in.component'
 
 const appRoutes:Routes =       [
         {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -69,7 +70,8 @@ const appRoutes:Routes =       [
     NgTableComponent,
     NgTableSortingDirective,
     TrailerFormComponent,
-    SignUpComponent
+    SignUpComponent,
+    NavBarUserLoggedInComponent
   ],
   imports: [
     BrowserModule,
