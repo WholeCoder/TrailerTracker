@@ -9,8 +9,6 @@ import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from './shared/shared.module';
-import { WeatherService } from './weather/weather.service';
 import { TableDemoComponent } from './table/table.component';
 import { HomeComponent } from './home/home.component';
 import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
@@ -76,7 +74,6 @@ const appRoutes: Routes =       [
   ],
   imports: [
     BrowserModule,
-    SharedModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
@@ -84,8 +81,7 @@ const appRoutes: Routes =       [
     ReactiveFormsModule
   ],
   providers: [
-    TrailerService,
-    WeatherService
+    TrailerService
   ],
   bootstrap: [
     AppComponent
