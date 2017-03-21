@@ -14,7 +14,6 @@ var ng_table_sorting_directive_1 = require("../../node_modules/ng2-table/compone
 var ng_table_filtering_directive_1 = require("../../node_modules/ng2-table/components/table/ng-table-filtering.directive");
 var app_component_1 = require("./app.component");
 var router_1 = require("@angular/router");
-var store_1 = require("./store");
 var shared_module_1 = require("./shared/shared.module");
 var weather_service_1 = require("./weather/weather.service");
 var table_component_1 = require("./table/table.component");
@@ -80,11 +79,7 @@ AppModule = __decorate([
             shared_module_1.SharedModule,
             forms_1.FormsModule,
             http_1.HttpModule,
-            store_1.store,
-            store_1.effects,
-            // routing,
             router_1.RouterModule.forRoot(appRoutes),
-            store_1.instrumentation,
             ng2_bootstrap_1.PaginationModule.forRoot(),
             forms_2.ReactiveFormsModule
         ],

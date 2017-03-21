@@ -7,12 +7,8 @@ import {NgTableComponent} from '../../node_modules/ng2-table/components/table/ng
 import {NgTableSortingDirective} from '../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
 import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
 
-import {TableData} from './table/table-data';
-
 import { AppComponent } from './app.component';
-import { routing } from './app.router';
 import { RouterModule, Routes } from '@angular/router';
-import { effects, store, instrumentation } from './store';
 import { SharedModule } from './shared/shared.module';
 import { WeatherService } from './weather/weather.service';
 import { TableDemoComponent } from './table/table.component';
@@ -83,11 +79,7 @@ const appRoutes: Routes =       [
     SharedModule,
     FormsModule,
     HttpModule,
-    store,
-    effects,
-    // routing,
     RouterModule.forRoot(appRoutes),
-    instrumentation,
     PaginationModule.forRoot(),
     ReactiveFormsModule
   ],
