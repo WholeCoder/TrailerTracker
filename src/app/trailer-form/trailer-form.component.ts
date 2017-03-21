@@ -11,19 +11,19 @@ export class TrailerFormComponent implements OnInit {
   public trailerForm: FormGroup;
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
     this.trailerForm = fb.group({
-      unitnumber: [""],
-      customer: [""],
-      account: [""],
-      vehicletype: [""],
-      location: [""],
-      datersnotified: [""],
-      estimatedtimeofcompletion: [""],
-      status1: [""],
-      status2: [""],
-      status3: [""],
-      note: [""],
-      dateauthorized: [""],
-      authorizedinitials: [""]
+      unitnumber: [''],
+      customer: [''],
+      account: [''],
+      vehicletype: [''],
+      location: [''],
+      datersnotified: [''],
+      estimatedtimeofcompletion: [''],
+      status1: [''],
+      status2: [''],
+      status3: [''],
+      note: [''],
+      dateauthorized: [''],
+      authorizedinitials: ['']
     });
 
   }
@@ -35,7 +35,7 @@ export class TrailerFormComponent implements OnInit {
   {
     this.http.post('/api/trailers', this.trailerForm.value)
                    // ...and calling .json() on the response to return data
-                    .map((res:Response) => res.json())
+                    .map((res: Response) => res.json())
                     .subscribe(x => {
                                       alert('saved trailer! - ' + JSON.stringify(x));
                                     });
