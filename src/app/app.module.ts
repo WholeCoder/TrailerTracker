@@ -32,26 +32,31 @@ import { NavBarUserLoggedInComponent } from './nav-bar-user-logged-in/nav-bar-us
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 const appRoutes:Routes =       [
-        {path:'', redirectTo: 'home', pathMatch: 'full'},
+        {path: '', redirectTo: 'home', pathMatch: 'full'},
 
-        {path:'home', component:HomeComponent, children: [
+        {path: 'home', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: MyNewCoonentComponent, outlet: 'main-content'}
         ]},
 
-        {path:'signup', component:HomeComponent, children: [
+        {path: 'signup', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: SignUpComponent, outlet: 'main-content'}
         ]},
 
-        {path:'trailertable', component:HomeComponent, children: [
+        {path: 'trailertable', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: TableDemoComponent, outlet: 'main-content'}
         ]},
 
-        {path:'newtrailer', component:HomeComponent, children: [
+        {path: 'newtrailer', component:HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: TrailerFormComponent, outlet: 'main-content'}
+        ]},
+
+        {path: 'signupuser', component:HomeComponent, children: [
+          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: SignUpFormComponent, outlet: 'main-content'}
         ]},
 
         {path: '**', component: DefaultComponent, outlet: 'main-content'}

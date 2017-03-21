@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Http} from "@angular/http";
 
 @Component({
   selector: 'app-sign-up',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  public signUpForm: FormGroup;
+
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
+    this.signUpForm = fb.group({
+      email: [''],
+      password: [''],
+      password_confirmation: ['']
+    });
+
+  }
 
   ngOnInit() {
+  }
+
+  saveNewUser(event) {
+    alert('saved!');
   }
 
 }
