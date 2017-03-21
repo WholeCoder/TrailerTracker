@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
     this.signUpForm = fb.group({
-      email: [''],
+      username: [''],
       password: [''],
       password_confirmation: ['']
     });
