@@ -6,17 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-require("rxjs/add/operator/catch");
-require("rxjs/add/operator/map");
-var profile_actions_1 = require("./store/profile/profile.actions");
 var AppComponent = (function () {
-    function AppComponent(http, store) {
-        this.observable$ = http
-            .get('/api/public/simple')
-            .map(function (response) { return response.json(); });
-        store.dispatch({
-            type: profile_actions_1.USER_GET
-        });
+    function AppComponent() {
     }
     return AppComponent;
 }());

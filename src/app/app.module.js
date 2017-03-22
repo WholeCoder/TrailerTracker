@@ -14,8 +14,6 @@ var ng_table_sorting_directive_1 = require("../../node_modules/ng2-table/compone
 var ng_table_filtering_directive_1 = require("../../node_modules/ng2-table/components/table/ng-table-filtering.directive");
 var app_component_1 = require("./app.component");
 var router_1 = require("@angular/router");
-var shared_module_1 = require("./shared/shared.module");
-var weather_service_1 = require("./weather/weather.service");
 var table_component_1 = require("./table/table.component");
 var home_component_1 = require("./home/home.component");
 var my_new_coonent_component_1 = require("./my-new-coonent/my-new-coonent.component");
@@ -76,7 +74,6 @@ AppModule = __decorate([
         ],
         imports: [
             platform_browser_1.BrowserModule,
-            shared_module_1.SharedModule,
             forms_1.FormsModule,
             http_1.HttpModule,
             router_1.RouterModule.forRoot(appRoutes),
@@ -84,8 +81,7 @@ AppModule = __decorate([
             forms_2.ReactiveFormsModule
         ],
         providers: [
-            trailer_service_1.TrailerService,
-            weather_service_1.WeatherService
+            trailer_service_1.TrailerService
         ],
         bootstrap: [
             app_component_1.AppComponent

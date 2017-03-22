@@ -14,19 +14,19 @@ var TrailerFormComponent = (function () {
     function TrailerFormComponent(fb, http) {
         this.http = http;
         this.trailerForm = fb.group({
-            unitnumber: [""],
-            customer: [""],
-            account: [""],
-            vehicletype: [""],
-            location: [""],
-            datersnotified: [""],
-            estimatedtimeofcompletion: [""],
-            status1: [""],
-            status2: [""],
-            status3: [""],
-            note: [""],
-            dateauthorized: [""],
-            authorizedinitials: [""]
+            unitnumber: [''],
+            customer: [''],
+            account: [''],
+            vehicletype: [''],
+            location: [''],
+            datersnotified: [''],
+            estimatedtimeofcompletion: [''],
+            status1: [''],
+            status2: [''],
+            status3: [''],
+            note: [''],
+            dateauthorized: [''],
+            authorizedinitials: ['']
         });
     }
     TrailerFormComponent.prototype.ngOnInit = function () {
