@@ -45,19 +45,6 @@ export interface TrailerInstance extends Instance<TrailerAttributes>, TrailerAtt
 // }
 
 export default function defineTrailer(sequelize: Sequelize) {
-console.error("********************works****************");
-  function printProps(obj)
-  {
-    var str = "";
-    for (var prop in obj)
-    {
-      str += prop + '    ' + obj[prop] + '\n';
-    }
-    console.log("props == "+str);
-  }
-  console.log('*****************************');
-  // printProps(sequelize);
-  console.log('****************(new)');
 
   var Trailer =sequelize.define('Trailer', {
     unitnumber:"string",

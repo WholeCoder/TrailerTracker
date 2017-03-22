@@ -110,15 +110,4 @@ const CreateUser = function(sequelize) {
 	return User;
 };
 
-/*sequelize.sync().then(function() {
-  return User.create({
-    username: 'janedoe',
-    password: 'janedoe'
-  });
-}).then(function(jane) {
-  console.log(jane.get({
-    plain: true
-  }));
-});
-*/
 export = CreateUser;
