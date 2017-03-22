@@ -1,11 +1,11 @@
-var Sequelize = require('sequelize'),
-		bcrypt = require('bcryptjs'),
+const Sequelize = require('sequelize');
+const bcrypt = require('bcryptjs');
 
-		SALT_WORK_FACTOR = 10;
+const SALT_WORK_FACTOR = 10;
 
 
-var CreateUser = function(sequelize) {
-	var User = sequelize.define('User', {
+const CreateUser = function(sequelize) {
+	const User = sequelize.define('User', {
 	  username: Sequelize.STRING,
 	  password: Sequelize.STRING
 	},
@@ -26,21 +26,20 @@ var CreateUser = function(sequelize) {
 		        // if (err) return cb(err);
 
 		        // make sure the user exists
-		        if (!user) {
-		        		console.log("ENDED - " + 'getAuthenticated');
-		        		console.log("could not find user.");
-		            return cb(null, null, reasons.NOT_FOUND);
-		        } else
-		        {
-		        	// found the user
-		        	return cb(null,user, null);
-		        }
+          if (user) {
+            // found the user
+            return cb(null, user, null);
+          } else {
+            console.log('ENDED - ' + 'getAuthenticated');
+            console.log('could not find user.');
+            return cb(null, null, reasons.NOT_FOUND);
+          }
 
 
 		    }, function(reason) {
   					// rejection
-  					console.log("--------- REJECT called - reason == " + reason);
-        		console.log("ENDED - " + 'in rejection');
+  					console.log('--------- REJECT called - reason == ' + reason);
+        		console.log('ENDED - ' + 'in rejection');
 				}); // end then for findOne
 			},
 
@@ -52,8 +51,8 @@ var CreateUser = function(sequelize) {
 
 		        // make sure the user exists
 		        if (!user) {
-		        		console.log("ENDED - " + 'getAuthenticated');
-		        		console.log("could not find user.");
+		        		console.log('ENDED - ' + 'getAuthenticated');
+		        		console.log('could not find user.');
 		            return cb(null, null, reasons.NOT_FOUND);
 		        }
 
@@ -63,38 +62,38 @@ var CreateUser = function(sequelize) {
 
 		            // check if the password was a match
 		            if (isMatch) {
-		            		console.log('success, there was a match! username == '+user.username);
+		            		console.log('success, there was a match! username == ' + user.username);
 		            		console.log('		isMatch == ' + isMatch);
-				        		console.log("ENDED - " + 'user.comparePassword - in callback');
+				        		console.log('ENDED - ' + 'user.comparePassword - in callback');
 
   									return cb(null, user);
 		            } else
 		            {
-		            	console.log('isMatch == '+isMatch);
-			        		console.log("ENDED - " + 'user.comparePassword - in callback');
+		            	console.log('isMatch == ' + isMatch);
+			        		console.log('ENDED - ' + 'user.comparePassword - in callback');
 
-		            	return cb(null, null, reasons.PASSWORD_INCORRECT);;
+		            	return cb(null, null, reasons.PASSWORD_INCORRECT); ;
 		            }
   	        		// console.log("ENDED - " + 'user.comparePassword - should never get here');
 
 		        }); // end comparePassword
 		    }, function(reason) {
   					// rejection
-  					console.log("--------- REJECT called - reason == " + reason);
-        		console.log("ENDED - " + 'in rejection');
+  					console.log('--------- REJECT called - reason == ' + reason);
+        		console.log('ENDED - ' + 'in rejection');
 				}); // end then for findOne
 			} // end getAuthenticated
 		}
 	});
 
 	// expose enum on the model, and provide an internal convenience reference
-	var reasons = User.failedLogin = {
+	const reasons = User.failedLogin = {
 	    NOT_FOUND: 0,
 	    PASSWORD_INCORRECT: 1,
 	    MAX_ATTEMPTS: 2
 	};
 
-	var hashPasswordHook = function(instance, options, done) {
+	const hashPasswordHook = function(instance, options, done) {
 	  if (!instance.changed('password')) return done();
 
 	  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {

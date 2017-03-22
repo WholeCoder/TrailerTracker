@@ -1,7 +1,7 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { RouterModule, Routes, Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
-import { Component, OnInit, Inject } from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Http, Response} from '@angular/http';
+import {Component, Inject, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,8 +13,8 @@ export class NavBarComponent implements OnInit {
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private router: Router) {
     this.loginForm = fb.group({
-      username: [""],
-      password: [""]
+      username: [''],
+      password: ['']
     });
 
   }
@@ -27,16 +27,16 @@ export class NavBarComponent implements OnInit {
     // alert('click happened.');
     this.http.post('/api/user', this.loginForm.value)
                    // ...and calling .json() on the response to return data
-                    .map((res:Response) => res.json())
+                    .map((res: Response) => res.json())
                     .subscribe(x => {
 
                                         if (x == null || x.err != null)
                                         {
-                                          console.log('x == '+x);
+                                          console.log('x == ' + x);
                                             alert('can not log in! - ' + JSON.stringify(x));
                                         } else
                                         {
-                                          console.log('x == '+JSON.stringify(x));
+                                          console.log('x == ' + JSON.stringify(x));
                                             this.router.navigateByUrl('/trailertable');
                                         }
 

@@ -23,7 +23,6 @@ var trailer_service_1 = require("./trailer.service");
 var default_component_1 = require("./default/default.component");
 var ng2_bootstrap_1 = require("ng2-bootstrap");
 var trailer_form_component_1 = require("./trailer-form/trailer-form.component");
-var forms_2 = require("@angular/forms");
 var sign_up_component_1 = require("./sign-up/sign-up.component");
 var nav_bar_user_logged_in_component_1 = require("./nav-bar-user-logged-in/nav-bar-user-logged-in.component");
 var appRoutes = [
@@ -78,7 +77,7 @@ AppModule = __decorate([
             http_1.HttpModule,
             router_1.RouterModule.forRoot(appRoutes),
             ng2_bootstrap_1.PaginationModule.forRoot(),
-            forms_2.ReactiveFormsModule
+            forms_1.ReactiveFormsModule
         ],
         providers: [
             trailer_service_1.TrailerService

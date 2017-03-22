@@ -15,8 +15,8 @@ var NavBarComponent = (function () {
         this.http = http;
         this.router = router;
         this.loginForm = fb.group({
-            username: [""],
-            password: [""]
+            username: [''],
+            password: ['']
         });
     }
     NavBarComponent.prototype.ngOnInit = function () {

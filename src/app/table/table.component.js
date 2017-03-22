@@ -115,7 +115,7 @@ var TableDemoComponent = (function () {
 }());
 TableDemoComponent = __decorate([
     core_1.Component({
-        selector: 'table-demo',
+        selector: 'app-table-demo',
         templateUrl: './table.component.html',
     })
 ], TableDemoComponent);

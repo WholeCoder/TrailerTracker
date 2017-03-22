@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import { Http, Response } from '@angular/http';
+import {Component, Inject, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Http, Response} from "@angular/http";
 
 @Component({
   selector: 'app-sign-up',

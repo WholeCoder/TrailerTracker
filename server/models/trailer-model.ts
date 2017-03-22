@@ -1,4 +1,4 @@
-import { Instance, Sequelize, DataTypes } from '@types/sequelize';
+import {Instance, Sequelize} from "@types/sequelize";
 // import * as Ajv from 'sequelize';
 // import * as Sequelize from '@types/sequelize';
 // let Sequelize = Ajv.

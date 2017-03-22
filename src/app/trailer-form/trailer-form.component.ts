@@ -1,6 +1,6 @@
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Component, OnInit, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Http, Response} from '@angular/http';
 
 @Component({
   selector: 'app-trailer-form',

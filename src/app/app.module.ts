@@ -1,28 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 import {NgTableComponent} from '../../node_modules/ng2-table/components/table/ng-table.component';
 import {NgTableSortingDirective} from '../../node_modules/ng2-table/components/table/ng-table-sorting.directive';
 import {NgTableFilteringDirective} from '../../node_modules/ng2-table/components/table/ng-table-filtering.directive';
 
-import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
-import { TableDemoComponent } from './table/table.component';
-import { HomeComponent } from './home/home.component';
-import { MyNewCoonentComponent } from './my-new-coonent/my-new-coonent.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { TrailerListItemComponent } from './trailer-list-item/trailer-list-item.component';
-import { TrailerService } from './trailer.service';
-import { DefaultComponent } from './default/default.component';
+import {AppComponent} from './app.component';
+import {RouterModule, Routes} from '@angular/router';
+import {TableDemoComponent} from './table/table.component';
+import {HomeComponent} from './home/home.component';
+import {MyNewCoonentComponent} from './my-new-coonent/my-new-coonent.component';
+import {NavBarComponent} from './nav-bar/nav-bar.component';
+import {TrailerListItemComponent} from './trailer-list-item/trailer-list-item.component';
+import {TrailerService} from './trailer.service';
+import {DefaultComponent} from './default/default.component';
 
-import { PaginationModule } from 'ng2-bootstrap';
-import { TrailerFormComponent } from './trailer-form/trailer-form.component';
-
-import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { NavBarUserLoggedInComponent } from './nav-bar-user-logged-in/nav-bar-user-logged-in.component';
+import {PaginationModule} from 'ng2-bootstrap';
+import {TrailerFormComponent} from './trailer-form/trailer-form.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
+import {NavBarUserLoggedInComponent} from './nav-bar-user-logged-in/nav-bar-user-logged-in.component';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},

@@ -1,14 +1,14 @@
 import * as express from 'express';
-import { json, urlencoded } from 'body-parser';
+import {json, urlencoded} from 'body-parser';
 import * as path from 'path';
 import * as compression from 'compression';
 
-import { loginRouter } from './routes/login';
-import { protectedRouter } from './routes/protected';
-import { publicRouter } from './routes/public';
-import { feedRouter } from './routes/feed';
-import { userRouter } from "./routes/user";
-import { trailerRouter } from "./routes/trailers";
+import {loginRouter} from './routes/login';
+import {protectedRouter} from './routes/protected';
+import {publicRouter} from './routes/public';
+import {feedRouter} from './routes/feed';
+import {userRouter} from './routes/user';
+import {trailerRouter} from './routes/trailers';
 
 const app: express.Application = express();
 
@@ -34,7 +34,7 @@ if (app.get('env') === 'production') {
 
 // catch 404 and forward to error handler
 app.use(function(req: express.Request, res: express.Response, next) {
-  let err = new Error('Not Found');
+  const err = new Error('Not Found');
   next(err);
 });
 
