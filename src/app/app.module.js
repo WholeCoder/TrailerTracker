@@ -36,16 +36,12 @@ var appRoutes = [
             { path: '', component: sign_up_component_1.SignUpComponent, outlet: 'main-content' }
         ] },
     { path: 'trailertable', component: home_component_1.HomeComponent, children: [
-            { path: '', component: nav_bar_component_1.NavBarComponent, outlet: 'nav-bar-content' },
+            { path: '', component: nav_bar_user_logged_in_component_1.NavBarUserLoggedInComponent, outlet: 'nav-bar-content' },
             { path: '', component: table_component_1.TableDemoComponent, outlet: 'main-content' }
         ] },
     { path: 'newtrailer', component: home_component_1.HomeComponent, children: [
-            { path: '', component: nav_bar_component_1.NavBarComponent, outlet: 'nav-bar-content' },
-            { path: '', component: trailer_form_component_1.TrailerFormComponent, outlet: 'main-content' }
-        ] },
-    { path: 'signupuser', component: home_component_1.HomeComponent, children: [
             { path: '', component: nav_bar_user_logged_in_component_1.NavBarUserLoggedInComponent, outlet: 'nav-bar-content' },
-            { path: '', component: sign_up_component_1.SignUpComponent, outlet: 'main-content' }
+            { path: '', component: trailer_form_component_1.TrailerFormComponent, outlet: 'main-content' }
         ] },
     { path: '**', component: default_component_1.DefaultComponent, outlet: 'main-content' }
 ];

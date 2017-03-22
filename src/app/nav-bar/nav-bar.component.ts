@@ -47,6 +47,6 @@ export class NavBarComponent implements OnInit {
 
   newUser(event) {
     alert('create new user!');
-    this.router.navigateByUrl('/signupuser');
+    this.router.navigateByUrl('/signup');
   }
 }

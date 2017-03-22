@@ -39,7 +39,7 @@ var NavBarComponent = (function () {
     }; // end of loginUser(event)
     NavBarComponent.prototype.newUser = function (event) {
         alert('create new user!');
-        this.router.navigateByUrl('/signupuser');
+        this.router.navigateByUrl('/signup');
     };
     return NavBarComponent;
 }());

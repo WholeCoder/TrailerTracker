@@ -36,18 +36,13 @@ const appRoutes: Routes =       [
         ]},
 
         {path: 'trailertable', component: HomeComponent, children: [
-          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: NavBarUserLoggedInComponent, outlet: 'nav-bar-content'},
           {path: '', component: TableDemoComponent, outlet: 'main-content'}
         ]},
 
         {path: 'newtrailer', component: HomeComponent, children: [
-          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
-          {path: '', component: TrailerFormComponent, outlet: 'main-content'}
-        ]},
-
-        {path: 'signupuser', component: HomeComponent, children: [
           {path: '', component: NavBarUserLoggedInComponent, outlet: 'nav-bar-content'},
-          {path: '', component: SignUpComponent, outlet: 'main-content'}
+          {path: '', component: TrailerFormComponent, outlet: 'main-content'}
         ]},
 
         {path: '**', component: DefaultComponent, outlet: 'main-content'}
