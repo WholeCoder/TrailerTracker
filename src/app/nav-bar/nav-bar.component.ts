@@ -2,11 +2,27 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Http, Response} from '@angular/http';
 import {Component, Inject, OnInit} from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+  keyframes
+} from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+  animations: [
+    trigger('navBarPanel', [
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(150)
+      ])
+    ])
+  ]
 })
 export class NavBarComponent implements OnInit {
   public loginForm: FormGroup;
@@ -22,6 +38,9 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {
 
   }
+
+  state: string = 'inactive';
+
 
   loginUser(event) {
     // alert('click happened.');

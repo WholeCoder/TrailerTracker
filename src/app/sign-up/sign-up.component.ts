@@ -1,11 +1,19 @@
-import {Component, Inject, OnInit} from "@angular/core";
+import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Http, Response} from "@angular/http";
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
+  animations: [
+    trigger('signUpPanel', [
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(200)
+      ])
+    ])
+  ]
 })
 export class SignUpComponent implements OnInit {
 
