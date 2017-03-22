@@ -22,7 +22,21 @@ var SignUpComponent = (function () {
     SignUpComponent.prototype.ngOnInit = function () {
     };
     SignUpComponent.prototype.saveNewUser = function (event) {
-        alert('saved!');
+        this.http.put('/api/user', this.signUpForm.value)
+            .map(function (res) {
+            return res.json();
+        })
+            .subscribe(function (x) {
+            if (x == null || x.err != null) {
+                console.log('x == ' + x);
+                alert('can not log in! - ' + JSON.stringify(x));
+            }
+            else {
+                console.log('x == ' + JSON.stringify(x));
+                // this.router.navigateByUrl('/trailertable');
+                alert('signed up!');
+            }
+        });
     };
     return SignUpComponent;
 }());

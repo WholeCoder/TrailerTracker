@@ -37,6 +37,10 @@ var NavBarComponent = (function () {
             }
         });
     }; // end of loginUser(event)
+    NavBarComponent.prototype.newUser = function (event) {
+        alert('create new user!');
+        this.router.navigateByUrl('/signupuser');
+    };
     return NavBarComponent;
 }());
 NavBarComponent = __decorate([
