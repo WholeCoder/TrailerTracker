@@ -24,27 +24,29 @@ export class SignUpComponent implements OnInit {
   }
 
   saveNewUser(event) {
-    this.http.put('/api/user', this.signUpForm.value)
-    // ...and calling .json() on the response to return data
-      .map((res: Response) => {
-        return res.json();
-      })
-      .subscribe(x => {
+    alert(this.signUpForm.value.password+" === "+this.signUpForm.value.password_confirmation);
+    if((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null)) {
+      this.http.put('/api/user', this.signUpForm.value)
+      // ...and calling .json() on the response to return data
+        .map((res: Response) => {
+          return res.json();
+        })
+        .subscribe(x => {
 
-        if (x == null || x.err != null)
-        {
-          console.log('x == ' + x);
-          alert('can not log in! - ' + JSON.stringify(x));
-        } else
-        {
-          console.log('x == ' + JSON.stringify(x));
-          // this.router.navigateByUrl('/trailertable');
-          alert('signed up!');
-        }
+          if (x == null || x.error != null) {
+            console.log('x == ' + x);
+            alert('can not log in! - ' + JSON.stringify(x));
+          } else {
+            console.log('x == ' + JSON.stringify(x));
+            // this.router.navigateByUrl('/trailertable');
+            alert('signed up!');
+          }
 
 
-      });
-
+        });
+    } else {
+      alert('Paswords do not match!')
+    }
   }
 
 }

@@ -20,18 +20,28 @@ userRouter.put('/', (request: Request, response: Response) => {
 
   const User = CreateUser(sequelize);
 
-  sequelize.sync().then(function() {
-    return User.create({
-      username: request.body.username,
-      password: request.body.password
+  console.log('request.body.username == '+request.body.username);
+  console.log('request.body.password. == '+request.body.password);
+  if ((request.body.username !== null) && (request.body.username !== '')
+    && (request.body.password !== null) && (request.body.password_confirmation !== '')
+    && (request.body.password == request.body.password_confirmation)) {
+    sequelize.sync().then(function () {
+      return User.create({
+        username: request.body.username,
+        password: request.body.password
+      });
+    }).then(function (jane) {
+      console.log(jane.get({
+        plain: true
+      }));
+      const resp = jane;
+      response.json(resp);
+    }).catch(function (reason) {
+      response.json({"error": "could not create"});
     });
-  }).then(function(jane) {
-    console.log(jane.get({
-      plain: true
-    }));
-    const resp = jane ? {'err': jane} : jane;
-    response.json(resp);
-  });
+  } else {
+    response.json({"error": "could not create"});
+  }
 });
 
 export { userRouter };
