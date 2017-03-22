@@ -10,10 +10,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 var forms_1 = require("@angular/forms");
 var core_1 = require("@angular/core");
+var core_2 = require("@angular/core");
 var NavBarComponent = (function () {
     function NavBarComponent(fb, http, router) {
         this.http = http;
         this.router = router;
+        this.state = 'inactive';
         this.loginForm = fb.group({
             username: [''],
             password: ['']
@@ -47,7 +49,15 @@ NavBarComponent = __decorate([
     core_1.Component({
         selector: 'app-nav-bar',
         templateUrl: './nav-bar.component.html',
-        styleUrls: ['./nav-bar.component.css']
+        styleUrls: ['./nav-bar.component.css'],
+        animations: [
+            core_2.trigger('navBarPanel', [
+                core_2.transition('void => *', [
+                    core_2.style({ transform: 'translateY(-100%)' }),
+                    core_2.animate(150)
+                ])
+            ])
+        ]
     }),
     __param(0, core_1.Inject(forms_1.FormBuilder))
 ], NavBarComponent);

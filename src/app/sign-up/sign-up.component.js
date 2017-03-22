@@ -22,21 +22,27 @@ var SignUpComponent = (function () {
     SignUpComponent.prototype.ngOnInit = function () {
     };
     SignUpComponent.prototype.saveNewUser = function (event) {
-        this.http.put('/api/user', this.signUpForm.value)
-            .map(function (res) {
-            return res.json();
-        })
-            .subscribe(function (x) {
-            if (x == null || x.err != null) {
-                console.log('x == ' + x);
-                alert('can not log in! - ' + JSON.stringify(x));
-            }
-            else {
-                console.log('x == ' + JSON.stringify(x));
-                // this.router.navigateByUrl('/trailertable');
-                alert('signed up!');
-            }
-        });
+        alert(this.signUpForm.value.password + " === " + this.signUpForm.value.password_confirmation);
+        if ((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null)) {
+            this.http.put('/api/user', this.signUpForm.value)
+                .map(function (res) {
+                return res.json();
+            })
+                .subscribe(function (x) {
+                if (x == null || x.error != null) {
+                    console.log('x == ' + x);
+                    alert('can not log in! - ' + JSON.stringify(x));
+                }
+                else {
+                    console.log('x == ' + JSON.stringify(x));
+                    // this.router.navigateByUrl('/trailertable');
+                    alert('signed up!');
+                }
+            });
+        }
+        else {
+            alert('Paswords do not match!');
+        }
     };
     return SignUpComponent;
 }());
@@ -44,7 +50,15 @@ SignUpComponent = __decorate([
     core_1.Component({
         selector: 'app-sign-up',
         templateUrl: './sign-up.component.html',
-        styleUrls: ['./sign-up.component.css']
+        styleUrls: ['./sign-up.component.css'],
+        animations: [
+            core_1.trigger('signUpPanel', [
+                core_1.transition('void => *', [
+                    core_1.style({ transform: 'translateY(-100%)' }),
+                    core_1.animate(200)
+                ])
+            ])
+        ]
     }),
     __param(0, core_1.Inject(forms_1.FormBuilder))
 ], SignUpComponent);

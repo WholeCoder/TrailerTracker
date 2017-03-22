@@ -17,7 +17,15 @@ NavBarUserLoggedInComponent = __decorate([
     core_1.Component({
         selector: 'app-nav-bar-user-logged-in',
         templateUrl: './nav-bar-user-logged-in.component.html',
-        styleUrls: ['./nav-bar-user-logged-in.component.css']
+        styleUrls: ['./nav-bar-user-logged-in.component.css'],
+        animations: [
+            core_1.trigger('navBarPanel1', [
+                core_1.transition('void => *', [
+                    core_1.style({ transform: 'translateY(-100%)' }),
+                    core_1.animate(150)
+                ])
+            ])
+        ]
     })
 ], NavBarUserLoggedInComponent);
 exports.NavBarUserLoggedInComponent = NavBarUserLoggedInComponent;
