@@ -72,7 +72,7 @@ const CreateUser = function(sequelize) {
 		            	console.log('isMatch == ' + isMatch);
 			        		console.log('ENDED - ' + 'user.comparePassword - in callback');
 
-		            	return cb(null, null, reasons.PASSWORD_INCORRECT); ;
+		            	return cb(null, null, reasons.PASSWORD_INCORRECT);
 		            }
   	        		// console.log("ENDED - " + 'user.comparePassword - should never get here');
 
