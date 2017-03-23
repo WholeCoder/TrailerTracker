@@ -2,6 +2,9 @@ import * as express from 'express';
 import {json, urlencoded} from 'body-parser';
 import * as path from 'path';
 import * as compression from 'compression';
+var pg = require('pg');
+var session = require('express-session');
+var pgSession = require('connect-pg-simple')(session);
 
 import {loginRouter} from './routes/login';
 import {protectedRouter} from './routes/protected';
@@ -11,6 +14,20 @@ import {userRouter} from './routes/user';
 import {trailerRouter} from './routes/trailers';
 
 const app: express.Application = express();
+
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+
+app.use(session({
+  store: new pgSession({
+    pg : pg,                                  // Use global pg-module
+    conString : "postgres://postgres:pgsGood&Plenty@localhost:5432/postgres" // Connect using something else than default DATABASE_URL env variable
+  }),
+  secret: 'rubenjohnathanpierichs',
+  resave: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+}));
 
 app.disable('x-powered-by');
 
