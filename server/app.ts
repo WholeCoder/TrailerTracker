@@ -5,6 +5,7 @@ import * as compression from 'compression';
 var pg = require('pg');
 var session = require('express-session');
 var pgSession = require('connect-pg-simple')(session);
+const config = require('./config_db');
 
 import {loginRouter} from './routes/login';
 import {protectedRouter} from './routes/protected';
@@ -18,11 +19,11 @@ const app: express.Application = express();
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-
+console.log("----------------------->  db_url == "+config.database_url);
 app.use(session({
   store: new pgSession({
     pg : pg,                                  // Use global pg-module
-    conString : "postgres://postgres:pgsGood&Plenty@localhost:5432/postgres" // Connect using something else than default DATABASE_URL env variable
+    conString : config.database_url // Connect using something else than default DATABASE_URL env variable
   }),
   secret: 'rubenjohnathanpierichs',
   resave: false,

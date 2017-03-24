@@ -1,4 +1,5 @@
+const config = require('../config_db');
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize("postgres://postgres:pgsGood&Plenty@localhost:5432/postgres");
+const sequelize = new Sequelize(config.database_url);
 
 export = sequelize;
