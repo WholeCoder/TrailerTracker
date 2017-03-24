@@ -27,11 +27,13 @@ userRouter.put('/', (request: Request, response: Response) => {
   console.log('request.body.password. == '+request.body.password);
   if ((request.body.username !== null) && (request.body.username !== '')
     && (request.body.password !== null) && (request.body.password_confirmation !== '')
-    && (request.body.password == request.body.password_confirmation)) {
+    && (request.body.password == request.body.password_confirmation)
+    && request.body.customer !== 'ADMIN') {
     sequelize.sync().then(function () {
       return User.create({
         username: request.body.username,
-        password: request.body.password
+        password: request.body.password,
+        customer: request.body.customer
       });
     }).then(function (jane) {
       console.log(jane.get({

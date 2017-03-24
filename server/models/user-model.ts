@@ -7,7 +7,8 @@ const SALT_WORK_FACTOR = 10;
 const CreateUser = function(sequelize) {
 	const User = sequelize.define('User', {
 	  username: Sequelize.STRING,
-	  password: Sequelize.STRING
+	  password: Sequelize.STRING,
+    customer: Sequelize.STRING
 	},
 	{
 		instanceMethods: {

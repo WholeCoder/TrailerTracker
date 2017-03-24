@@ -6,7 +6,8 @@ var Sequelize = require('sequelize'),
 exports.CreateUser = function(sequelize) {
 	var User = sequelize.define('User', {
 	  username: Sequelize.STRING,
-	  password: Sequelize.STRING
+	  password: Sequelize.STRING,
+    customer: Sequelize.STRING
 	},
 	{
 		instanceMethods: {
