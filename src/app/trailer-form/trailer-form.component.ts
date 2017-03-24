@@ -1,11 +1,19 @@
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Component, Inject, OnInit} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Http, Response} from "@angular/http";
 
 @Component({
   selector: 'app-trailer-form',
   templateUrl: './trailer-form.component.html',
-  styleUrls: ['./trailer-form.component.css']
+  styleUrls: ['./trailer-form.component.css'],
+  animations: [
+    trigger('trailerPanel', [
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(200)
+      ])
+    ])
+  ]
 })
 export class TrailerFormComponent implements OnInit {
   public trailerForm: FormGroup;
@@ -30,6 +38,8 @@ export class TrailerFormComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  state: string = 'inactive';
 
   saveTrailer(event)
   {
