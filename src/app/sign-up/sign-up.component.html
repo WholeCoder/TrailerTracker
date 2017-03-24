@@ -1,0 +1,32 @@
+<div class="container">
+  <div style="height: 50px;">
+  </div>
+  <div class="row" [@signUpPanel]="state">
+    <div class="offset-sm-6 col-sm-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Create a New User Account</div>
+        <div class="panel-body">
+          <form [formGroup]="signUpForm" (ngSubmit)="saveNewUser($event)">
+            <div class="form-group">
+              <label for="username">Email:</label>
+              <input formControlName="username" type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input formControlName="password" type="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Password (Confirmation):</label>
+              <input formControlName="password_confirmation" type="password" class="form-control" id="password_confirmation">
+            </div>
+            <div class="form-group">
+              <label for="customer">Customer:</label>
+              <input formControlName="customer" type="text" class="form-control" id="customer">
+            </div>
+             <button type="submit" class="btn btn-default">Sign Up!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
