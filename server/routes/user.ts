@@ -13,6 +13,9 @@ userRouter.post('/', (request: Request, response: Response) => {
   User.getAuthenticated(request.body.username, request.body.password, function(x, user, error){
     const resp = error ? {'err': error} : user;
     response.json(resp);
+    if(!error) {
+      request["session"].user = user;
+    }
   });
 });
 
