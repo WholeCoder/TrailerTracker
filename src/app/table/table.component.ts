@@ -1,16 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {TrailerService} from '../trailer.service';
-import {Http, Response} from '@angular/http';
+import {animate, Component, OnInit, style, transition, trigger} from "@angular/core";
+import {TrailerService} from "../trailer.service";
+import {Http, Response} from "@angular/http";
 
-import {Observable} from 'rxjs/Rx';
+import {Observable} from "rxjs/Rx";
 // Import RxJs required methods
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
 
 
 @Component({
   selector: 'app-table-demo',
   templateUrl: './table.component.html',
+  animations: [
+    trigger('trailerTablePanel', [
+      transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate(200)
+      ])
+    ])
+  ]
   // directives: [NG_TABLE_DIRECTIVES, PAGINATION_DIRECTIVES, NgClass, NgIf, CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class TableDemoComponent implements OnInit {
@@ -30,6 +38,9 @@ export class TableDemoComponent implements OnInit {
     {title: 'dateauthorized', name: 'dateauthorized'},
     {title: 'authorizedinitials', name: 'authorizedinitials'},
   ];
+
+  state: string = 'inactive';
+
   public page: number = 1;
   public itemsPerPage: number = 10;
   public maxSize: number = 5;
