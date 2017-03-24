@@ -23,7 +23,8 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = fb.group({
       username: [''],
       password: [''],
-      password_confirmation: ['']
+      password_confirmation: [''],
+      customer: ['']
     });
 
   }
@@ -33,7 +34,7 @@ export class SignUpComponent implements OnInit {
 
   saveNewUser(event) {
     alert(this.signUpForm.value.password+" === "+this.signUpForm.value.password_confirmation);
-    if((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null)) {
+    if((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
       this.http.put('/api/user', this.signUpForm.value)
       // ...and calling .json() on the response to return data
         .map((res: Response) => {
@@ -43,7 +44,7 @@ export class SignUpComponent implements OnInit {
 
           if (x == null || x.error != null) {
             console.log('x == ' + x);
-            alert('can not log in! - ' + JSON.stringify(x));
+            alert('can not sign up! - ' + JSON.stringify(x));
           } else {
             console.log('x == ' + JSON.stringify(x));
             // this.router.navigateByUrl('/trailertable');
