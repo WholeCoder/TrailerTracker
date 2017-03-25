@@ -9,13 +9,13 @@ export interface TrailerAttributes {
   account:string;
   vehicletype:string;
   location: string;
-  datersnotified: string;
-  estimatedtimeofcompletion:string;
+  datersnotified: Date;
+  estimatedtimeofcompletion: Date;
   status1: string;
   status2: string;
   status3: string;
   note: string;
-  dateauthorized: string;
+  dateauthorized: Date;
   authorizedinitials: string;
 }
 
@@ -52,13 +52,13 @@ export default function defineTrailer(sequelize: Sequelize) {
     account:"string",
     vehicletype:"string",
     location: "string",
-    datersnotified: "string",
-    estimatedtimeofcompletion:"string",
+    datersnotified: "date",
+    estimatedtimeofcompletion:"date",
     status1: "string",
     status2:"string",
     status3:"string",
     note:"string",
-    dateauthorized:"string",
+    dateauthorized:"date",
     authorizedinitials:"string"
 
   });
