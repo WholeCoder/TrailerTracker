@@ -15,9 +15,14 @@ const Trailer = defineTrailer(sequelize);
   });
 
   trailerRouter.post('/', (request: Request, response: Response) => {
-    request.body.datersnotified = request.body.datersnotified == '' ? null : request.body.datersnotified;
-    request.body.estimatedtimeofcompletion = request.body.estimatedtimeofcompletion == '' ? null : request.body.estimatedtimeofcompletion;
-    request.body.dateauthorized = request.body.dateauthorized == ''? null : request.body.dateauthorized;
+
+    function setDateToNullIfEmptyString() {
+      request.body.datersnotified = request.body.datersnotified == '' ? null : request.body.datersnotified;
+      request.body.estimatedtimeofcompletion = request.body.estimatedtimeofcompletion == '' ? null : request.body.estimatedtimeofcompletion;
+      request.body.dateauthorized = request.body.dateauthorized == '' ? null : request.body.dateauthorized;
+    }
+
+    setDateToNullIfEmptyString();
 
     Trailer.create(request.body);
   });
