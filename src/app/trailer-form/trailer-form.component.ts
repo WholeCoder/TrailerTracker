@@ -45,7 +45,6 @@ export class TrailerFormComponent implements OnInit {
 
   saveTrailer(event)
   {
-    console.log('this.trailerForm.value' + JSON.stringify(this.trailerForm.value));
     this.http.post('/api/trailers', this.trailerForm.value)
                    // ...and calling .json() on the response to return data
                     .map((res: Response) => res.json())

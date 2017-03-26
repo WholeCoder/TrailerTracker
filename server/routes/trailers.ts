@@ -15,6 +15,15 @@ const Trailer = defineTrailer(sequelize);
   });
 
   trailerRouter.post('/', (request: Request, response: Response) => {
+    if (request.body.datersnotified == '') {
+      request.body.datersnotified = null;
+    }
+    if (request.body.estimatedtimeofcompletion == '') {
+      request.body.estimatedtimeofcompletion = null;
+    }
+    if (request.body.dateauthorized == '') {
+      request.body.dateauthorized = null;
+    }
     Trailer.create(request.body);
   });
 
