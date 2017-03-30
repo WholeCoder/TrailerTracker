@@ -1,0 +1,111 @@
+<div class="container">
+  <div style="height: 50px;">
+
+  </div>
+   <div class="row" [@trailerPanel]="state">
+      <div class="offset-sm-6 col-sm-5">
+         <div class="panel panel-primary">
+            <div class="panel-heading">Create a New Trailer</div>
+            <div class="panel-body">
+               <form [formGroup]="trailerForm" (ngSubmit)="saveTrailer($event)">
+                  <div class="form-group">
+                     <label for="unitnumber">Unit Number:</label>
+                     <input formControlName="unitnumber" type="text" class="form-control" id="unitnumber">
+                  </div>
+                  <div class="form-group">
+                     <label for="customer">Customer:</label>
+                     <input formControlName="customer" type="text" class="form-control" id="customer">
+                  </div>
+                  <div class="form-group">
+                     <label for="account">Account:</label>
+                     <input formControlName="account" type="text" class="form-control" id="account">
+                  </div>
+                  <div class="form-group">
+                     <label for="vehicletype">Vehicle Type:</label>
+                     <input formControlName="vehicletype" type="text" class="form-control" id="vehicletype">
+                  </div>
+                  <div class="form-group">
+                     <label for="location">Locations:</label>
+                     <input formControlName="location" type="text" class="form-control" id="location">
+                  </div>
+                  <div class="form-group">
+                     <label for="datersnotified">Date RS Notified:</label>
+                    <datepicker formControlName="datersnotified" id="datersnotified"></datepicker>
+                  </div>
+                  <div class="form-group">
+                     <label for="estimatedtimeofcompletion">Est. Time of Completion:</label>
+                    <datepicker formControlName="estimatedtimeofcompletion" id="estimatedtimeofcompletion"></datepicker>
+                  </div>
+                  <div class="form-group">
+                     <label for="status1">Status 1:</label>
+                     <select formControlName="status1" type="text" class="form-control" id="status1">
+                      <option value="1"></option>
+                      <option value="2">10%  A/W PARTS</option>
+                      <option value="3">10%  A/W ESTIMATE</option>
+                      <option value="4">10%  A/W ARRIVAL OF UNIT</option>
+                      <option value="5">25%  A/W REPAIRS</option>
+                      <option value="6">50%  WORK IN PROGRESS</option>
+                      <option value="7">75%  WORK IN PROGRESS</option>
+                      <option value="8">90%  A/W FINAL QUALITY CHECK</option>
+                      <option value="9">100% COMPLETE:  IN TRANSIT TO CUSTOMER</option>
+                      <option value="10">100% COMPLETE:  READY FOR P/U</option>
+                      <option value="11">100% COMPLETE:  RELEASED TO CUSTOMER</option>
+                      <option value="12">100% COMPLETE:  DELIVERED TO CUSTOMER</option>
+                      <option value="13">100% COMPLETE:  RESERVED</option><option value="14">100% COMPLETE: STORAGE ONLY / NO MAINTENANCE REQUESTED</option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="status2">Status 2:</label>
+                    <select formControlName="status2" type="text" class="form-control" id="status2">
+                      <option value="1"></option>
+                      <option value="2">10%  A/W PARTS</option>
+                      <option value="3">10%  A/W ESTIMATE</option>
+                      <option value="4">10%  A/W ARRIVAL OF UNIT</option>
+                      <option value="5">25%  A/W REPAIRS</option>
+                      <option value="6">50%  WORK IN PROGRESS</option>
+                      <option value="7">75%  WORK IN PROGRESS</option>
+                      <option value="8">90%  A/W FINAL QUALITY CHECK</option>
+                      <option value="9">100% COMPLETE:  IN TRANSIT TO CUSTOMER</option>
+                      <option value="10">100% COMPLETE:  READY FOR P/U</option>
+                      <option value="11">100% COMPLETE:  RELEASED TO CUSTOMER</option>
+                      <option value="12">100% COMPLETE:  DELIVERED TO CUSTOMER</option>
+                      <option value="13">100% COMPLETE:  RESERVED</option><option value="14">100% COMPLETE: STORAGE ONLY / NO MAINTENANCE REQUESTED</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="status3">Status 3:</label>
+                    <select formControlName="status3" type="text" class="form-control" id="status3">
+                      <option value="1"></option>
+                      <option value="2">10%  A/W PARTS</option>
+                      <option value="3">10%  A/W ESTIMATE</option>
+                      <option value="4">10%  A/W ARRIVAL OF UNIT</option>
+                      <option value="5">25%  A/W REPAIRS</option>
+                      <option value="6">50%  WORK IN PROGRESS</option>
+                      <option value="7">75%  WORK IN PROGRESS</option>
+                      <option value="8">90%  A/W FINAL QUALITY CHECK</option>
+                      <option value="9">100% COMPLETE:  IN TRANSIT TO CUSTOMER</option>
+                      <option value="10">100% COMPLETE:  READY FOR P/U</option>
+                      <option value="11">100% COMPLETE:  RELEASED TO CUSTOMER</option>
+                      <option value="12">100% COMPLETE:  DELIVERED TO CUSTOMER</option>
+                      <option value="13">100% COMPLETE:  RESERVED</option><option value="14">100% COMPLETE: STORAGE ONLY / NO MAINTENANCE REQUESTED</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="note">Note:</label>
+                     <textarea formControlName="note" class="form-control" id="note"> </textarea>
+                  </div>
+                  <div class="form-group">
+                     <label for="dateauthorized">Date Authorized:</label>
+                    <datepicker formControlName="dateauthorized" id="dateauthorized"></datepicker>
+                  </div>
+                  <div class="form-group">
+                     <label for="authorizedinitials">Authorized Initials:</label>
+                     <input formControlName="authorizedinitials" type="text" class="form-control" id="authorizedinitials">
+                  </div>
+                  <button type="submit" class="btn btn-default">Save</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
