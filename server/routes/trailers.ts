@@ -9,8 +9,8 @@ const trailerRouter: Router = Router();
 const Trailer = defineTrailer(sequelize);
 
   trailerRouter.get('/', (request: Request, response: Response) => {
-    console.log(" in defineTrailer -----------------> user == "+JSON.stringify(request["session"]));
-    if(request["session"].customer === 'ADMIN')
+    console.log(" in defineTrailer -----------------> user == "+JSON.stringify(request["session"].user));
+    if(request["session"].user.customer === 'ADMIN')
     {
       console.log("executing findAll on Trailers---------------------");
       Trailer.findAll().then(function (trlrs) {

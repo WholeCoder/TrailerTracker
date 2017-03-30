@@ -14,9 +14,9 @@ userRouter.post('/', (request: Request, response: Response) => {
     const resp = error ? {'err': error} : user;
     response.json(resp);
     if(!error) {
-      request["session"].customer = user.customer;
-      console.log("user.customer in login ------> "+request["session"].customer);
-      console.log("in getAuthenticated -----------------> user == "+JSON.stringify(request["session"]));
+      request["session"].user = user;
+      console.log("user.customer in login ------> "+request["session"].user.customer);
+      console.log("in getAuthenticated -----------------> user == "+JSON.stringify(request["session"].user));
     }
   });
 });
