@@ -1,7 +1,7 @@
 var bcrypt = require('bcryptjs');
     var config = require('./config_db').config;
     var Sequelize = require('sequelize');
-    var sequelize = new Sequelize(config.database_url);
+    var sequelize = new Sequelize(config.development_database_url);
 
   exports.Trailer = sequelize.define('Trailer', {
 

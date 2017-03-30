@@ -19,16 +19,33 @@ const app: express.Application = express();
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-console.log("----------------------->  db_url == "+config.database_url);
+console.log("----------------------->  db_url == "+config.development_database_url);
 app.use(session({
   store: new pgSession({
     pg : pg,                                  // Use global pg-module
-    conString : config.database_url // Connect using something else than default DATABASE_URL env variable
+    conString : config.development_database_url // Connect using something else than default DATABASE_URL env variable
   }),
   secret: 'rubenjohnathanpierichs',
   resave: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
+
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https' && !(process.env.ENVIRONMENT == 'local_development'))
+  {
+    var GO_TO_REMOVE_DEV_ENVIRONTMENT = process.env.ENVIRONMENT == 'remote_development';
+    if (GO_TO_REMOVE_DEV_ENVIRONTMENT)
+    {
+      // res.redirect('https://shrouded-bastion-9856.herokuapp.com'+req.url);
+    } else
+    {
+      res.redirect('https://www.pierichwebit.net'+req.url);
+    }
+  }
+  else
+    next(); /* Continue to other routes if we're not redirecting */
+})
+
 
 app.disable('x-powered-by');
 

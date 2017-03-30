@@ -9,9 +9,17 @@ const trailerRouter: Router = Router();
 const Trailer = defineTrailer(sequelize);
 
   trailerRouter.get('/', (request: Request, response: Response) => {
-    Trailer.findAll().then(function(trlrs) {
-      response.json(trlrs);
-    });
+    console.log(" in defineTrailer -----------------> user == "+JSON.stringify(request["session"]));
+    if(request["session"].customer === 'ADMIN')
+    {
+      console.log("executing findAll on Trailers---------------------");
+      Trailer.findAll().then(function (trlrs) {
+        response.json(trlrs);
+      });
+    } else {
+      console.log("user was not found in session or user wan't admin account");
+      response.json({"error": "Not logging in with administration account"});
+    }
   });
 
   trailerRouter.post('/', (request: Request, response: Response) => {
