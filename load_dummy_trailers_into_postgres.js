@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize("postgres://postgres:pgsGood&Plenty@localhost:5432/postgres");
+var sequelize = new Sequelize("");//postgres://postgres:pgsGood&Plenty@localhost:5432/postgres");
 
 var Trailer =sequelize.define('Trailer', {
   unitnumber:Sequelize.STRING,
