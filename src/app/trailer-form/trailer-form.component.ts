@@ -35,8 +35,8 @@ export class TrailerFormComponent implements OnInit {
       authorizedinitials: ['']
     });
 
-    this.status2Values = this.statusService.getGroup('redlight.png');
-    this.status3Values = this.statusService.getGroup('redlight.png');
+    this.status2Values = this.statusService.getGroup('blanklight.png');
+    this.status3Values = this.statusService.getGroup('blanklight.png');
 
   }
 
