@@ -43,11 +43,7 @@ export class StatusService {
 
   getGroup(lightPictureName:string){
     if (lightPictureName === 'blanklight.png')
-    {
-      console.log('lightPictureName == '+lightPictureName);
-      console.table(this.blankLight);
       return [this.blankLight];
-    }
     else if (lightPictureName === 'redlight.png')
       return this.copyArray(this.redLights);
     else if (lightPictureName === 'yellowlight.png')
