@@ -2,6 +2,7 @@ import {animate, Component, Inject, OnInit, style, transition, trigger} from "@a
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Http, Response} from "@angular/http";
 import {StatusService} from "../status.service";
+import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 
 @Component({
   selector: 'app-trailer-form',
@@ -17,6 +18,13 @@ import {StatusService} from "../status.service";
   ]
 })
 export class TrailerFormComponent implements OnInit {
+
+  datersnotified: DateModel;
+  estimatedtimeofcompletion: DateModel;
+  dateauthorized: DateModel;
+
+  options: DatePickerOptions;
+
   public trailerForm: FormGroup;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService) {
@@ -39,6 +47,7 @@ export class TrailerFormComponent implements OnInit {
     this.status2Values = this.statusService.getGroup('blanklight.png');
     this.status3Values = this.statusService.getGroup('blanklight.png');
 
+    this.options = new DatePickerOptions();
   }
 
   ngOnInit() {

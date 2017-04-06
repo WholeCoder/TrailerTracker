@@ -29,12 +29,12 @@
                      <input formControlName="location" type="text" class="form-control" id="location">
                   </div>
                   <div class="form-group">
-                     <label for="datersnotified">Date RS Notified:</label>
-                    <datepicker formControlName="datersnotified" id="datersnotified"></datepicker>
+                    <label for="datersnotified">Date RS Notified:</label>
+                    <ng2-datepicker [options]="options" formControlName="datersnotified" id="datersnotified"></ng2-datepicker>
                   </div>
                   <div class="form-group">
                      <label for="estimatedtimeofcompletion">Est. Time of Completion:</label>
-                    <datepicker formControlName="estimatedtimeofcompletion" id="estimatedtimeofcompletion"></datepicker>
+                     <ng2-datepicker [options]="options" formControlName="estimatedtimeofcompletion" id="estimatedtimeofcompletion"></ng2-datepicker>
                   </div>
                   <div class="form-group">
                      <label for="status1">Status 1:</label>
@@ -62,7 +62,7 @@
                   </div>
                   <div class="form-group">
                      <label for="dateauthorized">Date Authorized:</label>
-                    <datepicker formControlName="dateauthorized" id="dateauthorized"></datepicker>
+                     <ng2-datepicker [options]="options" formControlName="dateauthorized" id="dateauthorized"></ng2-datepicker>
                   </div>
                   <div class="form-group">
                      <label for="authorizedinitials">Authorized Initials:</label>

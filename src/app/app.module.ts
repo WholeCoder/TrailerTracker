@@ -17,7 +17,8 @@ import {TrailerListItemComponent} from "./trailer-list-item/trailer-list-item.co
 import {TrailerService} from "./trailer.service";
 import {DefaultComponent} from "./default/default.component";
 
-import {DatepickerModule, PaginationModule} from "ng2-bootstrap";
+import { DatePickerModule } from 'ng2-datepicker';
+import {PaginationModule} from "ng2-bootstrap";
 import {TrailerFormComponent} from "./trailer-form/trailer-form.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
 import {NavBarUserLoggedInComponent} from "./nav-bar-user-logged-in/nav-bar-user-logged-in.component";
@@ -75,7 +76,7 @@ const appRoutes: Routes =       [
     RouterModule.forRoot(appRoutes),
     PaginationModule.forRoot(),
     ReactiveFormsModule,
-    DatepickerModule.forRoot()
+    DatePickerModule
   ],
   providers: [
     TrailerService,
