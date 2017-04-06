@@ -1,6 +1,7 @@
 import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Http, Response} from "@angular/http";
+import {StatusService} from "../status.service";
 
 @Component({
   selector: 'app-trailer-form',
@@ -17,7 +18,7 @@ import {Http, Response} from "@angular/http";
 })
 export class TrailerFormComponent implements OnInit {
   public trailerForm: FormGroup;
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http,private statusService: StatusService) {
     this.trailerForm = fb.group({
       unitnumber: [''],
       customer: [''],
@@ -33,6 +34,9 @@ export class TrailerFormComponent implements OnInit {
       dateauthorized: [''],
       authorizedinitials: ['']
     });
+
+    this.status2Values = this.statusService.getGroup('redlight.png');
+    this.status3Values = this.statusService.getGroup('redlight.png');
 
   }
 
@@ -53,4 +57,26 @@ export class TrailerFormComponent implements OnInit {
                                     });
 
   }
+
+  updateStatus1(event, status)
+  {
+    if (status === 'status1')
+    {
+      let colorFileName = 'blanklight.png';
+      if (event.indexOf('10%')>-1)
+        colorFileName = 'redlight.png';
+      else if (event.indexOf('25%')>-1 || event.indexOf('50%')>-1 || event.indexOf('75%')>-1 || event.indexOf('90%')>-1)
+        colorFileName = 'yellowlight.png';
+      else if (event.indexOf('100%')>-1)
+        colorFileName = 'greenlight.png';
+
+      let status23values = this.statusService.getGroup(colorFileName);
+      console.table(status23values);
+      this.status2Values = this.status3Values = status23values;
+    }
+    // alert("event fired " + event + '  status == '+status);
+  }
+
+  status2Values:string[][];
+  status3Values:string[][];
 }

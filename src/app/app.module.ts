@@ -21,13 +21,15 @@ import {DatepickerModule, PaginationModule} from "ng2-bootstrap";
 import {TrailerFormComponent} from "./trailer-form/trailer-form.component";
 import {SignUpComponent} from "./sign-up/sign-up.component";
 import {NavBarUserLoggedInComponent} from "./nav-bar-user-logged-in/nav-bar-user-logged-in.component";
+import {StatusDropDownComponent} from "./status-drop-down/status-drop-down.component";
+import {StatusService} from './status.service';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
 
         {path: 'home', component: HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
-          {path: '', component: MyNewCoonentComponent, outlet: 'main-content'}
+          {path: '', component: StatusDropDownComponent/*MyNewCoonentComponent*/, outlet: 'main-content'}
         ]},
 
         {path: 'signup', component: HomeComponent, children: [
@@ -63,7 +65,8 @@ const appRoutes: Routes =       [
     NgTableSortingDirective,
     TrailerFormComponent,
     SignUpComponent,
-    NavBarUserLoggedInComponent
+    NavBarUserLoggedInComponent,
+    StatusDropDownComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,8 @@ const appRoutes: Routes =       [
     DatepickerModule.forRoot()
   ],
   providers: [
-    TrailerService
+    TrailerService,
+    StatusService
   ],
   bootstrap: [
     AppComponent
