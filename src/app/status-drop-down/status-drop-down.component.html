@@ -1,0 +1,8 @@
+<!--<div style="height: 50px;">-->
+
+<!--</div>-->
+<select (change)="onChange($event.target.value)" type="text" class="form-control">
+  <option *ngFor="let status of statuses;let i = index">
+    {{ status[0] }}
+  </option>
+</select>
