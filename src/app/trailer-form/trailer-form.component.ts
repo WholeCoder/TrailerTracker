@@ -18,7 +18,8 @@ import {StatusService} from "../status.service";
 })
 export class TrailerFormComponent implements OnInit {
   public trailerForm: FormGroup;
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http,private statusService: StatusService) {
+
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService) {
     this.trailerForm = fb.group({
       unitnumber: [''],
       customer: [''],
@@ -47,36 +48,37 @@ export class TrailerFormComponent implements OnInit {
 
   public dt: Date = new Date();
 
-  saveTrailer(event)
-  {
+  saveTrailer(event) {
     this.http.post('/api/trailers', this.trailerForm.value)
-                   // ...and calling .json() on the response to return data
-                    .map((res: Response) => res.json())
-                    .subscribe(x => {
-                                      alert('saved trailer! - ' + JSON.stringify(x));
-                                    });
+    // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      .subscribe(x => {
+        alert('saved trailer! - ' + JSON.stringify(x));
+      });
 
   }
 
-  updateStatus1(event, status)
-  {
-    if (status === 'status1')
-    {
+  updateStatus1(event, status) {
+    if (status === 'status1') {
       let colorFileName = 'blanklight.png';
-      if (event.indexOf('10%')>-1)
+
+      let is10Percent = event.indexOf('10%') > -1;
+      let is25to90Percent = event.indexOf('25%') > -1 || event.indexOf('50%') > -1 || event.indexOf('75%') > -1 || event.indexOf('90%') > -1;
+      let is100Percent = event.indexOf('100%') > -1;
+
+      if (is10Percent)
         colorFileName = 'redlight.png';
-      else if (event.indexOf('25%')>-1 || event.indexOf('50%')>-1 || event.indexOf('75%')>-1 || event.indexOf('90%')>-1)
+      else if (is25to90Percent)
         colorFileName = 'yellowlight.png';
-      else if (event.indexOf('100%')>-1)
+      else if (is100Percent)
         colorFileName = 'greenlight.png';
 
       let status23values = this.statusService.getGroup(colorFileName);
-      console.table(status23values);
       this.status2Values = this.status3Values = status23values;
     }
     // alert("event fired " + event + '  status == '+status);
   }
 
-  status2Values:string[][];
-  status3Values:string[][];
+  status2Values: string[][];
+  status3Values: string[][];
 }

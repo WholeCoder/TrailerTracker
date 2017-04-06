@@ -50,8 +50,6 @@ export class StatusService {
       return this.copyArray(this.yellowLights);
     else if (lightPictureName === 'greenlight.png')
       return this.copyArray(this.greenLights);
-
-
   }
 
   copyArray(aRay)
