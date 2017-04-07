@@ -3,6 +3,8 @@
 <br />
 <br />
 <br />
+<button (click)="deleteTrailer($event)" type="submit">Delete</button>
+
 <a [routerLink]="[ '/newtrailer' ]">Create New Trailer</a>
 <input *ngIf="config.filtering" placeholder="Filter"
        [ngTableFiltering]="config.filtering"
@@ -11,7 +13,8 @@
 <ng-table  [@trailerTablePanel]="state"
            [config]="config.sorting"
            (tableChanged)="onChangeTable(config)"
-           [rows]="rows" [columns]="columns">
+           [rows]="rows" [columns]="columns"
+           (cellClicked)="onCellClick($event)">
 </ng-table>
 <pagination *ngIf="config.paging"
             class="pagination-sm"

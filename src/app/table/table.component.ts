@@ -37,6 +37,8 @@ export class TableDemoComponent implements OnInit {
     {title: 'note', name: 'note'},
     {title: 'dateauthorized', name: 'dateauthorized'},
     {title: 'authorizedinitials', name: 'authorizedinitials'},
+    {title: '', name: 'deletespace'},
+    {title: '', name: 'editspace'}
   ];
 
   state: string = 'inactive';
@@ -132,6 +134,22 @@ export class TableDemoComponent implements OnInit {
     const filteredData = this.changeFilter(this.data, this.config);
     const sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
+
+    for (let i = 0; i < this.rows.length; i++)
+    {
+      this.rows[i].deletespace = '<button (click)="deleteTrailer($event)" type="submit">Delete</button>';
+      this.rows[i].editspace = '<button>Edit</button>';
+    }
     this.length = sortedData.length;
+  }
+
+  onCellClick($event){
+    if ($event.column == 'deletespace')
+      alert("delete clicked! - id == "+$event.row.id);
+    else if ($event.column == 'editspace')
+      alert("edit clicked! - id == "+$event.row.id);
+  }
+  deleteTrailer($event) {
+    alert('delting row');
   }
 }
