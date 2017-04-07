@@ -149,7 +149,4 @@ export class TableDemoComponent implements OnInit {
     else if ($event.column == 'editspace')
       alert("edit clicked! - id == "+$event.row.id);
   }
-  deleteTrailer($event) {
-    alert('delting row');
-  }
 }
