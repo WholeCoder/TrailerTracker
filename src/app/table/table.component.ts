@@ -61,13 +61,14 @@ export class TableDemoComponent implements OnInit {
   public constructor(private trailerService: TrailerService, private http: Http) {
     // ...using get request
     const that = this;
-   this.http.get('/api/trailers')
-                  // ...and calling .json() on the response to return data
-                   .map((res: Response) => res.json())
-                   .subscribe(x => { this.data = x;
-                                     this.length = x.length;
-                                     this.onChangeTable(this.config);
-                                   });
+    this.http.get('/api/trailers')
+    // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      .subscribe(x => {
+        this.data = x;
+        this.length = x.length;
+        this.onChangeTable(this.config);
+      });
   }
 
   public ngOnInit(): void {
@@ -135,18 +136,32 @@ export class TableDemoComponent implements OnInit {
     const sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
 
-    for (let i = 0; i < this.rows.length; i++)
-    {
+    for (let i = 0; i < this.rows.length; i++) {
       this.rows[i].deletespace = '<button (click)="deleteTrailer($event)" type="submit">Delete</button>';
       this.rows[i].editspace = '<button>Edit</button>';
     }
     this.length = sortedData.length;
   }
 
-  onCellClick($event){
-    if ($event.column == 'deletespace')
-      alert("delete clicked! - id == "+$event.row.id);
-    else if ($event.column == 'editspace')
-      alert("edit clicked! - id == "+$event.row.id);
+  onCellClick($event) {
+    if ($event.column === 'deletespace') {
+      this.http.delete('/api/trailers/'+ $event.row.id, $event.row.id)
+      // ...and calling .json() on the response to return data
+        .map((res: Response) => res.json())
+        .subscribe(x => {
+          alert('deleted trailer! - ' + JSON.stringify(x));
+        });
+    }
+    else if ($event.column === 'editspace') {
+      this.http.get('/api/trailers', $event.row.id)
+      // ...and calling .json() on the response to return data
+        .map((res: Response) => {
+          alert('json == ' + res.json());
+          res.json();
+        })
+        .subscribe(x => {
+          alert('got single trailer! - ' + JSON.stringify(x));
+        });
+    }
   }
 }
