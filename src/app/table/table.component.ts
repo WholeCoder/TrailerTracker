@@ -6,6 +6,7 @@ import {Observable} from "rxjs/Rx";
 // Import RxJs required methods
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -145,9 +146,23 @@ export class TableDemoComponent implements OnInit {
 
   onCellClick($event) {
     if ($event.column === 'deletespace') {
+      console.log('------------------------');
+      for (let i = 0; i < this.rows.length; i++)
+      {
+        console.log(this.rows[i].id + ' === ' + $event.row.id);
+        if ( this.rows[i].id === $event.row.id)
+        {
+          console.log('     satisfied - breaking');
+          this.rows.splice(i, 1);
+          break;
+        }
+      }
       this.http.delete('/api/trailers/'+ $event.row.id, $event.row.id)
       // ...and calling .json() on the response to return data
-        .map((res: Response) => res.json())
+        .map((res: Response) => {
+          alert('deleted unit successfully');
+          res.json();
+        })
         .subscribe(x => {
           alert('deleted trailer! - ' + JSON.stringify(x));
         });

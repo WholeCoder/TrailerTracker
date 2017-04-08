@@ -42,7 +42,7 @@ trailerRouter.delete('/:id', (request: Request, response: Response) => {
       id: request.params.id //this will be your id that you want to delete
     }
   }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
-    if(rowDeleted === 1){
+    if(rowDeleted >= 1){
       console.log('Deleted successfully');
     }
   }, function(err){
