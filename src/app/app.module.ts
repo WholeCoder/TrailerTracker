@@ -30,7 +30,7 @@ const appRoutes: Routes =       [
 
         {path: 'home', component: HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
-          {path: '', component: StatusDropDownComponent/*MyNewCoonentComponent*/, outlet: 'main-content'}
+          {path: '', component: MyNewCoonentComponent, outlet: 'main-content'}
         ]},
 
         {path: 'signup', component: HomeComponent, children: [
