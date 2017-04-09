@@ -1,8 +1,9 @@
-import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Http, Response} from "@angular/http";
-import {StatusService} from "../status.service";
-import { DatePickerOptions, DateModel } from 'ng2-datepicker';
+import {animate, Component, Inject, OnInit, style, transition, trigger} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Http, Response} from '@angular/http';
+import {StatusService} from '../status.service';
+import {DateModel, DatePickerOptions} from 'ng2-datepicker';
+import {PassTrailerDataService} from '../pass-trailer-data.service';
 
 @Component({
   selector: 'app-trailer-form',
@@ -27,22 +28,8 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService) {
-    this.trailerForm = fb.group({
-      unitnumber: [''],
-      customer: [''],
-      account: [''],
-      vehicletype: [''],
-      location: [''],
-      datersnotified: [''],
-      estimatedtimeofcompletion: [''],
-      status1: [''],
-      status2: [''],
-      status3: [''],
-      note: [''],
-      dateauthorized: [''],
-      authorizedinitials: ['']
-    });
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
+    this.trailerForm = fb.group(passTrailerDataService.trailerObject);
 
     this.status2Values = this.statusService.getGroup('blanklight.png');
     this.status3Values = this.statusService.getGroup('blanklight.png');
@@ -71,9 +58,9 @@ export class TrailerFormComponent implements OnInit {
     if (status === 'status1') {
       let colorFileName = 'blanklight.png';
 
-      let is10Percent = event.indexOf('10%') > -1;
-      let is25to90Percent = event.indexOf('25%') > -1 || event.indexOf('50%') > -1 || event.indexOf('75%') > -1 || event.indexOf('90%') > -1;
-      let is100Percent = event.indexOf('100%') > -1;
+      const is10Percent = event.indexOf('10%') > -1;
+      const is25to90Percent = event.indexOf('25%') > -1 || event.indexOf('50%') > -1 || event.indexOf('75%') > -1 || event.indexOf('90%') > -1;
+      const is100Percent = event.indexOf('100%') > -1;
 
       if (is10Percent)
         colorFileName = 'redlight.png';
@@ -82,7 +69,7 @@ export class TrailerFormComponent implements OnInit {
       else if (is100Percent)
         colorFileName = 'greenlight.png';
 
-      let status23values = this.statusService.getGroup(colorFileName);
+      const status23values = this.statusService.getGroup(colorFileName);
       this.status2Values = this.status3Values = status23values;
     }
     // alert("event fired " + event + '  status == '+status);

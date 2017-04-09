@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
 import {StatusService} from '../status.service';
+import {PassTrailerDataService} from '../pass-trailer-data.service';
 
 @Component({
   selector: 'app-table-demo',
@@ -60,7 +61,7 @@ export class TableDemoComponent implements OnInit {
   private data: Object[] = [];
   private dataObsv: Observable<any>;
 
-  public constructor(private trailerService: TrailerService, private http: Http, private statusService: StatusService) {
+  public constructor(private trailerService: TrailerService, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService, private router: Router) {
     // ...using get request
     const that = this;
     this.http.get('/api/trailers')
@@ -146,7 +147,7 @@ export class TableDemoComponent implements OnInit {
 
       this.rows[i].status = '<img src="' + lightPicture + '"/>' + this.rows[i].status1 + '\n';
       if (this.rows[i].status2 !== '')
-        this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status2 + '\n'
+        this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status2 + '\n';
       else if (this.rows[i].status2 !== '')
         this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status3;
       this.length = sortedData.length;
@@ -173,6 +174,7 @@ export class TableDemoComponent implements OnInit {
   }
 
   onCellClick($event) {
+    const that = this;
     if ($event.column === 'deletespace') {
       console.log('------------------------');
       for (let i = 0; i < this.rows.length; i++) {
@@ -194,15 +196,17 @@ export class TableDemoComponent implements OnInit {
         });
     }
     else if ($event.column === 'editspace') {
-      this.http.get('/api/trailers', $event.row.id)
-      // ...and calling .json() on the response to return data
-        .map((res: Response) => {
-          alert('json == ' + res.json());
-          res.json();
-        })
-        .subscribe(x => {
-          alert('got single trailer! - ' + JSON.stringify(x));
-        });
+
+      const editRow = $event.row;
+      alert("before set editRow == "+JSON.stringify(editRow));
+      for (const prop in editRow)
+      {
+        editRow[prop] = [editRow[prop]];
+      }
+      alert('running ' + editRow);
+
+      this.passTrailerDataService.trailerObject = editRow;
+      this.router.navigateByUrl('/newtrailer');
     }
   }
 }

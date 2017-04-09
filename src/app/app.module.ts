@@ -24,6 +24,7 @@ import {SignUpComponent} from "./sign-up/sign-up.component";
 import {NavBarUserLoggedInComponent} from "./nav-bar-user-logged-in/nav-bar-user-logged-in.component";
 import {StatusDropDownComponent} from "./status-drop-down/status-drop-down.component";
 import {StatusService} from './status.service';
+import {PassTrailerDataService} from './pass-trailer-data.service';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -80,7 +81,8 @@ const appRoutes: Routes =       [
   ],
   providers: [
     TrailerService,
-    StatusService
+    StatusService,
+    PassTrailerDataService
   ],
   bootstrap: [
     AppComponent
