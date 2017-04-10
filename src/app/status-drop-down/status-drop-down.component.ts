@@ -16,11 +16,13 @@ export class StatusDropDownComponent implements OnInit {
 
   constructor(statusService: StatusService, passTrailerDataService: PassTrailerDataService) {
     this.statuses = statusService.getAllStatuses();
-    for (let i = 0; i < this.statuses.length; i++)
-    {
+    for (let i = 0; i < this.statuses.length; i++) {
+      if (this.statuses[i].length === 5)
+        this.statuses[i].splice(this.statuses[i].length-1, 1);
+    }
+    for (let i = 0; i < this.statuses.length; i++) {
       // alert(typeof(passTrailerDataService.trailerObject['status1'].toString()) + ' === ' + typeof(this.statuses[i][0]));
-      if (passTrailerDataService.trailerObject['status1'].toString() === this.statuses[i][0])
-      {
+      if (passTrailerDataService.trailerObject['status1'].toString() === this.statuses[i][0]) {
         this.statuses[i].push('selected');
         alert('selected one');
         break;
