@@ -52,7 +52,8 @@
                   <div class="form-group">
                      <label for="status3">Status 3:</label>
                     <select formControlName="status3" type="text" class="form-control" id="status3">
-                      <option *ngFor="let status of status3Values;let i = index">
+                      <option *ngFor="let status of status3Values;let i = index"
+                              selected="{{status[4]}}">
                         {{ status[0] }}
                       </option>
                     </select>

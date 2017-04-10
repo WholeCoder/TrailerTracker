@@ -148,7 +148,7 @@ export class TableDemoComponent implements OnInit {
       this.rows[i].status = '<img src="' + lightPicture + '"/>' + this.rows[i].status1 + '\n';
       if (this.rows[i].status2 !== '')
         this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status2 + '\n';
-      else if (this.rows[i].status2 !== '')
+      else if (this.rows[i].status3 !== '')
         this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status3;
       this.length = sortedData.length;
     }
