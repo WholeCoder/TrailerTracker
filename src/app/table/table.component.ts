@@ -145,10 +145,10 @@ export class TableDemoComponent implements OnInit {
 
       const lightPicture = this.getLightPictureName(this.rows[i].status1);
 
-      this.rows[i].status = '<img src="' + lightPicture + '"/>' + this.rows[i].status1 + '\n';
+      this.rows[i].status = '<img src="' + lightPicture + '"/>' + this.rows[i].status1 + '<br />';
       if (this.rows[i].status2 !== '')
-        this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status2 + '\n';
-      else if (this.rows[i].status3 !== '')
+        this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status2 + '<br/>';
+      if (this.rows[i].status3 !== '')
         this.rows[i].status += '<img src="' + lightPicture + '"/>' + this.rows[i].status3;
       this.length = sortedData.length;
     }
