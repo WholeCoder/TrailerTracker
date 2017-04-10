@@ -57,7 +57,11 @@ export class StatusService {
     let newRay:string[][] = [];
     for (let i = 0; i < aRay.length;i++)
     {
-      newRay[i] = aRay[i];
+      newRay[i] = []
+      for(let j = 0; j < aRay[i].length; j++)
+      {
+        newRay[i].push(aRay[i][j]);
+      }
     }
     newRay.unshift(this.blankLight);
     return newRay;

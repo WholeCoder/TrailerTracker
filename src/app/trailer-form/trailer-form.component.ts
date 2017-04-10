@@ -19,14 +19,6 @@ import {PassTrailerDataService} from '../pass-trailer-data.service';
   ]
 })
 export class TrailerFormComponent implements OnInit {
-  get nameInParent(): string {
-    return this._nameInParent;
-  }
-
-  set nameInParent(value: string) {
-    this._nameInParent = value;
-  }
-
   datersnotified: DateModel;
   estimatedtimeofcompletion: DateModel;
   dateauthorized: DateModel;
@@ -35,16 +27,20 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
+/*
   statusDropDownConstructorDone(event)
   {
-    this.updateStatus1(this.passTrailerDataService.trailerObject["status1"][0], 'status1');
+    updateStatus1(this.passTrailerDataService.trailerObject["status1"][0], 'status1');
   }
+*/
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
 
     // alert('trailer object == '+JSON.stringify(this.passTrailerDataService.trailerObject["status1"][0]));
     // console.table(this.passTrailerDataService.trailerObject["status1"][0]);
-     this.updateStatus1(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
+    this.updateStatus1(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
+    this.updateStatus1(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
+    this.updateStatus1(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
 
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
 
@@ -71,18 +67,44 @@ export class TrailerFormComponent implements OnInit {
 
   }
 
-  private _nameInParent: string;
+
 
   updateStatus1(event, status) {
-    this._nameInParent = event;
-alert('parent nameinparent== '+this._nameInParent);
-    if (status === 'status1') {
 // alert('in dupdateStatus')
-      const colorFileName = this.determineLightColor(event);
+    const colorFileName = this.determineLightColor(event);
 
-      const status23values = this.statusService.getGroup(colorFileName);
-      this.status2Values = this.status3Values = status23values;
+    if (status === 'status1') {
+      this.status2Values = this.statusService.getGroup(colorFileName);
+      this.status3Values = this.statusService.getGroup(colorFileName);
 // alert('set status23 values.');
+    } else if (status === 'status2')
+    {
+      this.status2Values = this.statusService.getGroup(colorFileName);
+      for (let i = 0; i < this.status2Values.length; i++) {
+        if (this.status2Values[i].length === 5)
+          this.status2Values[i].splice(this.status2Values[i].length-1, 1);
+      }
+      for (let i = 0; i < this.status2Values.length; i++)
+      {
+        if (event === this.status2Values[i][0])
+          this.status2Values[i].push("selected");
+        else
+          this.status2Values[i].push("");
+      }
+    } else if (status === 'status3')
+    {
+      this.status3Values = this.statusService.getGroup(colorFileName);
+      for (let i = 0; i < this.status3Values.length; i++) {
+        if (this.status3Values[i].length === 5)
+          this.status3Values[i].splice(this.status3Values[i].length-1, 1);
+      }
+      for (let i = 0; i < this.status3Values.length; i++)
+      {
+        if (event === this.status3Values[i][0])
+          this.status3Values[i].push("selected");
+        else
+          this.status3Values[i].push("");
+      }
     }
     // alert("event fired " + event + '  status == '+status);
   }

@@ -38,12 +38,13 @@
                   </div>
                   <div class="form-group">
                      <label for="status1">Status 1:</label>
-                    <app-status-drop-down id="status1" [name]="nameInParent" (constructorDone)="statusDropDownConstructorDone($event)" (statusUpdate)="updateStatus1($event, 'status1')"></app-status-drop-down>
+                    <app-status-drop-down id="status1" (statusUpdate)="updateStatus1($event, 'status1')"></app-status-drop-down>
                   </div>
                   <div class="form-group">
                      <label for="status2">Status 2:</label>
                     <select formControlName="status2" type="text" class="form-control" id="status2">
-                      <option *ngFor="let status of status2Values;let i = index">
+                      <option *ngFor="let status of status2Values;let i = index"
+                              selected="{{status[4]}}">
                         {{ status[0] }}
                       </option>
                     </select>
