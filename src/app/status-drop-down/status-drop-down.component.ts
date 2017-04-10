@@ -1,5 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import {StatusService} from "../status.service";
+import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import {StatusService} from '../status.service';
+import {PassTrailerDataService} from '../pass-trailer-data.service';
 
 @Component({
   selector: 'app-status-drop-down',
@@ -9,18 +10,30 @@ import {StatusService} from "../status.service";
 export class StatusDropDownComponent implements OnInit {
 
   @Output() statusUpdate = new EventEmitter<String>();
+  @Input() name: string;
 
-  statuses:String[][];
+  statuses: String[][];
 
-  constructor(statusService: StatusService) {
+  constructor(statusService: StatusService, passTrailerDataService: PassTrailerDataService) {
     this.statuses = statusService.getAllStatuses();
+    for (let i = 0; i < this.statuses.length; i++)
+    {
+      // alert(typeof(passTrailerDataService.trailerObject['status1'].toString()) + ' === ' + typeof(this.statuses[i][0]));
+      if (passTrailerDataService.trailerObject['status1'].toString() === this.statuses[i][0])
+      {
+        this.statuses[i].push('selected');
+        alert('selected one');
+        break;
+      } else {
+        this.statuses[i].push('');
+      }
+    }
   }
 
   ngOnInit() {
   }
 
   onChange(value) {
-    // alert("changed select box value = "+value);
-    this.statusUpdate.emit(value)
+    this.statusUpdate.emit(value);
   }
 }

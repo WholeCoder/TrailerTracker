@@ -19,6 +19,13 @@ import {PassTrailerDataService} from '../pass-trailer-data.service';
   ]
 })
 export class TrailerFormComponent implements OnInit {
+  get nameInParent(): string {
+    return this._nameInParent;
+  }
+
+  set nameInParent(value: string) {
+    this._nameInParent = value;
+  }
 
   datersnotified: DateModel;
   estimatedtimeofcompletion: DateModel;
@@ -28,11 +35,21 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
-    this.trailerForm = fb.group(passTrailerDataService.trailerObject);
+  statusDropDownConstructorDone(event)
+  {
+    this.updateStatus1(this.passTrailerDataService.trailerObject["status1"][0], 'status1');
+  }
 
-    this.status2Values = this.statusService.getGroup('blanklight.png');
-    this.status3Values = this.statusService.getGroup('blanklight.png');
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
+
+    // alert('trailer object == '+JSON.stringify(this.passTrailerDataService.trailerObject["status1"][0]));
+    // console.table(this.passTrailerDataService.trailerObject["status1"][0]);
+     this.updateStatus1(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
+
+    this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
+
+    // this.status2Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
+    // this.status3Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
 
     this.options = new DatePickerOptions();
   }
@@ -49,30 +66,42 @@ export class TrailerFormComponent implements OnInit {
     // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())
       .subscribe(x => {
-        alert('saved trailer! - ' + JSON.stringify(x));
+        // alert('saved trailer! - ' + JSON.stringify(x));
       });
 
   }
 
+  private _nameInParent: string;
+
   updateStatus1(event, status) {
+    this._nameInParent = event;
+alert('parent nameinparent== '+this._nameInParent);
     if (status === 'status1') {
-      let colorFileName = 'blanklight.png';
-
-      const is10Percent = event.indexOf('10%') > -1;
-      const is25to90Percent = event.indexOf('25%') > -1 || event.indexOf('50%') > -1 || event.indexOf('75%') > -1 || event.indexOf('90%') > -1;
-      const is100Percent = event.indexOf('100%') > -1;
-
-      if (is10Percent)
-        colorFileName = 'redlight.png';
-      else if (is25to90Percent)
-        colorFileName = 'yellowlight.png';
-      else if (is100Percent)
-        colorFileName = 'greenlight.png';
+// alert('in dupdateStatus')
+      const colorFileName = this.determineLightColor(event);
 
       const status23values = this.statusService.getGroup(colorFileName);
       this.status2Values = this.status3Values = status23values;
+// alert('set status23 values.');
     }
     // alert("event fired " + event + '  status == '+status);
+  }
+
+  private determineLightColor(event) {
+    let colorFileName = 'blanklight.png';
+
+    const is10Percent = event.indexOf('10%') > -1;
+    const is25to90Percent = event.indexOf('25%') > -1 || event.indexOf('50%') > -1 || event.indexOf('75%') > -1 || event.indexOf('90%') > -1;
+    const is100Percent = event.indexOf('100%') > -1;
+
+    if (is10Percent)
+      colorFileName = 'redlight.png';
+    else if (is25to90Percent)
+      colorFileName = 'yellowlight.png';
+    else if (is100Percent)
+      colorFileName = 'greenlight.png';
+
+    return colorFileName;
   }
 
   status2Values: string[][];

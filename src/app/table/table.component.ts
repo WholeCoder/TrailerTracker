@@ -198,12 +198,11 @@ export class TableDemoComponent implements OnInit {
     else if ($event.column === 'editspace') {
 
       const editRow = $event.row;
-      alert("before set editRow == "+JSON.stringify(editRow));
+
       for (const prop in editRow)
       {
         editRow[prop] = [editRow[prop]];
       }
-      alert('running ' + editRow);
 
       this.passTrailerDataService.trailerObject = editRow;
       this.router.navigateByUrl('/newtrailer');
