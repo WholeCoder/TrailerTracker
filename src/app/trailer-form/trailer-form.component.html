@@ -14,6 +14,7 @@
                   </div>
                   <div class="form-group">
                      <label for="customer">Customer:</label>
+                    <input auto-complete [(ngModel)]="myData" [source]="mySource" />
                      <input formControlName="customer" type="text" class="form-control" id="customer">
                   </div>
                   <div class="form-group">
