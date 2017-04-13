@@ -9,7 +9,6 @@ userRouter.post('/', (request: Request, response: Response) => {
 
   const User = CreateUser(sequelize);
 
-  // response.json({"worked":"this"});
   User.getAuthenticated(request.body.username, request.body.password, function(x, user, error){
     const resp = error ? {'err': error} : user;
     response.json(resp);

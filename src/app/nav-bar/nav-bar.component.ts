@@ -43,7 +43,6 @@ export class NavBarComponent implements OnInit {
 
 
   loginUser(event) {
-    // alert('click happened.');
     this.http.post('/api/user', this.loginForm.value)
                    // ...and calling .json() on the response to return data
                     .map((res: Response) => res.json())
@@ -65,7 +64,6 @@ export class NavBarComponent implements OnInit {
   } // end of loginUser(event)
 
   newUser(event) {
-    // alert('create new user!');
     this.router.navigateByUrl('/signup');
   }
 }

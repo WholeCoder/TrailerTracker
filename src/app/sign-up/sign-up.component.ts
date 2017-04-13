@@ -47,7 +47,6 @@ export class SignUpComponent implements OnInit {
             alert('can not sign up! - ' + JSON.stringify(x));
           } else {
             console.log('x == ' + JSON.stringify(x));
-            // this.router.navigateByUrl('/trailertable');
             alert('signed up!');
           }
 

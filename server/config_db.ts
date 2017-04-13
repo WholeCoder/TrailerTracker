@@ -9,7 +9,7 @@ export = {
     if (DISABLE_SSL && ENVIRONMENT == 'local_development') // on development
     {
       console.log("!!!!!!!DISABLE_SSL was set - admin app won't be encrypted!!!!!!")
-      console.log("setting connection to local mongodb!!!!!!!!!!!!");
+      console.log("setting connection to local postgresql!!!!!!!!!!!!");
       postgresconnectionstring = this.development_database_url;
     } else if (ENVIRONMENT == 'remote_development') // on testing site
     {

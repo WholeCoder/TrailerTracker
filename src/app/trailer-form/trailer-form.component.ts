@@ -28,21 +28,12 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
-/*
-  statusDropDownConstructorDone(event)
-  {
-    updateStatus1(this.passTrailerDataService.trailerObject["status1"][0], 'status1');
-  }
-*/
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
 
-    // alert('trailer object == '+JSON.stringify(this.passTrailerDataService.trailerObject["status1"][0]));
-    // console.table(this.passTrailerDataService.trailerObject["status1"][0]);
     this.updateStatus1(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.updateStatus1(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
     this.updateStatus1(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
 
-    // this.estimatedtimeofcompletion.form//2015-07-31T04:00:00.000Z
     this.estimatedtimeofcompletion = new DateModel();
     this.estimatedtimeofcompletion.formatted = this.passTrailerDataService.trailerObject['estimatedtimeofcompletion'];
 
@@ -53,11 +44,6 @@ export class TrailerFormComponent implements OnInit {
     this.dateauthorized.formatted = this.passTrailerDataService.trailerObject['dateauthorized'];
 
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
-
-    // alert('datersnotified == ' + this.datersnotified.formatted);
-    // alert('date == '+this.passTrailerDataService.trailerObject['']);
-    // this.status2Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
-    // this.status3Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
 
     this.options = new DatePickerOptions();
   }
@@ -88,7 +74,6 @@ export class TrailerFormComponent implements OnInit {
     if (status === 'status1') {
       this.status2Values = this.statusService.getGroup(colorFileName);
       this.status3Values = this.statusService.getGroup(colorFileName);
-// alert('set status23 values.');
     } else if (status === 'status2')
     {
       this.status2Values = this.statusService.getGroup(colorFileName);
@@ -118,7 +103,6 @@ export class TrailerFormComponent implements OnInit {
           this.status3Values[i].push('');
       }
     }
-    // alert("event fired " + event + '  status == '+status);
   }
 
   private determineLightColor(event) {

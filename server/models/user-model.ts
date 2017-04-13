@@ -48,7 +48,6 @@ const CreateUser = function(sequelize) {
 		    this.findOne({ where:
       									{ 'username': username }
    									}).then(function(user) {
-		        // if (err) return cb(err);
 
 		        // make sure the user exists
 		        if (!user) {

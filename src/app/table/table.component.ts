@@ -34,12 +34,7 @@ export class TableDemoComponent implements OnInit {
     {title: 'datersnotified', name: 'datersnotified'},
     {title: 'estimatedtimeofcompletion', name: 'estimatedtimeofcompletion'},
     {title: 'Status', name: 'status'},
-    // {title: 'status1', name: 'status1'},
-    // {title: 'status2', name: 'status2'},
-    // {title: 'status3', name: 'status3'},
-    // {title: 'note', name: 'note'},
     {title: 'dateauthorized', name: 'dateauthorized'},
-    // {title: 'authorizedinitials', name: 'authorizedinitials'},
     {title: '', name: 'deletespace'},
     {title: '', name: 'editspace'}
   ];
