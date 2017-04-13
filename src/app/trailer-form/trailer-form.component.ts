@@ -30,9 +30,9 @@ export class TrailerFormComponent implements OnInit {
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
 
-    this.updateStatus1(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
-    this.updateStatus1(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
-    this.updateStatus1(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
+    this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
+    this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
+    this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
 
     this.estimatedtimeofcompletion = new DateModel();
     this.estimatedtimeofcompletion.formatted = this.passTrailerDataService.trailerObject['estimatedtimeofcompletion'];
@@ -67,8 +67,8 @@ export class TrailerFormComponent implements OnInit {
 
 
 
-  updateStatus1(event, status) {
-// alert('in dupdateStatus')
+  setProperDropDownValuesForStatus(event, status) {
+
     const colorFileName = this.determineLightColor(event);
 
     if (status === 'status1') {
@@ -76,32 +76,46 @@ export class TrailerFormComponent implements OnInit {
       this.status3Values = this.statusService.getGroup(colorFileName);
     } else if (status === 'status2')
     {
-      this.status2Values = this.statusService.getGroup(colorFileName);
-      for (let i = 0; i < this.status2Values.length; i++) {
-        if (this.status2Values[i].length === 5)
-          this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
-      }
-      for (let i = 0; i < this.status2Values.length; i++)
-      {
-        if (event === this.status2Values[i][0])
-          this.status2Values[i].push('selected');
-        else
-          this.status2Values[i].push('');
-      }
+      this.removeSelectedFromArrayOfOptions(colorFileName);
+      this.selectOptionForStatusDropDown2(event);
     } else if (status === 'status3')
     {
-      this.status3Values = this.statusService.getGroup(colorFileName);
-      for (let i = 0; i < this.status3Values.length; i++) {
-        if (this.status3Values[i].length === 5)
-          this.status3Values[i].splice(this.status3Values[i].length - 1, 1);
-      }
-      for (let i = 0; i < this.status3Values.length; i++)
-      {
-        if (event === this.status3Values[i][0])
-          this.status3Values[i].push('selected');
-        else
-          this.status3Values[i].push('');
-      }
+      this.removeSelectedFromArraysOfOptions(colorFileName);
+      this.selectOptionForStatusDropDown3(event);
+    }
+  }
+
+  private selectOptionForStatusDropDown3(event) {
+    for (let i = 0; i < this.status3Values.length; i++) {
+      if (event === this.status3Values[i][0])
+        this.status3Values[i].push('selected');
+      else
+        this.status3Values[i].push('');
+    }
+  }
+
+  private removeSelectedFromArraysOfOptions(colorFileName: string) {
+    this.status3Values = this.statusService.getGroup(colorFileName);
+    for (let i = 0; i < this.status3Values.length; i++) {
+      if (this.status3Values[i].length === 5)
+        this.status3Values[i].splice(this.status3Values[i].length - 1, 1);
+    }
+  }
+
+  private selectOptionForStatusDropDown2(event) {
+    for (let i = 0; i < this.status2Values.length; i++) {
+      if (event === this.status2Values[i][0])
+        this.status2Values[i].push('selected');
+      else
+        this.status2Values[i].push('');
+    }
+  }
+
+  private removeSelectedFromArrayOfOptions(colorFileName: string) {
+    this.status2Values = this.statusService.getGroup(colorFileName);
+    for (let i = 0; i < this.status2Values.length; i++) {
+      if (this.status2Values[i].length === 5)
+        this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
     }
   }
 
