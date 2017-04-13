@@ -14,12 +14,11 @@
                   </div>
                   <div class="form-group">
                      <label for="customer">Customer:</label>
-                    <input auto-complete [(ngModel)]="myData" [source]="mySource" />
-                     <input formControlName="customer" type="text" class="form-control" id="customer">
+                    <input auto-complete [(ngModel)]="customer" [source]="customers" formControlName="customer" class="form-control" id="customer"/>
                   </div>
                   <div class="form-group">
                      <label for="account">Account:</label>
-                     <input formControlName="account" type="text" class="form-control" id="account">
+                    <input auto-complete [(ngModel)]="account" [source]="vs" formControlName="account" class="form-control" id="account"/>
                   </div>
                   <div class="form-group">
                      <label for="vehicletype">Vehicle Type:</label>

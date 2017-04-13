@@ -27,6 +27,7 @@ import {StatusService} from "./status.service";
 import {PassTrailerDataService} from "./pass-trailer-data.service";
 import {Ng2AutoCompleteModule} from "ng2-auto-complete";
 import {CustomerService} from './customer.service';
+import {AccountService} from './account.service';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -86,7 +87,8 @@ const appRoutes: Routes =       [
     TrailerService,
     StatusService,
     PassTrailerDataService,
-    CustomerService
+    CustomerService,
+    AccountService
   ],
   bootstrap: [
     AppComponent

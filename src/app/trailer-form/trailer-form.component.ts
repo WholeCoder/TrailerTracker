@@ -6,6 +6,7 @@ import {DateModel, DatePickerOptions} from 'ng2-datepicker';
 import {PassTrailerDataService} from '../pass-trailer-data.service';
 import * as moment from 'moment';
 import {CustomerService} from '../customer.service';
+import {AccountService} from "../account.service";
 
 @Component({
   selector: 'app-trailer-form',
@@ -29,7 +30,7 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService, private customerService: CustomerService) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService, private customerService: CustomerService, private accountService: AccountService) {
 
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
@@ -48,11 +49,14 @@ export class TrailerFormComponent implements OnInit {
 
     this.options = new DatePickerOptions();
 
-    // <input auto-complete [(ngModel)]="myData" [source]="mySource"
-    this.mySource = this.customerService.getCustomers();
+    // <input auto-complete [(ngModel)]="customer" [source]="customers"
+    this.customers = this.customerService.getCustomers();
   }
-  myData: string;
-  mySource:string[];
+  customer: string;
+  customers:string[];
+
+  account: string;
+  accounts: string[];
 
   ngOnInit() {
   }
