@@ -4,6 +4,7 @@ import {Http, Response} from '@angular/http';
 import {StatusService} from '../status.service';
 import {DateModel, DatePickerOptions} from 'ng2-datepicker';
 import {PassTrailerDataService} from '../pass-trailer-data.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-trailer-form',
@@ -33,7 +34,6 @@ export class TrailerFormComponent implements OnInit {
     updateStatus1(this.passTrailerDataService.trailerObject["status1"][0], 'status1');
   }
 */
-
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
 
     // alert('trailer object == '+JSON.stringify(this.passTrailerDataService.trailerObject["status1"][0]));
@@ -42,8 +42,20 @@ export class TrailerFormComponent implements OnInit {
     this.updateStatus1(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
     this.updateStatus1(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
 
+    // this.estimatedtimeofcompletion.form//2015-07-31T04:00:00.000Z
+    this.estimatedtimeofcompletion = new DateModel();
+    this.estimatedtimeofcompletion.formatted = this.passTrailerDataService.trailerObject['estimatedtimeofcompletion'];
+
+    this.datersnotified = new DateModel();
+    this.datersnotified.formatted = this.passTrailerDataService.trailerObject['datersnotified'];
+
+    this.dateauthorized = new DateModel();
+    this.dateauthorized.formatted = this.passTrailerDataService.trailerObject['dateauthorized'];
+
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
 
+    // alert('datersnotified == ' + this.datersnotified.formatted);
+    // alert('date == '+this.passTrailerDataService.trailerObject['']);
     // this.status2Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
     // this.status3Values = this.statusService.getGroup(passTrailerDataService.trailerObject.status1);
 
@@ -82,28 +94,28 @@ export class TrailerFormComponent implements OnInit {
       this.status2Values = this.statusService.getGroup(colorFileName);
       for (let i = 0; i < this.status2Values.length; i++) {
         if (this.status2Values[i].length === 5)
-          this.status2Values[i].splice(this.status2Values[i].length-1, 1);
+          this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
       }
       for (let i = 0; i < this.status2Values.length; i++)
       {
         if (event === this.status2Values[i][0])
-          this.status2Values[i].push("selected");
+          this.status2Values[i].push('selected');
         else
-          this.status2Values[i].push("");
+          this.status2Values[i].push('');
       }
     } else if (status === 'status3')
     {
       this.status3Values = this.statusService.getGroup(colorFileName);
       for (let i = 0; i < this.status3Values.length; i++) {
         if (this.status3Values[i].length === 5)
-          this.status3Values[i].splice(this.status3Values[i].length-1, 1);
+          this.status3Values[i].splice(this.status3Values[i].length - 1, 1);
       }
       for (let i = 0; i < this.status3Values.length; i++)
       {
         if (event === this.status3Values[i][0])
-          this.status3Values[i].push("selected");
+          this.status3Values[i].push('selected');
         else
-          this.status3Values[i].push("");
+          this.status3Values[i].push('');
       }
     }
     // alert("event fired " + event + '  status == '+status);

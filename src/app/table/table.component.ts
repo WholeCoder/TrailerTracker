@@ -203,7 +203,7 @@ export class TableDemoComponent implements OnInit {
       {
         editRow[prop] = [editRow[prop]];
       }
-
+console.table(editRow);
       this.passTrailerDataService.trailerObject = editRow;
       this.router.navigateByUrl('/newtrailer');
     }
