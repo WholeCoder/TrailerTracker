@@ -7,6 +7,8 @@ import {PassTrailerDataService} from '../pass-trailer-data.service';
 import * as moment from 'moment';
 import {CustomerService} from '../customer.service';
 import {AccountService} from "../account.service";
+import {VehicleTypeService} from "../vehicle-type.service";
+import {LocationService} from "../location.service";
 
 @Component({
   selector: 'app-trailer-form',
@@ -30,7 +32,14 @@ export class TrailerFormComponent implements OnInit {
 
   public trailerForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private statusService: StatusService, private passTrailerDataService: PassTrailerDataService, private customerService: CustomerService, private accountService: AccountService) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder,
+              private http: Http,
+              private statusService: StatusService,
+              private passTrailerDataService: PassTrailerDataService,
+              private customerService: CustomerService,
+              private accountService: AccountService,
+              private vehicleService: VehicleTypeService,
+              private locationService: LocationService) {
 
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
@@ -51,12 +60,21 @@ export class TrailerFormComponent implements OnInit {
 
     // <input auto-complete [(ngModel)]="customer" [source]="customers"
     this.customers = this.customerService.getCustomers();
+    this.accounts = this.accountService.getDefaultAccounts();
+    this.vehicletypes = this.vehicleService.getVehicleTypes();
+    this.locations = this.locationService.getLocations();
   }
   customer: string;
   customers:string[];
 
   account: string;
   accounts: string[];
+
+  vehicletype: string;
+  vehicletypes: string[];
+
+  location: string;
+  locations: string[];
 
   ngOnInit() {
   }
