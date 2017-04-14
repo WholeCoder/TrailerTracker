@@ -108,11 +108,11 @@ export class TrailerFormComponent implements OnInit {
       this.status3Values = this.statusService.getGroup(colorFileName);
     } else if (status === 'status2')
     {
-      this.removeSelectedFromArrayOfOptions(colorFileName);
+      this.removeSelectedFromArraysOfOptions2(colorFileName);
       this.selectOptionForStatusDropDown2(event);
     } else if (status === 'status3')
     {
-      this.removeSelectedFromArraysOfOptions(colorFileName);
+      this.removeSelectedFromArraysOfOptions3(colorFileName);
       this.selectOptionForStatusDropDown3(event);
     }
   }
@@ -126,7 +126,7 @@ export class TrailerFormComponent implements OnInit {
     }
   }
 
-  private removeSelectedFromArraysOfOptions(colorFileName: string) {
+  private removeSelectedFromArraysOfOptions3(colorFileName: string) {
     // this.status3Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status3Values.length; i++) {
       if (this.status3Values[i].length === 5)
@@ -143,7 +143,7 @@ export class TrailerFormComponent implements OnInit {
     }
   }
 
-  private removeSelectedFromArrayOfOptions(colorFileName: string) {
+  private removeSelectedFromArraysOfOptions2(colorFileName: string) {
     // this.status2Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status2Values.length; i++) {
       if (this.status2Values[i].length === 5)
