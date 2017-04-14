@@ -40,10 +40,6 @@ export class TrailerFormComponent implements OnInit {
               private accountService: AccountService,
               private vehicleService: VehicleTypeService,
               private locationService: LocationService) {
-    this.status2Values = this.statusService.getGroup(this.determineLightColor(this.passTrailerDataService.trailerObject['status1'][0]));
-    this.status3Values = this.statusService.getGroup(this.determineLightColor(this.passTrailerDataService.trailerObject['status1'][0]));
-    alert("this.status2Values == " + this.status2Values.length);
-    // alert('setting values - ' + this.status2Values.length);
 
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
