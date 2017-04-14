@@ -84,12 +84,16 @@ export class TrailerFormComponent implements OnInit {
   public dt: Date = new Date();
 
   saveTrailer(event) {
-    this.http.post('/api/trailers', this.trailerForm.value)
-    // ...and calling .json() on the response to return data
-      .map((res: Response) => res.json())
-      .subscribe(x => {
-        // alert('saved trailer! - ' + JSON.stringify(x));
-      });
+    if (confirm('Save This Trailer?') == true) {
+      this.http.post('/api/trailers', this.trailerForm.value)
+      // ...and calling .json() on the response to return data
+        .map((res: Response) => res.json())
+        .subscribe(x => {
+          // alert('saved trailer! - ' + JSON.stringify(x));
+        });
+    } else {
+
+    }
 
   }
 
