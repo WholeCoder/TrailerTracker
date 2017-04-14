@@ -6,9 +6,9 @@ import {DateModel, DatePickerOptions} from 'ng2-datepicker';
 import {PassTrailerDataService} from '../pass-trailer-data.service';
 import * as moment from 'moment';
 import {CustomerService} from '../customer.service';
-import {AccountService} from "../account.service";
-import {VehicleTypeService} from "../vehicle-type.service";
-import {LocationService} from "../location.service";
+import {AccountService} from '../account.service';
+import {VehicleTypeService} from '../vehicle-type.service';
+import {LocationService} from '../location.service';
 
 @Component({
   selector: 'app-trailer-form',
@@ -40,6 +40,10 @@ export class TrailerFormComponent implements OnInit {
               private accountService: AccountService,
               private vehicleService: VehicleTypeService,
               private locationService: LocationService) {
+    this.status2Values = this.statusService.getGroup(this.determineLightColor(this.passTrailerDataService.trailerObject['status1'][0]));
+    this.status3Values = this.statusService.getGroup(this.determineLightColor(this.passTrailerDataService.trailerObject['status1'][0]));
+    alert("this.status2Values == " + this.status2Values.length);
+    // alert('setting values - ' + this.status2Values.length);
 
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
@@ -65,7 +69,7 @@ export class TrailerFormComponent implements OnInit {
     this.locations = this.locationService.getLocations();
   }
   customer: string;
-  customers:string[];
+  customers: string[];
 
   account: string;
   accounts: string[];
@@ -123,7 +127,7 @@ export class TrailerFormComponent implements OnInit {
   }
 
   private removeSelectedFromArraysOfOptions(colorFileName: string) {
-    this.status3Values = this.statusService.getGroup(colorFileName);
+    // this.status3Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status3Values.length; i++) {
       if (this.status3Values[i].length === 5)
         this.status3Values[i].splice(this.status3Values[i].length - 1, 1);
@@ -140,7 +144,7 @@ export class TrailerFormComponent implements OnInit {
   }
 
   private removeSelectedFromArrayOfOptions(colorFileName: string) {
-    this.status2Values = this.statusService.getGroup(colorFileName);
+    // this.status2Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status2Values.length; i++) {
       if (this.status2Values[i].length === 5)
         this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
