@@ -104,8 +104,7 @@ export class TrailerFormComponent implements OnInit {
     const colorFileName = this.determineLightColor(event);
 
     if (status === 'status1') {
-      this.status2Values = this.statusService.getGroup(colorFileName);
-      this.status3Values = this.statusService.getGroup(colorFileName);
+      this.setInitialStatus1And2DropDownValues(colorFileName);
     } else if (status === 'status2')
     {
       this.removeSelectedFromArraysOfOptions2(colorFileName);
@@ -115,6 +114,11 @@ export class TrailerFormComponent implements OnInit {
       this.removeSelectedFromArraysOfOptions3(colorFileName);
       this.selectOptionForStatusDropDown3(event);
     }
+  }
+
+  private setInitialStatus1And2DropDownValues(colorFileName: string) {
+    this.status2Values = this.statusService.getGroup(colorFileName);
+    this.status3Values = this.statusService.getGroup(colorFileName);
   }
 
   private selectOptionForStatusDropDown3(event) {
