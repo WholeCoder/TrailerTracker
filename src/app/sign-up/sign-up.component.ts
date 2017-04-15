@@ -2,6 +2,7 @@ import {animate, Component, Inject, OnInit, style, transition, trigger} from "@a
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Http, Response} from "@angular/http";
 import {CustomerService} from "../customer.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +24,7 @@ export class SignUpComponent implements OnInit {
 
   public signUpForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private customerService: CustomerService) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private customerService: CustomerService, private router: Router) {
     this.signUpForm = fb.group({
       username: [''],
       password: [''],
@@ -54,6 +55,7 @@ export class SignUpComponent implements OnInit {
           } else {
             console.log('x == ' + JSON.stringify(x));
             alert('signed up!');
+            this.router.navigateByUrl('/');
           }
 
 
