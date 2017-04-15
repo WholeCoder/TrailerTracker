@@ -54,7 +54,6 @@ export class TrailerFormComponent implements OnInit {
     this.dateauthorized = new DateModel();
     this.dateauthorized.formatted = this.passTrailerDataService.trailerObject['dateauthorized'];
 
-// alert('customer == '+this.customer);
     this.customers = this.customerService.getCustomers();
     this.accounts = this.accountService.getDefaultAccounts();
     this.vehicletypes = this.vehicleService.getVehicleTypes();
@@ -65,7 +64,6 @@ export class TrailerFormComponent implements OnInit {
     this.vehicletype = this.passTrailerDataService.trailerObject['vehicletype'][0];
     this.location = this.passTrailerDataService.trailerObject['location'][0];
 
-    // alert(this.passTrailerDataService.trailerObject['datersnotified']);
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
 
     this.options = new DatePickerOptions();
