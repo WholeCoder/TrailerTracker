@@ -84,7 +84,16 @@ export class TrailerFormComponent implements OnInit {
   public dt: Date = new Date();
 
   saveTrailer(event) {
-    if (confirm('Save This Trailer?') == true) {
+    function getProps(obj)
+    {
+      let str = '';
+      for (const prop in obj) {
+        str += 'obj[' + prop + '] == ' + obj[prop] + '\n';
+      }
+      return str;
+    }
+    alert('this.trailerForm.value == ' + getProps(this.trailerForm.value));
+    if (confirm('Save This Trailer?') === true) {
       this.http.post('/api/trailers', this.trailerForm.value)
       // ...and calling .json() on the response to return data
         .map((res: Response) => res.json())

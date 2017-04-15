@@ -1,6 +1,7 @@
 import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Http, Response} from "@angular/http";
+import {CustomerService} from "../customer.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -17,9 +18,12 @@ import {Http, Response} from "@angular/http";
 })
 export class SignUpComponent implements OnInit {
 
+  customer: string;
+  customers: string[];
+
   public signUpForm: FormGroup;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private customerService: CustomerService) {
     this.signUpForm = fb.group({
       username: [''],
       password: [''],
@@ -27,6 +31,8 @@ export class SignUpComponent implements OnInit {
       customer: ['']
     });
 
+    this.customers = this.customerService.getCustomers();
+    this.customers.splice(0,1); // Remove ADMIN customer.
   }
 
   ngOnInit() {

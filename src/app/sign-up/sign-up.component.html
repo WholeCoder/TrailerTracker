@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
               <label for="customer">Customer:</label>
-              <input formControlName="customer" type="text" class="form-control" id="customer">
+              <input auto-complete [(ngModel)]="customer" [source]="customers" formControlName="customer" class="form-control" id="customer"/>
             </div>
              <button type="submit" class="btn btn-default">Sign Up!</button>
           </form>
