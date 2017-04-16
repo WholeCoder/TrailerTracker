@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
 
 import { TableComponent } from './table.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TableComponent', () => {
   let component: TableComponent;
@@ -8,7 +10,8 @@ describe('TableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TableComponent ]
+      declarations: [ TableComponent ],
+      imports: [ BrowserTestingModule, RouterTestingModule, platformBrowserTesting() ]
     })
     .compileComponents();
   }));
