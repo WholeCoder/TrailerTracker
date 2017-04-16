@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {StatusService} from '../status.service';
+import {PassTrailerDataService} from '../pass-trailer-data.service';
 
 import { StatusDropDownComponent } from './status-drop-down.component';
 
@@ -8,7 +10,8 @@ describe('StatusDropDownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatusDropDownComponent ]
+      declarations: [ StatusDropDownComponent ],
+      providers: [ StatusService, PassTrailerDataService ]
     })
     .compileComponents();
   }));
