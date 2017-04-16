@@ -9,11 +9,13 @@ import {CustomerService} from '../customer.service';
 import {AccountService} from '../account.service';
 import {VehicleTypeService} from '../vehicle-type.service';
 import {LocationService} from '../location.service';
+import {REACTIVE_FORM_DIRECTIVES } from '@angular/router';
 
 @Component({
   selector: 'app-trailer-form',
   templateUrl: './trailer-form.component.html',
   styleUrls: ['./trailer-form.component.css'],
+  directives: [REACTIVE_FORM_DIRECTIVES],
   animations: [
     trigger('trailerPanel', [
       transition('void => *', [

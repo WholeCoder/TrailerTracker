@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TrailerFormComponent } from './trailer-form.component';
+import {StoreModule} from '@ngrx/store';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpModule} from '@angular/http';
 
 describe('TrailerFormComponent', () => {
   let component: TrailerFormComponent;
@@ -8,7 +11,9 @@ describe('TrailerFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrailerFormComponent ]
+      declarations: [ TrailerFormComponent ],
+      imports:      [HttpModule, RouterTestingModule, StoreModule.provideStore({})],
+
     })
     .compileComponents();
   }));

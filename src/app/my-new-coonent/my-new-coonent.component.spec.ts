@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MyNewCoonentComponent } from './my-new-coonent.component';
 
@@ -8,7 +9,8 @@ describe('MyNewCoonentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyNewCoonentComponent ]
+      declarations: [ MyNewCoonentComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   }));
