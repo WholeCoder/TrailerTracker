@@ -6,22 +6,22 @@
       <div class="panel panel-primary">
         <div class="panel-heading">Create a New User Account</div>
         <div class="panel-body">
-          <form [formGroup]="signUpForm" (ngSubmit)="saveNewUser($event)">
+          <form [ngFormModel]="signUpForm" (ngSubmit)="saveNewUser($event)">
             <div class="form-group">
               <label for="username">Email:</label>
-              <input formControlName="username" type="text" class="form-control" id="username">
+              <input [NgControl]="username" type="text" class="form-control" id="username">
             </div>
             <div class="form-roup">
               <label for="password">Password:</label>
-              <input formControlName="password" type="password" class="form-control" id="password">
+              <input [NgControl]="password" type="password" class="form-control" id="password">
             </div>
             <div class="form-group">
               <label for="password_confirmation">Password (Confirmation):</label>
-              <input formControlName="password_confirmation" type="password" class="form-control" id="password_confirmation">
+              <input [NgControl]="password_confirmation" type="password" class="form-control" id="password_confirmation">
             </div>
             <div class="form-group">
               <label for="customer">Customer:</label>
-              <input auto-complete [(ngModel)]="customer" [source]="customers" formControlName="customer" class="form-control" id="customer"/>
+              <input auto-complete [(ngModel)]="customer" [source]="customers" [NgControl]="customer" class="form-control" id="customer"/>
             </div>
              <button type="submit" class="btn btn-default">Sign Up!</button>
           </form>
