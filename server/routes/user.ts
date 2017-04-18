@@ -9,13 +9,15 @@ userRouter.post('/', (request: Request, response: Response) => {
 
   const User = CreateUser(sequelize);
 
-  User.getAuthenticated(request.body.username, request.body.password, function(x, user, error){
+  User.getAuthenticated(request.body.username, request.body.password, function (x, user, error) {
     const resp = error ? {'err': error} : user;
     response.json(resp);
-    if(!error) {
-      request["session"].user = user;
-      console.log("user.customer in login ------> "+request["session"].user.customer);
-      console.log("in getAuthenticated -----------------> user == "+JSON.stringify(request["session"].user));
+    if (!error) {
+      request['session'].user = user;
+      request['session'].save();
+
+      console.log('user.customer in login ------> ' + request['session'].user.customer);
+      console.log('in getAuthenticated -----------------> user == ' + JSON.stringify(request['session'].user));
     }
   });
 });
@@ -24,8 +26,8 @@ userRouter.put('/', (request: Request, response: Response) => {
 
   const User = CreateUser(sequelize);
 
-  console.log('request.body.username == '+request.body.username);
-  console.log('request.body.password. == '+request.body.password);
+  console.log('request.body.username == ' + request.body.username);
+  console.log('request.body.password. == ' + request.body.password);
   if ((request.body.username !== null) && (request.body.username !== '')
     && (request.body.password !== null) && (request.body.password_confirmation !== '')
     && (request.body.password == request.body.password_confirmation)
@@ -43,11 +45,11 @@ userRouter.put('/', (request: Request, response: Response) => {
       const resp = jane;
       response.json(resp);
     }).catch(function (reason) {
-      response.json({"error": "could not create"});
+      response.json({'error': 'could not create'});
     });
   } else {
-    response.json({"error": "could not create"});
+    response.json({'error': 'could not create'});
   }
 });
 
-export { userRouter };
+export {userRouter};

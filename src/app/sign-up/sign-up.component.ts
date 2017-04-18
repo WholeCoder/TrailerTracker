@@ -25,16 +25,8 @@ export class SignUpComponent implements OnInit {
   public signUpForm: FormGroup;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private customerService: CustomerService, private router: Router) {
-/*
     this.signUpForm = fb.group({
-      username: [''],
-      password: [''],
-      password_confirmation: [''],
-      customer: ['']
-    });
-*/
-    this.signUpForm = fb.group({
-      'username': ['name'],
+      'username': [''],
       'password': new FormControl(''),
       'password_confirmation': new FormControl(''),
       'customer': new FormControl('')
@@ -60,7 +52,8 @@ export class SignUpComponent implements OnInit {
     }
     alert(getProps(this.signUpForm.value));
     // alert('passwords == ' + this.signUpForm.value.password + ' === ' + this.signUpForm.value.password_confirmation);
-    if ((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
+    if ((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) &&
+        (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
       this.http.put('/api/user', this.signUpForm.value)
       // ...and calling .json() on the response to return data
         .map((res: Response) => {
