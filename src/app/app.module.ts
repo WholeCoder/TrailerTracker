@@ -31,6 +31,8 @@ import {AccountService} from './account.service';
 import {VehicleTypeService} from './vehicle-type.service';
 import {LocationService} from './location.service';
 
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
 
@@ -94,6 +96,7 @@ const appRoutes: Routes =       [
     VehicleTypeService,
     LocationService
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [
     AppComponent
   ]

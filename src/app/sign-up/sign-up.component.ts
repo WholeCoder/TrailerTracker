@@ -1,8 +1,8 @@
-import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {Http, Response} from "@angular/http";
-import {CustomerService} from "../customer.service";
-import {Router} from "@angular/router";
+import {animate, Component, Inject, OnInit, style, transition, trigger} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {Http, Response} from '@angular/http';
+import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,23 +25,42 @@ export class SignUpComponent implements OnInit {
   public signUpForm: FormGroup;
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http, private customerService: CustomerService, private router: Router) {
+/*
     this.signUpForm = fb.group({
       username: [''],
       password: [''],
       password_confirmation: [''],
       customer: ['']
     });
+*/
+    this.signUpForm = fb.group({
+      'username': ['name'],
+      'password': new FormControl(''),
+      'password_confirmation': new FormControl(''),
+      'customer': new FormControl('')
+    });
 
     this.customers = this.customerService.getCustomers();
-    this.customers.splice(0,1); // Remove ADMIN customer.
+    this.customers.splice(0, 1); // Remove ADMIN customer.
   }
 
   ngOnInit() {
   }
 
   saveNewUser(event) {
-    alert(this.signUpForm.value.password+" === "+this.signUpForm.value.password_confirmation);
-    if((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
+    event.preventDefault();
+    function getProps(event)
+    {
+      let str = '';
+      for (const prop in event)
+      {
+        str += 'obj[' + prop + '] = ' + event[prop] + '\n';
+      }
+      return str;
+    }
+    alert(getProps(this.signUpForm.value));
+    // alert('passwords == ' + this.signUpForm.value.password + ' === ' + this.signUpForm.value.password_confirmation);
+    if ((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) && (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
       this.http.put('/api/user', this.signUpForm.value)
       // ...and calling .json() on the response to return data
         .map((res: Response) => {
@@ -61,7 +80,7 @@ export class SignUpComponent implements OnInit {
 
         });
     } else {
-      alert('Paswords do not match!')
+      alert('Paswords do not match!');
     }
   }
 
