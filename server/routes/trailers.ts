@@ -21,23 +21,22 @@ trailerRouter.get('/', (request: Request, response: Response) => {
   }
 });
 
+function resolveNullAndEmptyValuesOnDates(requestbod: any) {
+  requestbod.datersnotified = requestbod.datersnotified.formatted === null || requestbod.datersnotified.formatted.trim() === '' ? null : new Date(requestbod.datersnotified.formatted);
+  requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted === null || requestbod.estimatedtimeofcompletion.formatted.trim() === '' ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
+  requestbod.dateauthorized = requestbod.dateauthorized.formatted === null || requestbod.dateauthorized.formatted.trim() === '' ? null : new Date(requestbod.dateauthorized.formatted);
+}
+
 trailerRouter.post('/', (request: Request, response: Response) => {
 
-  function setDateToNullIfEmptyString() {
-    request.body.datersnotified = request.body.datersnotified == '' ? null : request.body.datersnotified;
-    request.body.estimatedtimeofcompletion = request.body.estimatedtimeofcompletion == '' ? null : request.body.estimatedtimeofcompletion;
-    request.body.dateauthorized = request.body.dateauthorized == '' ? null : request.body.dateauthorized;
-  }
+  resolveNullAndEmptyValuesOnDates(request.body);
 
-  setDateToNullIfEmptyString();
-
-  Trailer.create('datersnotified == ' + request.body.datersnotified);
+  Trailer.create(request.body);
 });
 
 trailerRouter.put('/', (request: Request, response: Response) => {
-  request.body.datersnotified = request.body.datersnotified.formatted === null || request.body.datersnotified.formatted.trim() === '' ? null : new Date(request.body.datersnotified.formatted);
-  request.body.estimatedtimeofcompletion = request.body.estimatedtimeofcompletion.formatted === null || request.body.estimatedtimeofcompletion.formatted.trim() === '' ? null : new Date(request.body.estimatedtimeofcompletion.formatted);
-  request.body.dateauthorized = request.body.dateauthorized.formatted === null || request.body.dateauthorized.formatted.trim() === '' ? null : new Date(request.body.dateauthorized.formatted);
+
+  resolveNullAndEmptyValuesOnDates(request.body);
 
   Trailer.update(request.body, {where: {id: request.body.id}}).then(
     function (trlr) {
