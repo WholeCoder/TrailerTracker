@@ -4,7 +4,12 @@ var bcrypt = require('bcryptjs');
     var sequelize = new Sequelize(config.development_database_url);
 
   exports.Trailer = sequelize.define('Trailer', {
-
+        'id': {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true
+        },
        "unitnumber": Sequelize.STRING,
        "customer": Sequelize.STRING,
        "account": Sequelize.STRING,
