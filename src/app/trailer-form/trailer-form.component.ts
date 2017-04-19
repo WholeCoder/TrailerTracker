@@ -66,7 +66,9 @@ export class TrailerFormComponent implements OnInit {
 
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
 
-    this.options = new DatePickerOptions();
+    this.options = new DatePickerOptions({
+      format: 'MM-DD-YYYY'
+    });
   }
   customer: string;
   customers: string[];
