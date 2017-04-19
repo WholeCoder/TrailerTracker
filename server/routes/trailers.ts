@@ -23,19 +23,6 @@ trailerRouter.get('/', (request: Request, response: Response) => {
 
 function resolveNullAndEmptyValuesOnDates(requestbod: any) {
 
-  function getProps(obj)
-  {
-    let str = '';
-    for (const prop in obj)
-    {
-      str += 'obj[' + prop + '] = ' + obj[prop] + '\n';
-    }
-    return str;
-  }
-  console.log('requestbod.datersnotified == ' + (requestbod.datersnotified.formatted));
-  console.log('requestbod.estimatedtimeofcompletion == ' + requestbod.estimatedtimeofcompletion.formatted);
-  console.log('requestbod.dateauthorized == ' + requestbod.dateauthorized.formatted);
-
   requestbod.datersnotified = requestbod.datersnotified.formatted[0] === null ? null : new Date(requestbod.datersnotified.formatted);
   requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted[0] === null ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
   requestbod.dateauthorized = requestbod.dateauthorized.formatted[0] === null ? null : new Date(requestbod.dateauthorized.formatted);
