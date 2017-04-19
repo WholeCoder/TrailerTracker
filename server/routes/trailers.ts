@@ -35,26 +35,7 @@ trailerRouter.post('/', (request: Request, response: Response) => {
 });
 
 trailerRouter.put('/', (request: Request, response: Response) => {
-  console.log('request == ' + (request.body.datersnotified.formatted));
-  function getProps(obj) {
-    let str = '';
-    for (const prop in obj) {
-      str += 'obj[' + prop + '] == ' + obj[prop] + '\n';
-    }
-
-    return str;
-  }
-
-/*
-  request.body.datersnotified = new Date('04-01-2017');
-  request.body.estimatedtimeofcompletion = new Date('04-01-2017');
-  request.body.dateauthorized = new Date('04-01-2017');
-  console.log('request.body.datersnotife == ' + request.body.datersnotified);
-  console.log('request.body.estimatedtimeofcompletion == ' + request.body.estimatedtimeofcompletion);
-  console.log('request.body.dateauthorized == ' + request.body.dateauthorized);
-*/
-
-  request.body.datersnotified =  request.body.datersnotified.formatted === null || request.body.datersnotified.formatted.trim() === '' ? null : new Date(request.body.datersnotified.formatted);
+  request.body.datersnotified = request.body.datersnotified.formatted === null || request.body.datersnotified.formatted.trim() === '' ? null : new Date(request.body.datersnotified.formatted);
   request.body.estimatedtimeofcompletion = request.body.estimatedtimeofcompletion.formatted === null || request.body.estimatedtimeofcompletion.formatted.trim() === '' ? null : new Date(request.body.estimatedtimeofcompletion.formatted);
   request.body.dateauthorized = request.body.dateauthorized.formatted === null || request.body.dateauthorized.formatted.trim() === '' ? null : new Date(request.body.dateauthorized.formatted);
 
