@@ -70,6 +70,7 @@ export class TrailerFormComponent implements OnInit {
       format: 'MM-DD-YYYY'
     });
   }
+
   customer: string;
   customers: string[];
 
@@ -90,28 +91,17 @@ export class TrailerFormComponent implements OnInit {
   public dt: Date = new Date();
 
   saveTrailer(event) {
-    function getProps(obj)
-    {
-      let str = '';
-      for (const prop in obj) {
-        str += 'obj[' + prop + '] == ' + obj[prop] + '\n';
-      }
-      return str;
-    }
-    alert('this.trailerForm.value == ' + JSON.stringify(this.trailerForm.value));
-    if (confirm('Save This Trailer?') === true) {
+    if (this.trailerForm.value.authorizedinitials === null || this.trailerForm.value.authorizedinitials.trim() === '')
+      alert('Must enter Initals to Save This Trailer!');
+    else {
       this.http.put('/api/trailers/', (this.trailerForm.value))
       // ...and calling .json() on the response to return data
         .map((res: Response) => res.json())
         .subscribe(x => {
-          alert('saved trailer! - ' + JSON.stringify(x));
+
         });
-    } else {
-
     }
-
   }
-
 
 
   setProperDropDownValuesForStatus(event, status) {
@@ -120,12 +110,10 @@ export class TrailerFormComponent implements OnInit {
 
     if (status === 'status1') {
       this.setInitialStatus1And2DropDownValues(colorFileName);
-    } else if (status === 'status2')
-    {
+    } else if (status === 'status2') {
       this.removeSelectedFromArraysOfOptions2(colorFileName);
       this.selectOptionForStatusDropDown2(event);
-    } else if (status === 'status3')
-    {
+    } else if (status === 'status3') {
       this.removeSelectedFromArraysOfOptions3(colorFileName);
       this.selectOptionForStatusDropDown3(event);
     }

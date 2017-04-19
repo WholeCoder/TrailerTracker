@@ -22,9 +22,23 @@ trailerRouter.get('/', (request: Request, response: Response) => {
 });
 
 function resolveNullAndEmptyValuesOnDates(requestbod: any) {
-  requestbod.datersnotified = requestbod.datersnotified.formatted === null || requestbod.datersnotified.formatted.trim() === '' ? null : new Date(requestbod.datersnotified.formatted);
-  requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted === null || requestbod.estimatedtimeofcompletion.formatted.trim() === '' ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
-  requestbod.dateauthorized = requestbod.dateauthorized.formatted === null || requestbod.dateauthorized.formatted.trim() === '' ? null : new Date(requestbod.dateauthorized.formatted);
+
+  function getProps(obj)
+  {
+    let str = '';
+    for (const prop in obj)
+    {
+      str += 'obj[' + prop + '] = ' + obj[prop] + '\n';
+    }
+    return str;
+  }
+  console.log('requestbod.datersnotified == ' + (requestbod.datersnotified.formatted));
+  console.log('requestbod.estimatedtimeofcompletion == ' + requestbod.estimatedtimeofcompletion.formatted);
+  console.log('requestbod.dateauthorized == ' + requestbod.dateauthorized.formatted);
+
+  requestbod.datersnotified = requestbod.datersnotified.formatted[0] === null ? null : new Date(requestbod.datersnotified.formatted);
+  requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted[0] === null ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
+  requestbod.dateauthorized = requestbod.dateauthorized.formatted[0] === null ? null : new Date(requestbod.dateauthorized.formatted);
 }
 
 trailerRouter.post('/', (request: Request, response: Response) => {
@@ -41,6 +55,7 @@ trailerRouter.put('/', (request: Request, response: Response) => {
   Trailer.update(request.body, {where: {id: request.body.id}}).then(
     function (trlr) {
       console.log('sucessfully updated == ' + trlr);
+      // response.json(JSON.stringify(trlr));
     }
   ).catch(
     function (error) {
