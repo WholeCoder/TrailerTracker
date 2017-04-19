@@ -64,6 +64,7 @@ export class TrailerFormComponent implements OnInit {
     this.vehicletype = this.passTrailerDataService.trailerObject['vehicletype'][0];
     this.location = this.passTrailerDataService.trailerObject['location'][0];
 
+    this.passTrailerDataService.trailerObject['authorizedinitials'] = '';
     this.trailerForm = fb.group(this.passTrailerDataService.trailerObject);
 
     this.options = new DatePickerOptions({
