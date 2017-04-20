@@ -4,7 +4,7 @@ const ENVIRONMENT = process.env.ENVIRONMENT;
 export = {
   "development_database_url": "postgres://postgres:pgsGood&Plenty@localhost:5432/postgres",
   "get_correct_db_url": function() {
-    let postgresconnectionstring = "mongodb://localhost/test";
+    let postgresconnectionstring = "";
 
     if (DISABLE_SSL && ENVIRONMENT == 'local_development') // on development
     {
@@ -15,7 +15,7 @@ export = {
     {
       postgresconnectionstring = "";
     } else if (ENVIRONMENT == 'production') {
-      require('newrelic');
+      // require('newrelic');
       postgresconnectionstring = "";
     } else {
       console.log("!!CONFIG ERROR - ENVIRONMENT system variable not found.  Can not set mongodb variable!!!!")
