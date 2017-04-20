@@ -9,7 +9,7 @@ import {CustomerService} from '../customer.service';
 import {AccountService} from '../account.service';
 import {VehicleTypeService} from '../vehicle-type.service';
 import {LocationService} from '../location.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-trailer-form',
@@ -102,17 +102,16 @@ export class TrailerFormComponent implements OnInit {
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
-
+            this.router.navigateByUrl('/trailertable');
           });
       } else if (this.passTrailerDataService.creationMode === 'new') {
         this.http.post('/api/trailers/', (this.trailerForm.value))
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
-
+            this.router.navigateByUrl('/trailertable');
           });
       }
-      this.router.navigateByUrl('/trailertable');
     }
   }
 

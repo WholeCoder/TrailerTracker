@@ -45,7 +45,11 @@ trailerRouter.post('/', (request: Request, response: Response) => {
 
   resolveNullAndEmptyValuesOnDates(request.body);
 
-  Trailer.create(request.body);
+  Trailer.create(request.body).then(
+    function (trlr) {
+      response.json({'successfully': 'created'});
+    }
+  );
 });
 
 trailerRouter.put('/', (request: Request, response: Response) => {
@@ -56,6 +60,7 @@ trailerRouter.put('/', (request: Request, response: Response) => {
     function (trlr) {
       console.log('sucessfully updated == ' + trlr);
       // response.json(JSON.stringify(trlr));
+      response.json({'successfully': 'updated'});
     }
   ).catch(
     function (error) {
@@ -71,6 +76,7 @@ trailerRouter.delete('/:id', (request: Request, response: Response) => {
   }).then(function (rowDeleted) { // rowDeleted will return number of rows deleted
     if (rowDeleted >= 1) {
       console.log('Deleted successfully');
+      response.json({'successfully': 'deleted'});
     }
   }, function (err) {
     console.log(err);
