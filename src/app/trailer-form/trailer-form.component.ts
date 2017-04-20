@@ -9,6 +9,7 @@ import {CustomerService} from '../customer.service';
 import {AccountService} from '../account.service';
 import {VehicleTypeService} from '../vehicle-type.service';
 import {LocationService} from '../location.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trailer-form',
@@ -39,7 +40,8 @@ export class TrailerFormComponent implements OnInit {
               private customerService: CustomerService,
               private accountService: AccountService,
               private vehicleService: VehicleTypeService,
-              private locationService: LocationService) {
+              private locationService: LocationService,
+              private router: Router) {
 
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
@@ -95,12 +97,22 @@ export class TrailerFormComponent implements OnInit {
     if (this.trailerForm.value.authorizedinitials === null || this.trailerForm.value.authorizedinitials.trim() === '')
       alert('Must enter Initals to Save This Trailer!');
     else {
-      this.http.put('/api/trailers/', (this.trailerForm.value))
-      // ...and calling .json() on the response to return data
-        .map((res: Response) => res.json())
-        .subscribe(x => {
+      if (this.passTrailerDataService.creationMode === 'edit') {
+        this.http.put('/api/trailers/', (this.trailerForm.value))
+        // ...and calling .json() on the response to return data
+          .map((res: Response) => res.json())
+          .subscribe(x => {
 
-        });
+          });
+      } else if (this.passTrailerDataService.creationMode === 'new') {
+        this.http.post('/api/trailers/', (this.trailerForm.value))
+        // ...and calling .json() on the response to return data
+          .map((res: Response) => res.json())
+          .subscribe(x => {
+
+          });
+      }
+      this.router.navigateByUrl('/trailertable');
     }
   }
 

@@ -23,12 +23,25 @@ trailerRouter.get('/', (request: Request, response: Response) => {
 
 function resolveNullAndEmptyValuesOnDates(requestbod: any) {
 
-  requestbod.datersnotified = requestbod.datersnotified.formatted[0] === null ? null : new Date(requestbod.datersnotified.formatted);
-  requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted[0] === null ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
-  requestbod.dateauthorized = requestbod.dateauthorized.formatted[0] === null ? null : new Date(requestbod.dateauthorized.formatted);
+  function getProps(obj) {
+    let str = '';
+    for (const prop in obj) {
+      str += 'obj[' + prop + '] = ' + obj[prop] + '\n';
+    }
+    return str;
+  }
+
+  console.log('requestbod.datersnotified == ' + requestbod.datersnotified);
+  console.log('(requestbod.datersnotified.formatted[0] === ' + (requestbod.datersnotified.formatted[0] === ''));
+  console.log('requestbod.datersnotified.formatted === \'\' == ' + (requestbod.datersnotified.formatted === ''));
+
+  requestbod.datersnotified = requestbod.datersnotified.formatted[0] === null || requestbod.datersnotified.formatted[0] === '' ? null : new Date(requestbod.datersnotified.formatted);
+  requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted[0] === null || requestbod.estimatedtimeofcompletion.formatted[0] === '' ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);
+  requestbod.dateauthorized = requestbod.dateauthorized.formatted[0] === null || requestbod.dateauthorized.formatted[0] === '' ? null : new Date(requestbod.dateauthorized.formatted);
 }
 
 trailerRouter.post('/', (request: Request, response: Response) => {
+
 
   resolveNullAndEmptyValuesOnDates(request.body);
 

@@ -73,6 +73,12 @@ export class TableDemoComponent implements OnInit {
     this.onChangeTable(this.config);
   }
 
+  public createNewTrailer(event) {
+    event.preventDefault();
+    this.passTrailerDataService.resetAllFields();
+    this.passTrailerDataService.creationMode = 'new';
+    this.router.navigateByUrl('/newtrailer');
+  }
   public changePage(page: any, data: Array<any> = this.data): Array<any> {
     console.log(page);
     const start = (page.page - 1) * page.itemsPerPage;
@@ -200,6 +206,7 @@ export class TableDemoComponent implements OnInit {
       }
 console.table(editRow);
       this.passTrailerDataService.trailerObject = editRow;
+      this.passTrailerDataService.creationMode = 'edit';
       this.router.navigateByUrl('/newtrailer');
     }
   }

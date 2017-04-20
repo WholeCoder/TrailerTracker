@@ -2,6 +2,13 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PassTrailerDataService {
+  get creationMode(): string {
+    return this._creationMode;
+  }
+
+  set creationMode(value: string) {
+    this._creationMode = value;
+  }
   get trailerObject(): Object {
     return this._trailerObject;
   }
@@ -11,6 +18,10 @@ export class PassTrailerDataService {
   }
 
   constructor() {
+    this.resetAllFields();
+  }
+
+  public resetAllFields() {
     this._trailerObject = {
       unitnumber: [''],
       customer: [''],
@@ -29,4 +40,5 @@ export class PassTrailerDataService {
   }
 
   private _trailerObject: Object;
+  private _creationMode: string; // This will either be edit or new depending on what we want to do.
 }

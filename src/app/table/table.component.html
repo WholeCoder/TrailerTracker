@@ -5,7 +5,7 @@
 <br />
 <button (click)="deleteTrailer($event)" type="submit">Delete</button>
 <div alt="" class="setimage"></div>
-<a [routerLink]="[ '/newtrailer' ]">Create New Trailer</a>
+<a (click)="createNewTrailer($event)">Create New Trailer</a>
 <input *ngIf="config.filtering" placeholder="Filter"
        [ngTableFiltering]="config.filtering"
        (tableChanged)="onChangeTable(config)"/>
