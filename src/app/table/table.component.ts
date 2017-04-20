@@ -79,6 +79,7 @@ export class TableDemoComponent implements OnInit {
     this.passTrailerDataService.creationMode = 'new';
     this.router.navigateByUrl('/newtrailer');
   }
+
   public changePage(page: any, data: Array<any> = this.data): Array<any> {
     console.log(page);
     const start = (page.page - 1) * page.itemsPerPage;
@@ -178,33 +179,33 @@ export class TableDemoComponent implements OnInit {
     const that = this;
     if ($event.column === 'deletespace') {
       console.log('------------------------');
-      for (let i = 0; i < this.rows.length; i++) {
-        console.log(this.rows[i].id + ' === ' + $event.row.id);
-        if (this.rows[i].id === $event.row.id) {
-          console.log('     satisfied - breaking');
-          this.rows.splice(i, 1);
-          break;
+      if (confirm('Delete Trailer Record?')) {
+        for (let i = 0; i < this.rows.length; i++) {
+          console.log(this.rows[i].id + ' === ' + $event.row.id);
+          if (this.rows[i].id === $event.row.id) {
+            console.log('     satisfied - breaking');
+            this.rows.splice(i, 1);
+            break;
+          }
         }
+        this.http.delete('/api/trailers/' + $event.row.id, $event.row.id)
+        // ...and calling .json() on the response to return data
+          .map((res: Response) => {
+            res.json();
+          })
+          .subscribe(x => {
+
+          });
       }
-      this.http.delete('/api/trailers/' + $event.row.id, $event.row.id)
-      // ...and calling .json() on the response to return data
-        .map((res: Response) => {
-          alert('deleted unit successfully');
-          res.json();
-        })
-        .subscribe(x => {
-          alert('deleted trailer! - ' + JSON.stringify(x));
-        });
     }
     else if ($event.column === 'editspace') {
 
       const editRow = $event.row;
 
-      for (const prop in editRow)
-      {
+      for (const prop in editRow) {
         editRow[prop] = [editRow[prop]];
       }
-console.table(editRow);
+      console.table(editRow);
       this.passTrailerDataService.trailerObject = editRow;
       this.passTrailerDataService.creationMode = 'edit';
       this.router.navigateByUrl('/newtrailer');
