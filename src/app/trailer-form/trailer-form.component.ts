@@ -1,5 +1,5 @@
 import {animate, Component, Inject, OnInit, style, transition, trigger} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Http, Response} from '@angular/http';
 import {StatusService} from '../status.service';
 import {DateModel, DatePickerOptions} from 'ng2-datepicker';
@@ -43,9 +43,11 @@ export class TrailerFormComponent implements OnInit {
               private locationService: LocationService,
               private router: Router) {
 
+
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status1'][0], 'status1');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status2'][0], 'status2');
     this.setProperDropDownValuesForStatus(this.passTrailerDataService.trailerObject['status3'][0], 'status3');
+
 
     this.estimatedtimeofcompletion = new DateModel();
     this.estimatedtimeofcompletion.formatted = this.passTrailerDataService.trailerObject['estimatedtimeofcompletion'];
@@ -93,34 +95,51 @@ export class TrailerFormComponent implements OnInit {
 
   public dt: Date = new Date();
 
+
   saveTrailer(event) {
+    event.preventDefault();
+    function getProps(obj) {
+      let str = '';
+      for (const prop in obj) {
+        str += 'obj[' + prop + '] = ' + obj[prop] + '\n';
+      }
+      return str;
+    }
+
     if (this.trailerForm.value.authorizedinitials === null || this.trailerForm.value.authorizedinitials.trim() === '')
       alert('Must enter Initals to Save This Trailer!');
     else {
       if (this.passTrailerDataService.creationMode === 'edit') {
+this.trailerForm.value['status1'] = this.status1;
         this.http.put('/api/trailers/', (this.trailerForm.value))
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
+            alert('this.trailerForm.value' + getProps(this.trailerForm.value));
             this.router.navigateByUrl('/trailertable');
           });
       } else if (this.passTrailerDataService.creationMode === 'new') {
+this.trailerForm.value['status1'] = this.status1;
+        alert('this.trailerForm.value' + this.trailerForm.value);
+
         this.http.post('/api/trailers/', (this.trailerForm.value))
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
             this.router.navigateByUrl('/trailertable');
+            alert('this.trailerForm.value.status1 == ' + getProps(this.trailerForm.value));
           });
       }
     }
   }
 
+  private status1: string;
 
   setProperDropDownValuesForStatus(event, status) {
-
+// alert('onchange called');
     const colorFileName = this.determineLightColor(event);
-
     if (status === 'status1') {
+      this.status1 = event;
       this.setInitialStatus1And2DropDownValues(colorFileName);
     } else if (status === 'status2') {
       this.removeSelectedFromArraysOfOptions2(colorFileName);
@@ -154,19 +173,28 @@ export class TrailerFormComponent implements OnInit {
   }
 
   private selectOptionForStatusDropDown2(event) {
+    alert('selecting status2!!!!!!!!!!!!!!!!!! LENGth of statuses == ' + this.status2Values.length);
+    let foundOne = false;
     for (let i = 0; i < this.status2Values.length; i++) {
-      if (event === this.status2Values[i][0])
+      alert('condition == \'' + event + '\' == \'' + this.status2Values[i][0] + '\' == ' + (event === this.status2Values[i][0].toString()) );
+      if (event === this.status2Values[i][0].toString()) {
         this.status2Values[i].push('selected');
-      else
+        // alert('status2 selected == ' + this.status2Values[i][0]);
+        foundOne  = true;
+      }else {
         this.status2Values[i].push('');
+      }
+      // alert('found one in status2 select drop down ' + foundOne);
     }
   }
 
   private removeSelectedFromArraysOfOptions2(colorFileName: string) {
     // this.status2Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status2Values.length; i++) {
-      if (this.status2Values[i].length === 5)
+      if (this.status2Values[i].length === 5) {
+        alert('found status2 selected so removing');
         this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
+      }
     }
   }
 

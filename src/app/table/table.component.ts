@@ -202,13 +202,23 @@ export class TableDemoComponent implements OnInit {
 
       const editRow = $event.row;
 
-      for (const prop in editRow) {
-        editRow[prop] = [editRow[prop]];
-      }
+      this.http.get('/api/trailers/' + $event.row.id, $event.row.id)
+      // ...and calling .json() on the response to return data
+        .map((res: Response) => {
+          const jsonObj = res.json();
+          for (const prop in jsonObj) {
+            editRow[prop] = [jsonObj[prop]];
+          }
+          alert(jsonObj['status1']);
+          this.passTrailerDataService.trailerObject = editRow;
+          this.passTrailerDataService.creationMode = 'edit';
+          this.router.navigateByUrl('/newtrailer');
+        })
+        .subscribe(x => {
+
+        });
+
       console.table(editRow);
-      this.passTrailerDataService.trailerObject = editRow;
-      this.passTrailerDataService.creationMode = 'edit';
-      this.router.navigateByUrl('/newtrailer');
     }
   }
 }

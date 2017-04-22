@@ -44,7 +44,7 @@
                      <label for="status2">Status 2:</label>
                     <select formControlName="status2" type="text" class="form-control" id="status2">
                       <option *ngFor="let status of status2Values;let i = index"
-                              selected="{{status[4]}}">
+                              selected="{{status[4]}}" value="{{ status[0] }}">
                         {{ status[0] }}
                       </option>
                     </select>
@@ -53,7 +53,7 @@
                      <label for="status3">Status 3:</label>
                     <select formControlName="status3" type="text" class="form-control" id="status3">
                       <option *ngFor="let status of status3Values;let i = index"
-                              selected="{{status[4]}}">
+                              selected="{{status[4]}}" value="{{ status[0] }}">
                         {{ status[0] }}
                       </option>
                     </select>

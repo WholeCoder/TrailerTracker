@@ -14,17 +14,19 @@ export class StatusDropDownComponent implements OnInit {
 
   statuses: String[][];
 
-  constructor(statusService: StatusService, passTrailerDataService: PassTrailerDataService) {
+  constructor(statusService: StatusService, private passTrailerDataService: PassTrailerDataService) {
+    this.statuses = statusService.getAllStatuses();
     this.removeSelectFromAllOptions(statusService);
-    this.setProperStatus(passTrailerDataService);
+    this.setProperStatus();
+    // alert(this.passTrailerDataService.trailerObject['status']);
   }
 
-  private setProperStatus(passTrailerDataService: PassTrailerDataService) {
+  private setProperStatus() {
     for (let i = 0; i < this.statuses.length; i++) {
-      if (passTrailerDataService.trailerObject['status1'].toString() === this.statuses[i][0]) {
+      if (this.passTrailerDataService.trailerObject['status1'][0].toString() === this.statuses[i][0]) {
         this.statuses[i].push('selected');
 
-        break;
+        // break;
       } else {
         this.statuses[i].push('');
       }
@@ -32,7 +34,6 @@ export class StatusDropDownComponent implements OnInit {
   }
 
   private removeSelectFromAllOptions(statusService: StatusService) {
-    this.statuses = statusService.getAllStatuses();
     for (let i = 0; i < this.statuses.length; i++) {
       if (this.statuses[i].length === 5)
         this.statuses[i].splice(this.statuses[i].length - 1, 1);
