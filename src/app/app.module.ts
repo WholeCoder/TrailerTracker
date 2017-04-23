@@ -30,8 +30,10 @@ import {CustomerService} from './customer.service';
 import {AccountService} from './account.service';
 import {VehicleTypeService} from './vehicle-type.service';
 import {LocationService} from './location.service';
+import {UserService} from './user.service';
 
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import { UserTableComponent } from './user-table/user-table.component';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -48,7 +50,8 @@ const appRoutes: Routes =       [
 
         {path: 'trailertable', component: HomeComponent, children: [
           {path: '', component: NavBarUserLoggedInComponent, outlet: 'nav-bar-content'},
-          {path: '', component: TableDemoComponent, outlet: 'main-content'}
+          {path: '', component: TableDemoComponent, outlet: 'main-content'},
+          {path: '', component: UserTableComponent, outlet: 'below-main-content'}
         ]},
 
         {path: 'newtrailer', component: HomeComponent, children: [
@@ -75,7 +78,8 @@ const appRoutes: Routes =       [
     TrailerFormComponent,
     SignUpComponent,
     NavBarUserLoggedInComponent,
-    StatusDropDownComponent
+    StatusDropDownComponent,
+    UserTableComponent
   ],
   imports: [
     BrowserModule,
@@ -94,7 +98,8 @@ const appRoutes: Routes =       [
     CustomerService,
     AccountService,
     VehicleTypeService,
-    LocationService
+    LocationService,
+    UserService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [
