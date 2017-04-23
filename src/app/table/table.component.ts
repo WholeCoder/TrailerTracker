@@ -209,7 +209,7 @@ export class TableDemoComponent implements OnInit {
           for (const prop in jsonObj) {
             editRow[prop] = [jsonObj[prop]];
           }
-          alert(jsonObj['status1']);
+          // alert(jsonObj['status1']);
           this.passTrailerDataService.trailerObject = editRow;
           this.passTrailerDataService.creationMode = 'edit';
           this.router.navigateByUrl('/newtrailer');

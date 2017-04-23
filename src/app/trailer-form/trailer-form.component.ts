@@ -115,19 +115,19 @@ this.trailerForm.value['status1'] = this.status1;
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
-            alert('this.trailerForm.value' + getProps(this.trailerForm.value));
+            // alert('this.trailerForm.value' + getProps(this.trailerForm.value));
             this.router.navigateByUrl('/trailertable');
           });
       } else if (this.passTrailerDataService.creationMode === 'new') {
 this.trailerForm.value['status1'] = this.status1;
-        alert('this.trailerForm.value' + this.trailerForm.value);
+        // alert('this.trailerForm.value' + this.trailerForm.value);
 
         this.http.post('/api/trailers/', (this.trailerForm.value))
         // ...and calling .json() on the response to return data
           .map((res: Response) => res.json())
           .subscribe(x => {
             this.router.navigateByUrl('/trailertable');
-            alert('this.trailerForm.value.status1 == ' + getProps(this.trailerForm.value));
+            // alert('this.trailerForm.value.status1 == ' + getProps(this.trailerForm.value));
           });
       }
     }
@@ -173,10 +173,10 @@ this.trailerForm.value['status1'] = this.status1;
   }
 
   private selectOptionForStatusDropDown2(event) {
-    alert('selecting status2!!!!!!!!!!!!!!!!!! LENGth of statuses == ' + this.status2Values.length);
+    // alert('selecting status2!!!!!!!!!!!!!!!!!! LENGth of statuses == ' + this.status2Values.length);
     let foundOne = false;
     for (let i = 0; i < this.status2Values.length; i++) {
-      alert('condition == \'' + event + '\' == \'' + this.status2Values[i][0] + '\' == ' + (event === this.status2Values[i][0].toString()) );
+      // alert('condition == \'' + event + '\' == \'' + this.status2Values[i][0] + '\' == ' + (event === this.status2Values[i][0].toString()) );
       if (event === this.status2Values[i][0].toString()) {
         this.status2Values[i].push('selected');
         // alert('status2 selected == ' + this.status2Values[i][0]);
@@ -192,7 +192,7 @@ this.trailerForm.value['status1'] = this.status1;
     // this.status2Values = this.statusService.getGroup(colorFileName);
     for (let i = 0; i < this.status2Values.length; i++) {
       if (this.status2Values[i].length === 5) {
-        alert('found status2 selected so removing');
+        // alert('found status2 selected so removing');
         this.status2Values[i].splice(this.status2Values[i].length - 1, 1);
       }
     }

@@ -50,7 +50,7 @@ export class SignUpComponent implements OnInit {
       }
       return str;
     }
-    alert(getProps(this.signUpForm.value));
+    // alert(getProps(this.signUpForm.value));
     // alert('passwords == ' + this.signUpForm.value.password + ' === ' + this.signUpForm.value.password_confirmation);
     if ((this.signUpForm.value.password === this.signUpForm.value.password_confirmation) &&
         (this.signUpForm.value.password != null) && (this.signUpForm.value.customer !== 'ADMIN')) {
