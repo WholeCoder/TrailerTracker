@@ -149,8 +149,8 @@ export class UserTableComponent implements OnInit {
 
   onCellClick($event) {
     const that = this;
-    if ($event.column === 'resetpassword') {
-      alert('Reset the Password');
+    if ($event.column === 'resetspace') {
+      this.router.navigateByUrl('/resetuserpassword');
     }
   }
 }

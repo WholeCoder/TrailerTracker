@@ -34,6 +34,7 @@ import {UserService} from './user.service';
 
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { UserTableComponent } from './user-table/user-table.component';
+import { ResetUserPasswordComponent } from './reset-user-password/reset-user-password.component';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -52,6 +53,11 @@ const appRoutes: Routes =       [
           {path: '', component: NavBarUserLoggedInComponent, outlet: 'nav-bar-content'},
           {path: '', component: TableDemoComponent, outlet: 'main-content'},
           {path: '', component: UserTableComponent, outlet: 'below-main-content'}
+        ]},
+
+        {path: 'resetuserpassword', component: HomeComponent, children: [
+          {path: '', component: NavBarUserLoggedInComponent, outlet: 'nav-bar-content'},
+          {path: '', component: ResetUserPasswordComponent, outlet: 'main-content'}
         ]},
 
         {path: 'newtrailer', component: HomeComponent, children: [
@@ -79,7 +85,8 @@ const appRoutes: Routes =       [
     SignUpComponent,
     NavBarUserLoggedInComponent,
     StatusDropDownComponent,
-    UserTableComponent
+    UserTableComponent,
+    ResetUserPasswordComponent
   ],
   imports: [
     BrowserModule,
