@@ -7,7 +7,6 @@ import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
-import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-user-table',
@@ -49,10 +48,17 @@ export class UserTableComponent implements OnInit {
   private data: Object[] = [];
   private dataObsv: Observable<any>;
 
-  public constructor(private userService: UserService, private http: Http, private router: Router) {
+  public constructor( private http: Http, private router: Router) {
     // ...using get request
     const that = this;
-    this.data = userService.getUsers();
+    this.http.get('/api/user')
+    // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+    .subscribe(x => {
+        this.data = x;
+        this.length = x.length;
+        this.onChangeTable(this.config);
+     });
     /*this.http.get('/api/trailers')
     // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())

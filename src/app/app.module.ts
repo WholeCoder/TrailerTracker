@@ -30,7 +30,6 @@ import {CustomerService} from './customer.service';
 import {AccountService} from './account.service';
 import {VehicleTypeService} from './vehicle-type.service';
 import {LocationService} from './location.service';
-import {UserService} from './user.service';
 
 import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { UserTableComponent } from './user-table/user-table.component';
@@ -105,8 +104,7 @@ const appRoutes: Routes =       [
     CustomerService,
     AccountService,
     VehicleTypeService,
-    LocationService,
-    UserService
+    LocationService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
   bootstrap: [
