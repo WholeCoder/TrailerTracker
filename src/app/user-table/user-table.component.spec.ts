@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from "@angular/core/testing";
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from "@angular/core";
 
-import { UserTableComponent } from './user-table.component';
+import {UserTableComponent} from "./user-table.component";
+import {HttpModule} from "@angular/http";
+import {RouterTestingModule} from "@angular/router/testing";
+import {BrowserTestingModule} from "@angular/platform-browser/testing";
 
 describe('UserTableComponent', () => {
   let component: UserTableComponent;
@@ -8,7 +12,9 @@ describe('UserTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserTableComponent ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+      declarations: [ UserTableComponent ],
+      imports: [BrowserTestingModule, HttpModule, RouterTestingModule]
     })
     .compileComponents();
   }));
