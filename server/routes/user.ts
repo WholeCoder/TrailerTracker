@@ -28,6 +28,7 @@ userRouter.get('/', (request: Request, response: Response) => {
 
   User.findAll().then(function (usrs) {
     response.json(usrs);
+    console.log('*********************** got all users...length == ' + usrs.length);
   });
 
 });
@@ -60,6 +61,22 @@ userRouter.put('/', (request: Request, response: Response) => {
   } else {
     response.json({'error': 'could not create'});
   }
+});
+
+userRouter.put('/resetpassword', (request: Request, response: Response) => {
+
+  const User = CreateUser(sequelize);
+
+  User.update(request.body, {where: {id: request.body.id}, individualHooks: true}).then(
+    function (usr) {
+      console.log('sucessfully updated == ' + usr);
+      // response.json(JSON.stringify(usr));
+      response.json({'successfully': 'updated'});
+    }
+  ).catch(
+    function (error) {
+      console.log('error == ' + error);
+    });
 });
 
 export {userRouter};

@@ -1,12 +1,11 @@
 import {animate, Component, OnInit, style, transition, trigger} from '@angular/core';
-import {TrailerService} from '../trailer.service';
 import {Http, Response} from '@angular/http';
-
 import {Observable} from 'rxjs/Rx';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
+import {TransferUserInfoForPasswordResetService} from '../transfer-user-info-for-password-reset.service';
 
 @Component({
   selector: 'app-user-table',
@@ -48,16 +47,16 @@ export class UserTableComponent implements OnInit {
   private data: Object[] = [];
   private dataObsv: Observable<any>;
 
-  public constructor( private http: Http, private router: Router) {
+  public constructor( private http: Http, private router: Router, private tranferUserInfoForPasswordResetService: TransferUserInfoForPasswordResetService) {
     // ...using get request
     const that = this;
-    this.http.get('/api/user')
+    this.http.get('/api/user/')
     // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())
     .subscribe(x => {
-        this.data = x;
-        this.length = x.length;
-        this.onChangeTable(this.config);
+      that.data = x;
+      that.length = x.length;
+      that.onChangeTable(that.config);
      });
     /*this.http.get('/api/trailers')
     // ...and calling .json() on the response to return data
@@ -70,7 +69,6 @@ export class UserTableComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.onChangeTable(this.config);
   }
 
   public createNewUser(event) {
@@ -84,7 +82,7 @@ export class UserTableComponent implements OnInit {
   }
 
   public changePage(page: any, data: Array<any> = this.data): Array<any> {
-    console.log(page);
+    // console.log(page);
     const start = (page.page - 1) * page.itemsPerPage;
     const end = page.itemsPerPage > -1 ? (start + page.itemsPerPage) : data.length;
     return data.slice(start, end);
@@ -156,6 +154,8 @@ export class UserTableComponent implements OnInit {
   onCellClick($event) {
     const that = this;
     if ($event.column === 'resetspace') {
+      this.tranferUserInfoForPasswordResetService.id = $event.row.id;
+      this.tranferUserInfoForPasswordResetService.username = $event.row.username;
       this.router.navigateByUrl('/resetuserpassword');
     }
   }

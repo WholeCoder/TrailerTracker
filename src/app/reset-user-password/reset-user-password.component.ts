@@ -1,6 +1,8 @@
 import {animate, Component, Inject, OnInit, style, transition, trigger} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Http} from '@angular/http';
+import {Http, Response} from '@angular/http';
+import {TransferUserInfoForPasswordResetService} from '../transfer-user-info-for-password-reset.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-reset-user-password',
@@ -20,10 +22,10 @@ export class ResetUserPasswordComponent implements OnInit {
   public resetUserPasswordForm: FormGroup;
   public username: string;
 
-  constructor(@Inject(FormBuilder) fb: FormBuilder,
-              private http: Http) {
+  constructor(@Inject(FormBuilder) fb: FormBuilder, private router: Router,
+              private http: Http, private tranferUserInfoForPasswordResetService: TransferUserInfoForPasswordResetService) {
 
-    this.username = '';
+    this.username = this.tranferUserInfoForPasswordResetService.username;
 
     this.resetUserPasswordForm = fb.group({
       password: [''],
@@ -32,6 +34,19 @@ export class ResetUserPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  saveUserPassword(event) {
+    this.resetUserPasswordForm.value.id = this.tranferUserInfoForPasswordResetService.id;
+    this.http.put('/api/user/resetpassword', (this.resetUserPasswordForm.value))
+    // ...and calling .json() on the response to return data
+      .map((res: Response) => res.json())
+      .subscribe(x => {
+        // alert('this.trailerForm.value' + getProps(this.trailerForm.value));
+        this.router.navigateByUrl('/trailertable');
+      });
+
+    // alert('saving password! form == ' + this.resetUserPasswordForm.value.id);
   }
 
 }
