@@ -5,6 +5,7 @@ import {UserTableComponent} from "./user-table.component";
 import {HttpModule} from "@angular/http";
 import {RouterTestingModule} from "@angular/router/testing";
 import {BrowserTestingModule} from "@angular/platform-browser/testing";
+import {TransferUserInfoForPasswordResetService} from "../transfer-user-info-for-password-reset.service";
 
 describe('UserTableComponent', () => {
   let component: UserTableComponent;
@@ -13,10 +14,11 @@ describe('UserTableComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-      declarations: [ UserTableComponent ],
-      imports: [BrowserTestingModule, HttpModule, RouterTestingModule]
+      declarations: [UserTableComponent],
+      imports: [BrowserTestingModule, HttpModule, RouterTestingModule],
+      providers: [TransferUserInfoForPasswordResetService]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
