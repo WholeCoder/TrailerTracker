@@ -31,7 +31,6 @@ const CreateUser = function (sequelize) {
               // found the user
               return cb(null, user, null);
             } else {
-              console.log('ENDED - ' + 'getAuthenticated');
               console.log('could not find user.');
               return cb(null, null, reasons.NOT_FOUND);
             }
@@ -97,7 +96,6 @@ const CreateUser = function (sequelize) {
 
     bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
       bcrypt.hash(instance.get('password'), salt, function (err, hash) {
-        console.log("EXECUTING PASSWORD HASH!!!!!!!!!!!!!!!!!!!!!1");
         if (err) return done(err);
         instance.set('password', hash);
         done(null, options);

@@ -19,7 +19,7 @@ const app: express.Application = express();
 app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
-console.log("----------------------->  db_url == "+config.development_database_url);
+
 app.use(session({
   store: new pgSession({
     pg : pg,                                  // Use global pg-module

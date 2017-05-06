@@ -9,9 +9,7 @@ const trailerRouter: Router = Router();
 const Trailer = defineTrailer(sequelize);
 
 trailerRouter.get('/', (request: Request, response: Response) => {
-  console.log(' in defineTrailer -----------------> user == ' + JSON.stringify(request['session'].user));
   if (request['session'].user.customer === 'ADMIN') {
-    console.log('executing findAll on Trailers---------------------');
     Trailer.findAll().then(function (trlrs) {
       response.json(trlrs);
     });
@@ -30,10 +28,6 @@ function resolveNullAndEmptyValuesOnDates(requestbod: any) {
     }
     return str;
   }
-
-  console.log('requestbod.datersnotified == ' + requestbod.datersnotified);
-  console.log('(requestbod.datersnotified.formatted[0] === ' + (requestbod.datersnotified.formatted[0] === ''));
-  console.log('requestbod.datersnotified.formatted === \'\' == ' + (requestbod.datersnotified.formatted === ''));
 
   requestbod.datersnotified = requestbod.datersnotified.formatted[0] === null || requestbod.datersnotified.formatted[0] === '' ? null : new Date(requestbod.datersnotified.formatted);
   requestbod.estimatedtimeofcompletion = requestbod.estimatedtimeofcompletion.formatted[0] === null || requestbod.estimatedtimeofcompletion.formatted[0] === '' ? null : new Date(requestbod.estimatedtimeofcompletion.formatted);

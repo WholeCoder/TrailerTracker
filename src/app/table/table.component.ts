@@ -178,10 +178,8 @@ export class TableDemoComponent implements OnInit {
   onCellClick($event) {
     const that = this;
     if ($event.column === 'deletespace') {
-      console.log('------------------------');
       if (confirm('Delete Trailer Record?')) {
         for (let i = 0; i < this.rows.length; i++) {
-          console.log(this.rows[i].id + ' === ' + $event.row.id);
           if (this.rows[i].id === $event.row.id) {
             console.log('     satisfied - breaking');
             this.rows.splice(i, 1);
