@@ -8,7 +8,9 @@ const CreateUser = function (sequelize) {
   const User = sequelize.define('User', {
       username: Sequelize.STRING,
       password: Sequelize.STRING,
-      customer: Sequelize.STRING
+      customer: Sequelize.STRING,
+      securityrole: Sequelize.STRING,
+      garage: Sequelize.STRING
     },
     {
       instanceMethods: {
