@@ -1,5 +1,5 @@
 import {animate, Component, Inject, OnInit, style, transition, trigger} from "@angular/core";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Http, Response} from '@angular/http';
 
 @Component({
@@ -16,6 +16,8 @@ import {Http, Response} from '@angular/http';
   ]
 })
 export class SignUpGarageComponent implements OnInit {
+  public signUpGarageForm: FormGroup;
+
 
   constructor(@Inject(FormBuilder) fb: FormBuilder, private http: Http) {
     this.signUpGarageForm = fb.group({
