@@ -34,6 +34,7 @@ import {UserTableComponent} from "./user-table/user-table.component";
 import {ResetUserPasswordComponent} from "./reset-user-password/reset-user-password.component";
 import {TransferUserInfoForPasswordResetService} from "./transfer-user-info-for-password-reset.service";
 import { SignUpGarageComponent } from './sign-up-garage/sign-up-garage.component';
+import { AddMilestoneIndicatorsComponent } from './add-milestone-indicators/add-milestone-indicators.component';
 
 const appRoutes: Routes =       [
         {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -51,6 +52,11 @@ const appRoutes: Routes =       [
         {path: 'signupgarage', component: HomeComponent, children: [
           {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
           {path: '', component: SignUpGarageComponent, outlet: 'main-content'}
+        ]},
+
+        {path: 'add_milestone_indicators', component: HomeComponent, children: [
+          {path: '', component: NavBarComponent, outlet: 'nav-bar-content'},
+          {path: '', component: AddMilestoneIndicatorsComponent, outlet: 'main-content'}
         ]},
 
         {path: 'trailertable', component: HomeComponent, children: [
@@ -91,7 +97,8 @@ const appRoutes: Routes =       [
     StatusDropDownComponent,
     UserTableComponent,
     ResetUserPasswordComponent,
-    SignUpGarageComponent
+    SignUpGarageComponent,
+    AddMilestoneIndicatorsComponent
   ],
   imports: [
     BrowserModule,

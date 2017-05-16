@@ -2,9 +2,9 @@ import * as express from 'express';
 import {json, urlencoded} from 'body-parser';
 import * as path from 'path';
 import * as compression from 'compression';
-var pg = require('pg');
-var session = require('express-session');
-var pgSession = require('connect-pg-simple')(session);
+const pg = require('pg');
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const config = require('./config_db');
 
 import {loginRouter} from './routes/login';
@@ -13,6 +13,7 @@ import {publicRouter} from './routes/public';
 import {feedRouter} from './routes/feed';
 import {userRouter} from './routes/user';
 import {trailerRouter} from './routes/trailers';
+import {newGarageRouter} from './routes/signUpNewGarage';
 
 const app: express.Application = express();
 
@@ -30,21 +31,21 @@ app.use(session({
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
 
-app.get('*',function(req,res,next){
-  if(req.headers['x-forwarded-proto']!='https' && !(process.env.ENVIRONMENT == 'local_development'))
+app.get('*', function(req, res, next){
+  if (req.headers['x-forwarded-proto'] != 'https' && !(process.env.ENVIRONMENT == 'local_development'))
   {
-    var GO_TO_REMOVE_DEV_ENVIRONTMENT = process.env.ENVIRONMENT == 'remote_development';
+    const GO_TO_REMOVE_DEV_ENVIRONTMENT = process.env.ENVIRONMENT == 'remote_development';
     if (GO_TO_REMOVE_DEV_ENVIRONTMENT)
     {
       // res.redirect('https://shrouded-bastion-9856.herokuapp.com'+req.url);
     } else
     {
-      res.redirect('https://www.pierichwebit.net'+req.url);
+      res.redirect('https://www.pierichwebit.net' + req.url);
     }
   }
   else
     next(); /* Continue to other routes if we're not redirecting */
-})
+});
 
 
 app.disable('x-powered-by');
@@ -60,6 +61,7 @@ app.use('/api/public', publicRouter);
 app.use('/api/feed', feedRouter);
 app.use('/api/user', userRouter);
 app.use('/api/trailers', trailerRouter);
+app.use('/api/sign_up_new_garage', newGarageRouter);
 
 if (app.get('env') === 'production') {
 
