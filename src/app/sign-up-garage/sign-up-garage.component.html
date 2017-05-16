@@ -1,3 +1,32 @@
-<p>
-  sign-up-garage works!
-</p>
+<div class="container">
+  <div style="height: 50px;">
+  </div>
+  <div class="row" [@signUpGaragePanel]="state">
+    <div class="offset-sm-6 col-sm-5">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Create a New Garage</div>
+        <div class="panel-body">
+          <form [formGroup]="signUpGarageForm" (ngSubmit)="saveNewGarage($event)">
+            <div class="form-group">
+              <label for="username">Email:</label>
+              <input formControlName="username" type="text" class="form-control" name="username" id="username">
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input formControlName="password" type="password" class="form-control" name="password" id="password">
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Password (Confirmation):</label>
+              <input formControlName="password_confirmation" type="password" name="password_confirmation" class="form-control" id="password_confirmation">
+            </div>
+            <div class="form-group">
+              <label for="garage">Garage:</label>
+              <input formControlName="garage" type="text" name="garage" class="form-control" id="garage">
+            </div>
+            <button type="submit" class="btn btn-default">Sign Up!</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
