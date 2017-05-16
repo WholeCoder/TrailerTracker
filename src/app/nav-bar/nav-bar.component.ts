@@ -66,4 +66,8 @@ export class NavBarComponent implements OnInit {
   newUser(event) {
     this.router.navigateByUrl('/signup');
   }
+
+  newGarage(event) {
+    this.router.navigateByUrl('/signupgarage');
+  }
 }
