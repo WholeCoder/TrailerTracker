@@ -23,10 +23,11 @@ userRouter.get('/', (request: Request, response: Response) => {
 
   const User = CreateUser(sequelize);
 
-  User.findAll().then(function (usrs) {
-    response.json(usrs);
-  });
-
+  if (request['session'].user.securityrole === 'MASTER_ADMIN') {
+    User.findAll().then(function (usrs) {
+      response.json(usrs);
+    });
+  }
 });
 
 userRouter.put('/', (request: Request, response: Response) => {

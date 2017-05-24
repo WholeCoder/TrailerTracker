@@ -9,7 +9,7 @@ const trailerRouter: Router = Router();
 const Trailer = defineTrailer(sequelize);
 
 trailerRouter.get('/', (request: Request, response: Response) => {
-  if (request['session'].user.customer === 'ADMIN') {
+  if (request['session'].user.securityrole === 'MASTER_ADMIN') {
     Trailer.findAll().then(function (trlrs) {
       response.json(trlrs);
     });
